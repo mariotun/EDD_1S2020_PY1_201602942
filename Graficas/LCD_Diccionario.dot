@@ -1,0 +1,24 @@
+digraph Lista_Circular{
+ label=Diccionario_Palabras; 
+ labelloc=t; 
+node[margin=0.3 fontcolor=black shape=box];
+{rank=same;
+25770344240[label=" mario"];
+25770344320[label=" guate"];
+25770344400[label=" comida"];
+25770344480[label=" luz"];
+25770344560[label=" mundo"];
+25770344640[label=" edd"];
+25770344720[label=" osos"];
+};
+
+25770344240->
+25770344320->
+25770344400->
+25770344480->
+25770344560->
+25770344640->
+25770344720->25770344240
+[dir=front style=tapered arrowsize=1 penwidth=3 color=black];
+
+ }
