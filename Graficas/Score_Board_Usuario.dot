@@ -1,0 +1,28 @@
+digraph Lista_Simple{
+
+subgraph cluster_1{
+
+fontname=algerian;
+fontsize=25;
+style=filled;
+fillcolor=steelblue2;
+label="Puntaje_de_Juegos";
+
+ labelloc=t; 
+node[margin=0.25 style=filled fillcolor=orange shape=box];
+{rank=same;
+25770344480[label=" Juego 1\n10pts."];
+25770344416[label=" Juego 2\n8pts."];
+25770344384[label=" Juego 3\n7pts."];
+25770344320[label=" Juego 4\n4pts."];
+25770344288[label=" Juego 5\n3pts."];
+25770344448[label=" Juego 6\n2pts."];
+25770344352[label=" Juego 7\n1pts."];
+};
+
+25770344480->25770344416->25770344384->25770344320->25770344288->25770344448->25770344352
+[dir=front color=darkgreen];
+
+ }
+
+}

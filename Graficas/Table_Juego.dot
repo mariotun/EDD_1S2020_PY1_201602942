@@ -1,0 +1,115 @@
+ digraph tablero{ 
+
+subgraph cluster_1 {
+
+fontname=algerian
+label= "TABLERO_DEL_JUEGO ";
+ labelloc=t;
+fontcolor=blue4;
+fontsize=25;
+style=filled;
+fillcolor=steelblue2;
+
+graph[ranksep= "0.5",nodesep= "0.5"];
+node [shape=box fillcolor=chartreuse3];
+mt[label= "Matrix" style=radial group=0]
+{rank=same;
+25770344560[label= "1 " style=radial,group=1]
+25770344736[label= "2 " style=radial,group=2]
+25770344912[label= "3 " style=radial,group=3]
+25770345088[label= "4 " style=radial,group=4]
+25770347328[label= "5 " style=radial,group=5]
+25770347504[label= "6 " style=radial,group=6]
+0[label= "7 " style=radial,group=7]
+mt->25770344560->25770344736->25770344912->25770345088->25770347328->25770347504->0[dir=both];};
+
+25770345488[label= "1 " style=radial,group=0]
+25770344432[label= "2 " style=radial,group=0]
+25770345776[label= "3 " style=radial,group=0]
+25770345952[label= "4 " style=radial,group=0]
+25770346576[label= "5 " style=radial,group=0]
+25770346752[label= "6 " style=radial,group=0]
+48[label= "7 " style=radial,group=0]
+mt->25770345488->25770344432->25770345776->25770345952->25770346576->25770346752->48[dir=both];
+
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770344448[label="m" style=radial,group=1];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770345328[label="g" style=radial,group=2];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770345504[label="u" style=radial,group=2];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770344624[label="a" style=radial,group=2];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770345792[label="t" style=radial,group=2];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770345968[label="e" style=radial,group=2];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770344800[label="r" style=radial,group=3];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770346992[label="m" style=radial,group=3];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770344976[label="i" style=radial,group=4];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770347104[label="p" style=radial,group=4];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770346080[label="c" style=radial,group=5];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770345152[label="o" style=radial,group=5];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770346304[label="m" style=radial,group=5];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770346416[label="i" style=radial,group=5];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770346592[label="d" style=radial,group=5];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770346768[label="a" style=radial,group=5];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
+25770347392[label="r" style=radial,group=6];
+25770347680[label="s" style=radial,group=7];
+25770347792[label="o" style=radial,group=7];
+25770347904[label="l" style=radial,group=7];
+25770347568[label="e" style=radial,group=7];
+
+
+25770344560->25770344448[dir=both]
+25770344736->25770345328->25770345504->25770344624->25770345792->25770345968[dir=both]
+25770344912->25770344800->25770346992[dir=both]
+25770345088->25770344976->25770347104[dir=both]
+25770347328->25770346080->25770345152->25770346304->25770346416->25770346592->25770346768[dir=both]
+25770347504->25770347392[dir=both]
+0->25770347680->25770347792->25770347904->25770347568[dir=both]
+
+25770345328[label="g"];
+25770347680[label="s"];
+25770345504[label="u"];
+25770346080[label="c"];
+25770347792[label="o"];
+25770344448[label="m"];
+25770344624[label="a"];
+25770344800[label="r"];
+25770344976[label="i"];
+25770345152[label="o"];
+25770347904[label="l"];
+25770345792[label="t"];
+25770346304[label="m"];
+25770345968[label="e"];
+25770346992[label="m"];
+25770347104[label="p"];
+25770346416[label="i"];
+25770347392[label="r"];
+25770347568[label="e"];
+25770346592[label="d"];
+25770346768[label="a"];
+
+
+{rank=same;25770345488->25770345328->25770347680[dir=both] } 
+{rank=same;25770344432->25770345504->25770346080->25770347792[dir=both] } 
+{rank=same;25770345776->25770344448->25770344624->25770344800->25770344976->25770345152->25770347904[dir=both] } 
+{rank=same;25770345952->25770345792->25770346304[dir=both] } 
+{rank=same;25770346576->25770345968->25770346992->25770347104->25770346416->25770347392->25770347568[dir=both] } 
+{rank=same;25770346752->25770346592[dir=both] } 
+{rank=same;48->25770346768[dir=both] }
+ }
+
+}

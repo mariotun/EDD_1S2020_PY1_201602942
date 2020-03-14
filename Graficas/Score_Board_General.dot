@@ -1,0 +1,42 @@
+digraph Lista_Simple_General{
+
+subgraph cluster_2{
+
+fontname=algerian;
+fontsize=25;
+style=filled;
+fillcolor=steelblue2;
+label="Puntaje_General_de_Jugadores";
+
+ labelloc=t; 
+node[margin=0.25 style=filled fillcolor=orange shape=box];
+{rank=same;
+25770344880[label=" Jugador: alejandra
+Puntaje: 80pts.
+"];
+25770344800[label=" Jugador: nico
+Puntaje: 70pts.
+"];
+25770344640[label=" Jugador: raul
+Puntaje: 40pts.
+"];
+25770344560[label=" Jugador: mario
+Puntaje: 30pts.
+"];
+25770344960[label=" Jugador: daniel
+Puntaje: 20pts.
+"];
+25770345040[label=" Jugador: carla
+Puntaje: 10pts.
+"];
+25770344720[label=" Jugador: sofia
+Puntaje: 10pts.
+"];
+};
+
+25770344880->25770344800->25770344640->25770344560->25770344960->25770345040->25770344720
+[dir=front color=darkgreen];
+
+ }
+
+}

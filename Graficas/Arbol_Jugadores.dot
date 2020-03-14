@@ -1,0 +1,37 @@
+digraph ArbolBB{
+subgraph cluster_1 {
+
+label= "ARBOL_DE_JUGADORES ";
+labelloc=t;
+fontcolor=magenta4;
+fontsize=25;
+style=filled;
+fillcolor=limegreen;
+node[shape=record,height=0.5 style=filled fontcolor=black fillcolor=goldenrod ];
+
+
+25769968848[label="<f0> |<f1>Nombre: mario |<f2> " ]; 
+25770344336[label="<f0> |<f1>Nombre: alejandra |<f2>" ]
+25770344608[label="<f0> |<f1>Nombre: nicolas |<f2>" ]
+25770344912[label="<f0> |<f1>Nombre: carlos |<f2>" ]
+25770344912[label="<f0> |<f1>Nombre: carlos |<f2>" ]
+25770344992[label="<f0> |<f1>Nombre: zaina |<f2>" ]
+25770344992[label="<f0> |<f1>Nombre: zaina |<f2>" ]
+25770345472[label="<f0> |<f1>Nombre: xiomara |<f2>" ]
+25770345472[label="<f0> |<f1>Nombre: xiomara |<f2>" ]
+25770345472[label="<f0> |<f1>Nombre: xiomara |<f2>" ]
+25770345552[label="<f0> |<f1>Nombre: raul |<f2>" ]
+25770345552[label="<f0> |<f1>Nombre: raul |<f2>" ]
+25770345552[label="<f0> |<f1>Nombre: raul |<f2>" ]
+25770345552[label="<f0> |<f1>Nombre: raul |<f2>" ]
+
+25769968848:f0->25770344336:f1 [color=blue]
+25769968848:f2->25770344608:f1 [color=blue ]
+25770344336:f2->25770344912:f1 [color=blue ]
+25770344608:f2->25770344992:f1 [color=blue ]
+25770344992:f0->25770345472:f1 [color=blue]
+25770345472:f0->25770345552:f1 [color=blue]
+
+ }
+
+ }
