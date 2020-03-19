@@ -2,21 +2,35 @@
 #include <fstream>
 #include <string>
 #include <stdlib.h>
-//#include <json/json.h>
+
+//#include "Libreria/include/json/writer.h"
+//#include "Libreria/include/json/reader.h"
+//#include "Libreria/makefiles/vs71/jsoncpp"
+//#include <json/value.h>
+//#include <json.hpp>
 #include "Structures/ListaDobleCircular.cpp"
 #include "Structures/Cola.cpp"
 #include "Structures/ArbolBinarioBusqueda.cpp"
 #include "Structures/Matriz.cpp"
 #include "Structures/ListaSimpleOrdenada.cpp"
+#include "Structures/ListaDoble.cpp"
 
+#include "json.hpp"
+#include <unistd.h>
+
+
+//#include "Libreria/include/json/json.h"
+//#include "Libreria/include/json/value.h"
 using namespace std;
+using json = nlohmann::json;
 
-//bool salir=false;
-//char op;
-//void Leer_Json(string ruta);
+bool salir=false;
+char opcion;
+void Leer_Json(string ruta);
+string ruta;
 
-int main(int argc, char *argv[]){
 
+int main(){
 
 /*string cadena="raul";
 int suma=0;
@@ -26,34 +40,12 @@ int suma=0;
         suma=suma+cadena[x];
     }
     cout<<suma;*/
-
-    Lista_Simple_Ordenada *lso=new Lista_Simple_Ordenada(1);
-    Lista_Simple_Ordenada *lso2=new Lista_Simple_Ordenada(2);
-    
-    lso->Insertar(new NodoLSO(3));
-    lso->Insertar(new NodoLSO(4));
-    lso->Insertar(new NodoLSO(1));
-    lso->Insertar(new NodoLSO(7));
-    lso->Insertar(new NodoLSO(8));
-    lso->Insertar(new NodoLSO(2));
-    lso->Insertar(new NodoLSO(10));
-    lso->GraficarP(1);
-    
-    lso2->Insertar(new NodoLSO("mario",30));
-    lso2->Insertar(new NodoLSO("raul",40));
-    lso2->Insertar(new NodoLSO("sofia",10));
-    lso2->Insertar(new NodoLSO("nico",70));
-    lso2->Insertar(new NodoLSO("alejandra",80));
-    lso2->Insertar(new NodoLSO("daniel",20));
-    lso2->Insertar(new NodoLSO("carla",10));
-    lso2->GraficarP(2);
+   
 
 
 
 
-
-
-  /*  do{
+   do{
 
         cout<<"\n\n---------------> SCRABBLE++ <---------------\n";
         cout<<"|                                          |\n";
@@ -72,7 +64,9 @@ int suma=0;
         switch (opcion){
 
         case '1':
-            cout<<"uno\n";
+            cout<<"\nEscrita la ruta del archivo: ";
+            cin>>ruta;
+            Leer_Json(ruta);
            
             break;
 
@@ -103,9 +97,75 @@ int suma=0;
     
     }while(salir!= true);
 
-    exit(1);*/
+    exit(1);
 
     return 0;
+}
+
+void Leer_Json(string ruta){
+
+ json j2;
+ //string filename = "C:/Users/HP/Desktop/EDD/Proyecto1/entrada.json";
+ string filename=ruta;
+ int dimension;
+ int x,y;
+
+ ifstream reader(filename);
+  if (reader.fail()){
+        cout << "El archivo no existe, verifique que la ruta y el archivo exista." << endl << endl;
+    }else{
+        
+     reader>>j2;
+
+
+    //for (int i = 0; i < j2.size(); i++){ //INICION DE J2
+
+        dimension = j2["dimension"];
+        cout<<"\n\nDimensioM:"<<dimension<<endl;
+
+        json casillas=j2["casillas"];
+        
+        //for (int j = 0; j < casillas.size(); j++){ //INICIO DE CASILLAS
+            
+           // cout<<"casillas: "<<j<<endl;
+            json dobles=casillas["dobles"];
+            for (int y = 0; y < dobles.size(); y++){
+                json coordenadas1=dobles[y];
+                cout<<coordenadas1["x"]<<" , "<<coordenadas1["y"]<<endl;
+            }
+            
+
+            json triples=casillas["triples"];
+            for (int x = 0; x < triples.size(); x++){
+                json coordenadas2=triples[x];
+                cout<<coordenadas2["x"]<<" , "<<coordenadas2["y"]<<endl;
+            }
+        
+
+            json diccionario=j2["diccionario"];
+            //json palabra=diccionario["palabra"];
+            for(int p=0 ; p<diccionario.size();p++){
+                json palabra=diccionario[p];
+                cout<<"palabra: "<<palabra["palabra"]<<endl;
+               
+            }
+
+            
+       // } //FIN DE CASILLAS
+        
+ 
+        
+    } //FIN DE J2
+    
+
+
+    //} //FIN DEL ELSE
+
+
+        reader.close();
+
+
+
 }
 
   /*Matrizz *mt=new Matrizz();
@@ -138,6 +198,7 @@ int suma=0;
 
 
 
+
     /*Arbol_Binario_Busqueda *abb=new Arbol_Binario_Busqueda();
     abb->Agregar(new NodoArbol("mario"));
     abb->Agregar(new NodoArbol("alejandra"));
@@ -146,7 +207,10 @@ int suma=0;
     abb->Agregar(new NodoArbol("zaina"));
     abb->Agregar(new NodoArbol("xiomara"));
     abb->Agregar(new NodoArbol("raul"));
-    abb->Graficar();*/
+    abb->Graficar();
+    abb->graph_inorder();
+    abb->graph_preorder();
+    abb->graph_posorder();*/
 
 
     /*Cola *cl=new Cola();
@@ -185,3 +249,39 @@ int suma=0;
       if(lcd->Buscar("sandy")==false){
          cout<<"FALSE";
      }*/
+
+        /*Lista_Doble *ld=new Lista_Doble();
+    ld->Insertar(new NodoLD("r"));
+    ld->Insertar(new NodoLD("h"));
+    ld->Insertar(new NodoLD("p"));
+    ld->Insertar(new NodoLD("a"));
+    ld->Insertar(new NodoLD("k"));
+    ld->Insertar(new NodoLD("o"));
+    ld->Insertar(new NodoLD("m"));
+    ld->Insertar(new NodoLD("s"));
+    ld->Insertar(new NodoLD("e"));
+    ld->Insertar(new NodoLD("j"));
+    ld->Insertar(new NodoLD("o"));
+    ld->Insertar(new NodoLD("b"));
+    ld->Graficar();*/
+
+  /*Lista_Simple_Ordenada *lso=new Lista_Simple_Ordenada(1);
+    Lista_Simple_Ordenada *lso2=new Lista_Simple_Ordenada(2);
+    
+    lso->Insertar(new NodoLSO(3));
+    lso->Insertar(new NodoLSO(4));
+    lso->Insertar(new NodoLSO(1));
+    lso->Insertar(new NodoLSO(7));
+    lso->Insertar(new NodoLSO(8));
+    lso->Insertar(new NodoLSO(2));
+    lso->Insertar(new NodoLSO(10));
+    lso->GraficarP(1);
+   
+    lso2->Insertar(new NodoLSO("mario",30));
+    lso2->Insertar(new NodoLSO("raul",40));
+    lso2->Insertar(new NodoLSO("sofia",10));
+    lso2->Insertar(new NodoLSO("nico",70));
+    lso2->Insertar(new NodoLSO("alejandra",80));
+    lso2->Insertar(new NodoLSO("daniel",20));
+    lso2->Insertar(new NodoLSO("carla",10));
+    lso2->GraficarP(2);*/

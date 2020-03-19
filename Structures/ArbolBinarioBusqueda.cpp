@@ -51,6 +51,9 @@ class Arbol_Binario_Busqueda{
         NodoArbol *root;
         string Nodo;
         string Enlaces;
+        string flechas;
+        string flechas2;
+        string flechas3;
         int resultado=0;
 
 
@@ -159,11 +162,12 @@ void Arbol_Binario_Busqueda::Graficar(){
     cadena+="label= \"ARBOL_DE_JUGADORES \";\n";
     cadena+="labelloc=t;\n";
     cadena+="fontcolor=magenta4;\n";
+    cadena+="fontname=algerian\n";
     cadena+="fontsize=25;\n";
     cadena+="style=filled;\n";
     cadena+="fillcolor=limegreen;\n";
    // cadena+="node[shape=box, style=filled, fillcolor=goldenrod, label=<<TABLE border=\"0\" cellborder=\"0\"><TR><TD width=\"75\" height=\"75\" fixedsize=\"true\"><IMG SRC=\"ok.png\" scale=\"true\"/></TD><td><font point-size=\"20\">node</font></td></TR></TABLE>>]";
-    cadena+="node[shape=record,height=0.5 style=filled fontcolor=black fillcolor=goldenrod ];\n\n";
+    cadena+="node[shape=record,height=0.5 style=filled fontcolor=black fillcolor=goldenrod fontsize=20 ];\n\n";
 
    
     //fichero = fopen("C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Arbol_Jugadores.gv", "w");
@@ -199,3 +203,183 @@ void Arbol_Binario_Busqueda::Graficar(){
     system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Arbol_Jugadores.dot.png");
 }
 
+string Arbol_Binario_Busqueda::r_inorder(NodoArbol *current){
+
+    string texto="";
+    
+
+    if (current->left != NULL){
+        texto+= r_inorder(current->left);
+    }
+
+    texto+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(current)))->str();
+    texto+="[label=\"Nombre: ";
+    texto+=static_cast<std::ostringstream*>(&(std::ostringstream()<<current->Nombre_Judador))->str();
+    texto+=" \" ];\n";
+
+    flechas+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(current)))->str()+ " -> ";
+
+    if (current->right != NULL){
+        texto+= r_inorder(current->right);
+    }
+    return texto;
+
+}
+
+string Arbol_Binario_Busqueda::r_preorder(NodoArbol *current){
+
+    string texto="";
+    
+    texto+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(current)))->str();
+    texto+="[label=\"Nombre: ";
+    texto+=static_cast<std::ostringstream*>(&(std::ostringstream()<<current->Nombre_Judador))->str();
+    texto+=" \" ];\n";
+
+    flechas2+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(current)))->str()+ " -> ";
+
+    if (current->left != NULL){
+        texto+= r_preorder(current->left);
+    }
+
+    if (current->right != NULL){
+        texto+= r_preorder(current->right);
+    }
+    return texto;
+
+}
+
+string Arbol_Binario_Busqueda::r_posorder(NodoArbol *current){
+
+    string texto="";
+    
+
+    if (current->left != NULL){
+        texto+= r_posorder(current->left);
+    }
+
+    if (current->right != NULL){
+        texto+= r_posorder(current->right);
+    }
+
+    texto+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(current)))->str();
+    texto+="[label=\"Nombre: ";
+    texto+=static_cast<std::ostringstream*>(&(std::ostringstream()<<current->Nombre_Judador))->str();
+    texto+=" \" ];\n";
+
+    flechas3+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(current)))->str()+ " -> ";
+
+
+    return texto;
+
+}
+
+void Arbol_Binario_Busqueda::graph_inorder(){
+
+    FILE* fichero_inorder;
+
+    fichero_inorder = fopen("C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Inorden.dot", "w");
+
+     fputs("digraph Inorder_Traversal{\n\n",fichero_inorder);
+     fputs("graph[ranksep= \"0.5\",nodesep= \"0.5\"];",fichero_inorder);
+     fputs("subgraph cluster_3{\n\n",fichero_inorder);
+     fputs("label=\"Recorrido Inorden\";\n",fichero_inorder);
+     fputs("labelloc=t;\n",fichero_inorder);
+     fputs("fontcolor=magenta4;\n",fichero_inorder);
+     fputs("fontname=algerian;\n",fichero_inorder);
+     fputs("fontsize=25;\n",fichero_inorder);
+     fputs("style=filled;\n",fichero_inorder);
+     fputs("fillcolor=limegreen;\n\n",fichero_inorder);
+     
+     fputs("node[margin=0.3 shape=box style=filled fontcolor=black fillcolor=goldenrod fontsize=20];\n",fichero_inorder);
+     fputs("{rank=same;\n\n",fichero_inorder);
+
+    fputs(r_inorder(root).c_str(),fichero_inorder);
+
+    fputs("};\n",fichero_inorder);
+    string fl=flechas.erase(flechas.find_last_of('-'));
+    fputs(fl.c_str(),fichero_inorder);
+
+    fputs("\n\n[color=blue ];\n",fichero_inorder);
+    fputs("}\n\n}",fichero_inorder);
+
+    fclose(fichero_inorder);
+
+    system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Inorden.dot");
+    system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Inorden.dot.png");
+
+
+}
+
+void Arbol_Binario_Busqueda::graph_preorder(){
+
+    FILE* fichero_Preorder;
+
+    fichero_Preorder = fopen("C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Preorden.dot", "w");
+
+     fputs("digraph Preorden_Traversal{\n\n",fichero_Preorder);
+     fputs("graph[ranksep= \"0.5\",nodesep= \"0.5\"];",fichero_Preorder);
+     fputs("subgraph cluster_4{\n\n",fichero_Preorder);
+     fputs("label=\"Recorrido Preorden\";\n",fichero_Preorder);
+     fputs("labelloc=t;\n",fichero_Preorder);
+     fputs("fontcolor=magenta4;\n",fichero_Preorder);
+     fputs("fontname=algerian;\n",fichero_Preorder);
+     fputs("fontsize=25;\n",fichero_Preorder);
+     fputs("style=filled;\n",fichero_Preorder);
+     fputs("fillcolor=limegreen;\n\n",fichero_Preorder);
+     
+     fputs("node[margin=0.3 shape=box style=filled fontcolor=black fillcolor=goldenrod fontsize=20];\n",fichero_Preorder);
+     fputs("{rank=same;\n\n",fichero_Preorder);
+
+    fputs(r_preorder(root).c_str(),fichero_Preorder);
+
+    fputs("};\n",fichero_Preorder);
+    string fl=flechas2.erase(flechas2.find_last_of('-'));
+    fputs(fl.c_str(),fichero_Preorder);
+
+    fputs("\n\n[color=blue ];\n",fichero_Preorder);
+    fputs("}\n\n}",fichero_Preorder);
+
+    fclose(fichero_Preorder);
+
+    system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Preorden.dot");
+    system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Preorden.dot.png");
+
+
+}
+
+void Arbol_Binario_Busqueda::graph_posorder(){
+
+    FILE* fichero_Posorder;
+
+    fichero_Posorder = fopen("C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Posorden.dot", "w");
+
+     fputs("digraph Posorder_Traversal{\n\n",fichero_Posorder);
+     fputs("graph[ranksep= \"0.5\",nodesep= \"0.5\"];",fichero_Posorder);
+     fputs("subgraph cluster_5{\n\n",fichero_Posorder);
+     fputs("label=\"Recorrido Posorden\";\n",fichero_Posorder);
+     fputs("labelloc=t;\n",fichero_Posorder);
+     fputs("fontcolor=magenta4;\n",fichero_Posorder);
+     fputs("fontname=algerian;\n",fichero_Posorder);
+     fputs("fontsize=25;\n",fichero_Posorder);
+     fputs("style=filled;\n",fichero_Posorder);
+     fputs("fillcolor=limegreen;\n\n",fichero_Posorder);
+     
+     fputs("node[margin=0.3 shape=box style=filled fontcolor=black fillcolor=goldenrod fontsize=20];\n",fichero_Posorder);
+     fputs("{rank=same;\n\n",fichero_Posorder);
+
+    fputs(r_posorder(root).c_str(),fichero_Posorder);
+
+    fputs("};\n",fichero_Posorder);
+    string fl=flechas3.erase(flechas3.find_last_of('-'));
+    fputs(fl.c_str(),fichero_Posorder);
+
+    fputs("\n\n[color=blue ];\n",fichero_Posorder);
+    fputs("}\n\n}",fichero_Posorder);
+
+    fclose(fichero_Posorder);
+
+    system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Posorden.dot");
+    system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Posorden.dot.png");
+
+
+}

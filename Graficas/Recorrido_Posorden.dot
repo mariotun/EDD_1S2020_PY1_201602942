@@ -1,0 +1,29 @@
+digraph Posorder_Traversal{
+
+graph[ranksep= "0.5",nodesep= "0.5"];subgraph cluster_5{
+
+label="Recorrido Posorden";
+labelloc=t;
+fontcolor=magenta4;
+fontname=algerian;
+fontsize=25;
+style=filled;
+fillcolor=limegreen;
+
+node[margin=0.3 shape=box style=filled fontcolor=black fillcolor=goldenrod fontsize=20];
+{rank=same;
+
+25770344928[label="Nombre: carlos " ];
+25770344352[label="Nombre: alejandra " ];
+25770345568[label="Nombre: raul " ];
+25770345488[label="Nombre: xiomara " ];
+25770345008[label="Nombre: zaina " ];
+25770344624[label="Nombre: nicolas " ];
+25769968848[label="Nombre: mario " ];
+};
+25770344928 -> 25770344352 -> 25770345568 -> 25770345488 -> 25770345008 -> 25770344624 -> 25769968848 
+
+[color=blue ];
+}
+
+}

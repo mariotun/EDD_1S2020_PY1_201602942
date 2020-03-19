@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 #include <stdio.h>
@@ -10,53 +9,52 @@
 
 using namespace std;
 
-class NodoLCD{
+class NodoLD{
 
     public:
-        string palabra;
-        NodoLCD *next;
-        NodoLCD *back;
-        NodoLCD();
-        NodoLCD(string palabra);
+        string ficha;
+        NodoLD *next;
+        NodoLD *back;
+        NodoLD();
+        NodoLD(string palabra);
 
 };
 
-NodoLCD::NodoLCD(){
 
+NodoLD::NodoLD(){ }
+
+NodoLD::NodoLD(string ficha){
+
+    this->ficha=ficha;
 }
 
-NodoLCD::NodoLCD(string palabra){
+//*********************************************************************************************************************
 
-    this->palabra=palabra;
-}
-
-//*******************************************************************************************
-
-class Lista_Doble_Circular{
+class Lista_Doble{
 
     public:
 
-        NodoLCD *first;
-        NodoLCD *last;
+        NodoLD *first;
+        NodoLD *last;
 
-        void Insertar(NodoLCD *palabra);
-        bool Buscar(string palabra);
+        void Insertar(NodoLD *ficha);
+        bool Buscar(string ficha);
         void Mostrar();
         string ArchivoGrafica();
         void Graficar();
 
-        Lista_Doble_Circular();
+        Lista_Doble();
 
 };
 
-Lista_Doble_Circular::Lista_Doble_Circular(){
+Lista_Doble::Lista_Doble(){
     
     this->first=NULL;
     this->last=NULL;
 
 }
 
-void Lista_Doble_Circular::Insertar(NodoLCD *palabra){
+void Lista_Doble::Insertar(NodoLD *palabra){
 
     if(first==NULL){
         first=palabra;
@@ -71,15 +69,15 @@ void Lista_Doble_Circular::Insertar(NodoLCD *palabra){
         }
 }
 
-void Lista_Doble_Circular::Mostrar(){
+void Lista_Doble::Mostrar(){
 
-    NodoLCD *actual=new NodoLCD();
+    NodoLD *actual=new NodoLD();
     actual=first;
 
     if(first!=NULL){
 
         while(actual!=NULL){
-        cout<<"[ "<<actual->palabra<<" ]"<<"-->";
+        cout<<"[ "<<actual->ficha<<" ]"<<"-->";
         actual=actual->next;
         }
 
@@ -90,9 +88,9 @@ void Lista_Doble_Circular::Mostrar(){
 
 }
 
-bool Lista_Doble_Circular::Buscar(string palabra){
+bool Lista_Doble::Buscar(string palabra){
 
-    NodoLCD *actual=new NodoLCD();
+    NodoLD *actual=new NodoLD();
     actual=first;
     bool encontrado=false;
     
@@ -100,7 +98,7 @@ bool Lista_Doble_Circular::Buscar(string palabra){
 
         while (actual!=NULL && encontrado!=true){
 
-            if(actual->palabra==palabra){
+            if(actual->ficha==palabra){
               // cout<<"se encontro el dato: "<<actual->palabra;
                return encontrado=true; 
                 
@@ -115,7 +113,7 @@ bool Lista_Doble_Circular::Buscar(string palabra){
         }
        
     }else{
-        cout<<"La lista dodle circular se encuetra vacia"<<endl;
+        cout<<"La lista dodle se encuetra vacia"<<endl;
 
     }
 
@@ -123,23 +121,23 @@ bool Lista_Doble_Circular::Buscar(string palabra){
 }
 
 
-string Lista_Doble_Circular::ArchivoGrafica(){
+string Lista_Doble::ArchivoGrafica(){
 
     string cadena;
-    NodoLCD *temporal=first;
-    NodoLCD *actual=first;
-    NodoLCD *uno=first;
+    NodoLD *temporal=first;
+    NodoLD *actual=first;
+    NodoLD *uno=first;
 
     cadena+="digraph Lista_Doble{\n\n";
     cadena+="graph[ranksep= \"0.5\",nodesep= \"0.5\"];\n";
-    cadena+="node[fontcolor=black shape=box style=filled fillcolor=deepskyblue3 fontsize=20];\n\n";
+    cadena+="node[fontcolor=black shape=box style=filled fillcolor=tan2 fontsize=20];\n\n";
     cadena+="subgraph cluster_1 {\n\n";
     cadena+="fontname=algerian\n";
     cadena+="fontsize=25;\n";
-    cadena+="label=\"Diccionario_de_Palabras\";\n";
-    cadena+="fontcolor=black\n";
+    cadena+="label=\"Lista_Fichas_Disponibles\";\n";
+    cadena+="fontcolor=blue\n";
     cadena+="style=filled\n";
-    cadena+="fillcolor=burlywood\n";
+    cadena+="fillcolor=chartreuse3\n";
     cadena+="labelloc=t;";
 
     cadena+="{rank=same;\n";
@@ -151,7 +149,7 @@ string Lista_Doble_Circular::ArchivoGrafica(){
 
             cadena+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(temporal)))->str();
             cadena+="[label=\" ";
-            cadena+=static_cast<std::ostringstream*>(&(std::ostringstream()<<temporal->palabra))->str();
+            cadena+=static_cast<std::ostringstream*>(&(std::ostringstream()<<temporal->ficha))->str();
             cadena+="\"];\n";
 
         temporal=temporal->next;
@@ -178,24 +176,24 @@ string Lista_Doble_Circular::ArchivoGrafica(){
           actual=actual->next;
 
     }
-    cadena+="->"+static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(uno)))->str();
+   // cadena+="->"+static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(uno)))->str();
 
     cadena+="\n";
-    cadena+="[dir=both color=black];\n";
+    cadena+="[dir=both  color=black];\n";
     cadena+="\n }\n\n}";
 
     return cadena;
 }
 
-void Lista_Doble_Circular::Graficar(){
+void Lista_Doble::Graficar(){
 
-   NodoLCD *aux=first;
+   NodoLD *aux=first;
 
    if(first!=NULL){
 
    FILE *fichero;
 
-   fichero = fopen("C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/LCD_Diccionario.dot", "w");
+   fichero = fopen("C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/LD_Fichas_Jugador.dot", "w");
 
 
 
@@ -214,8 +212,8 @@ void Lista_Doble_Circular::Graficar(){
    cout<<endl;
 
 
-   system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/LCD_Diccionario.dot");
-   system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/LCD_Diccionario.dot.png");
+   system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/LD_Fichas_Jugador.dot");
+   system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/LD_Fichas_Jugador.dot.png");
  
 
    }

@@ -1,8 +1,17 @@
-digraph Lista_Circular{
- label=Diccionario_Palabras; 
- labelloc=t; 
-node[margin=0.3 fontcolor=black shape=box];
-{rank=same;
+digraph Lista_Doble{
+
+graph[ranksep= "0.5",nodesep= "0.5"];
+node[fontcolor=black shape=box style=filled fillcolor=deepskyblue3 fontsize=20];
+
+subgraph cluster_1 {
+
+fontname=algerian
+fontsize=25;
+label="Diccionario_de_Palabras";
+fontcolor=black
+style=filled
+fillcolor=burlywood
+labelloc=t;{rank=same;
 25770344240[label=" mario"];
 25770344320[label=" guate"];
 25770344400[label=" comida"];
@@ -19,6 +28,8 @@ node[margin=0.3 fontcolor=black shape=box];
 25770344560->
 25770344640->
 25770344720->25770344240
-[dir=front style=tapered arrowsize=1 penwidth=3 color=black];
+[dir=both color=black];
 
  }
+
+}

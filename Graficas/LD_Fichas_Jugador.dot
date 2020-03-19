@@ -1,0 +1,45 @@
+digraph Lista_Doble{
+
+graph[ranksep= "0.5",nodesep= "0.5"];
+node[fontcolor=black shape=box style=filled fillcolor=tan2 fontsize=20];
+
+subgraph cluster_1 {
+
+fontname=algerian
+fontsize=25;
+label="Lista_Fichas_Disponibles";
+fontcolor=blue
+style=filled
+fillcolor=chartreuse3
+labelloc=t;{rank=same;
+25770344240[label=" r"];
+25770344320[label=" h"];
+25770344400[label=" p"];
+25770344480[label=" a"];
+25770344560[label=" k"];
+25770344640[label=" o"];
+25770344720[label=" m"];
+25770344800[label=" s"];
+25770344880[label=" e"];
+25770344960[label=" j"];
+25770345040[label=" o"];
+25770345120[label=" b"];
+};
+
+25770344240->
+25770344320->
+25770344400->
+25770344480->
+25770344560->
+25770344640->
+25770344720->
+25770344800->
+25770344880->
+25770344960->
+25770345040->
+25770345120
+[dir=both  color=black];
+
+ }
+
+}
