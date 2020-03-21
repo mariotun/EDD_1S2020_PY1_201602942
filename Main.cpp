@@ -3,31 +3,27 @@
 #include <string>
 #include <stdlib.h>
 
-//#include "Libreria/include/json/writer.h"
-//#include "Libreria/include/json/reader.h"
-//#include "Libreria/makefiles/vs71/jsoncpp"
-//#include <json/value.h>
-//#include <json.hpp>
-#include "Structures/ListaDobleCircular.cpp"
-#include "Structures/Cola.cpp"
-#include "Structures/ArbolBinarioBusqueda.cpp"
-#include "Structures/Matriz.cpp"
+#include "Opciones.cpp"
+
+//#include "Structures/ListaDobleCircular.cpp"
+//#include "Structures/Cola.cpp"
+//#include "Structures/ArbolBinarioBusqueda.cpp"
+/*#include "Structures/Matriz.cpp"
 #include "Structures/ListaSimpleOrdenada.cpp"
 #include "Structures/ListaDoble.cpp"
 
 #include "json.hpp"
-#include <unistd.h>
+#include <unistd.h>*/
 
 
-//#include "Libreria/include/json/json.h"
-//#include "Libreria/include/json/value.h"
 using namespace std;
-using json = nlohmann::json;
+//using json = nlohmann::json;
 
 bool salir=false;
 char opcion;
-void Leer_Json(string ruta);
-string ruta;
+//void Leer_Json(string ruta);
+Opciones_Programa *op=new Opciones_Programa();
+//string ruta;
 
 
 int main(){
@@ -42,44 +38,51 @@ int suma=0;
     cout<<suma;*/
    
 
-
-
+  
 
    do{
 
         cout<<"\n\n---------------> SCRABBLE++ <---------------\n";
         cout<<"|                                          |\n";
-        cout<<"|     (1)Lectura de Archivo                |\n";
+        cout<<"|     (1) Lectura de Archivo               |\n";
         cout<<"|                                          |\n";
-        cout<<"|     (2)Juego                             |\n";
+        cout<<"|     (2) Ingresar Jugadores               |\n";
         cout<<"|                                          |\n";
-        cout<<"|     (3)Reportes                          |\n";
+        cout<<"|     (3) Jugar                            |\n";
         cout<<"|                                          |\n";
-        cout<<"|     (4)Salir                             |\n";
+        cout<<"|     (4) Reportes                         |\n";
+        cout<<"|                                          |\n";
+        cout<<"|     (5) Salir                            |\n";
         cout<<"|                                          |\n";
         cout<<"--------------------------------------------\n";
-         cout<<"Elija una opcion:";
+        cout<<"Elija una opcion:";
         cin>>opcion;
 
         switch (opcion){
 
         case '1':
-            cout<<"\nEscrita la ruta del archivo: ";
-            cin>>ruta;
-            Leer_Json(ruta);
+            //cout<<"\nEscrita la ruta del archivo: ";
+            //cin>>ruta;
+            op->opcion_uno();
+            //Leer_Json(ruta);
            
             break;
-
+        
         case '2':
-            cout<<"dos\n";
-
+            op->opcion_dos();
             break;
 
         case '3':
             cout<<"tres\n";
+            op->opcion_tres();
             break;
 
         case '4':
+            cout<<"cuatro\n";
+            op->opcion_cuatro();
+            break;
+
+        case '5':
             cout<<"salir\n";
             salir=true;
 
@@ -102,6 +105,7 @@ int suma=0;
     return 0;
 }
 
+/*
 void Leer_Json(string ruta){
 
  json j2;
@@ -167,7 +171,7 @@ void Leer_Json(string ruta){
 
 
 }
-
+*/
   /*Matrizz *mt=new Matrizz();
     mt->add(1,3,"m");
     mt->add(2,3,"a");
@@ -199,7 +203,7 @@ void Leer_Json(string ruta){
 
 
 
-    /*Arbol_Binario_Busqueda *abb=new Arbol_Binario_Busqueda();
+ /* Arbol_Binario_Busqueda *abb=new Arbol_Binario_Busqueda();
     abb->Agregar(new NodoArbol("mario"));
     abb->Agregar(new NodoArbol("alejandra"));
     abb->Agregar(new NodoArbol("nicolas"));
@@ -207,7 +211,10 @@ void Leer_Json(string ruta){
     abb->Agregar(new NodoArbol("zaina"));
     abb->Agregar(new NodoArbol("xiomara"));
     abb->Agregar(new NodoArbol("raul"));
-    abb->Graficar();
+    cout<<"\nRespuesta: "<<abb->recorrer("xiomar");
+    cout<<"\nRespuesta: "<<abb->recorrer("carlo");
+    cout<<"\nRespuesta: "<<abb->recorrer("zain");
+    //abb->Graficar();
     abb->graph_inorder();
     abb->graph_preorder();
     abb->graph_posorder();*/
@@ -228,7 +235,7 @@ void Leer_Json(string ruta){
     cl->Graficar();*/
     
 
-   /* Lista_Doble_Circular *lcd=new Lista_Doble_Circular();
+   /*Lista_Doble_Circular *lcd=new Lista_Doble_Circular();
      lcd->Insertar(new NodoLCD("mario"));
      lcd->Insertar(new NodoLCD("guate"));
      lcd->Insertar(new NodoLCD("comida"));

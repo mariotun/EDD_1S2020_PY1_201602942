@@ -18,6 +18,10 @@
 #include <ctime>
 #include <sstream>
 
+#include "ListaSimpleOrdenada.cpp"
+#include "ListaDoble.cpp"
+
+
 using namespace std;
 
 
@@ -25,6 +29,8 @@ class NodoArbol{
 
     public:
         string Nombre_Judador;
+        Lista_Simple_Ordenada *scoreboard;
+        Lista_Doble *fichas;
         NodoArbol *left;
         NodoArbol *right;
         NodoArbol(string Nombre_Judador);
@@ -37,6 +43,8 @@ NodoArbol::NodoArbol(){ }
 NodoArbol::NodoArbol(string Nombre_Jugador){
 
     this->Nombre_Judador=Nombre_Jugador;
+    this->scoreboard=new Lista_Simple_Ordenada(1);
+    this->fichas=new Lista_Doble();
     this->left=NULL;
     this->right=NULL;
     
@@ -55,7 +63,8 @@ class Arbol_Binario_Busqueda{
         string flechas2;
         string flechas3;
         int resultado=0;
-
+        int res;
+        NodoArbol *jugador;
 
         Arbol_Binario_Busqueda();
 
@@ -67,7 +76,17 @@ class Arbol_Binario_Busqueda{
         void recursive_preorder(NodoArbol *current);
         void posorder();
         void recursive_posorder(NodoArbol *current);
-        int Buscar(string Jugador);
+
+        int Buscar(NodoArbol *current,string nombre);//--> PARA QUE NO SE INGRESE REPETIDO EL JUGADOR
+        int recorrer(string nombre);//--> PARA QUE NO SE INGRESE REPETIDO EL JUGADOR
+        
+        void MostrarJugador();//--* PARA MOSTRAR JUGADORES A ELEGIR
+        void MostrarJ(NodoArbol *mj);//--* PARA MOSTRAR  JUGADORES A ELEGIR
+        
+        NodoArbol JugadorObtenido(NodoArbol *current,string nombre);//<> PARA INTERACTUAR CON EL JUGADOR
+        NodoArbol ObtenerJugador(string nombre);//<> PARA INTERACTUAR CON EL JUGADOR
+        
+        void MostarMejoresPuntajes();//ES PARA EL SCOREBOARD GENERAL
 
         string ArchivoGraficar();
         void Graficar();
@@ -87,6 +106,7 @@ Arbol_Binario_Busqueda::Arbol_Binario_Busqueda(){
 
 void Arbol_Binario_Busqueda::Agregar(NodoArbol *Jugador){
 
+
     if(root==NULL){
 
         root=Jugador;
@@ -98,8 +118,12 @@ void Arbol_Binario_Busqueda::Agregar(NodoArbol *Jugador){
 
 
     }else{
+        
+        if(recorrer(Jugador->Nombre_Judador.c_str())==0){
 
         Agregar_Recursivo(root,Jugador);
+        
+        }else{ cout<<"\nUsuario ya existente,escriba otro nombre\n"; }
         //cout<<"raiz: "<<root->Nombre_Judador<<" ,actual: "<<Jugador->Nombre_Judador<<endl;
     }
 
@@ -153,7 +177,101 @@ void Arbol_Binario_Busqueda::Agregar_Recursivo(NodoArbol *current,NodoArbol *Jug
 }
 
 
+int Arbol_Binario_Busqueda::recorrer(string nombre){
+    res=0;
+    int respueta=0;
+    int valor=0;
+
+    valor=Buscar(root,nombre);
+    //cout<<"valor: "<<valor<<endl;
+
+    if(valor==1){
+       return  respueta=1;
+    }else {
+       return  respueta=0;
+    }
+
+    //return respueta;
+}
+
+int Arbol_Binario_Busqueda::Buscar(NodoArbol *current,string nombre){
+
+    //int res=0;
+
+    if(current->left != NULL){
+        Buscar(current->left,nombre);
+    }
+    
+   // cout<<"(*)"<<current->Nombre_Judador<<endl;
+    if( strcmp(current->Nombre_Judador.c_str(),nombre.c_str()) == 0 ){ 
+        //int res=0;
+        //cout<<"se encontro: "<<current->Nombre_Judador;
+        res=1;
+        //return (res);
+        
+    }
+
+    if(current->right != NULL){
+        Buscar(current->right,nombre);
+    }
+
+
+    return (res);
+
+}
+
+
+void Arbol_Binario_Busqueda::MostrarJugador(){
+
+    MostrarJ(root);
+}
+
+void Arbol_Binario_Busqueda::MostrarJ(NodoArbol *mj){
+
+    if(mj->left != NULL){
+        MostrarJ(mj->left);
+    }
+
+        cout<<"(*) "<<mj->Nombre_Judador<<"\n";
+    
+
+    if(mj->right != NULL){
+        MostrarJ(mj->right);
+    }
+
+
+}
+
+NodoArbol Arbol_Binario_Busqueda::ObtenerJugador(string nombre){
+
+    jugador=NULL;
+    return ( JugadorObtenido(root,nombre) );
+}
+
+NodoArbol Arbol_Binario_Busqueda::JugadorObtenido(NodoArbol *current,string nombre ){
+
+    if(current->left != NULL){
+        JugadorObtenido(current->left,nombre);
+    }
+   
+    if( strcmp(current->Nombre_Judador.c_str(),nombre.c_str()) == 0 ){ 
+        
+        jugador=current;
+        
+    }
+
+    if(current->right != NULL){
+        JugadorObtenido(current->right,nombre);
+    }
+
+    return (jugador);
+
+}
+
+
 void Arbol_Binario_Busqueda::Graficar(){
+
+    if(root != NULL){
 
     FILE* fichero;
     string cadena="";
@@ -201,7 +319,12 @@ void Arbol_Binario_Busqueda::Graficar(){
     //system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Arbol_Jugadores.gv.png");
     system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Arbol_Jugadores.dot");
     system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Arbol_Jugadores.dot.png");
+
+    }else{
+        cout<<"\nNO se puede generar la grafica de usuarios\n";    
+    }
 }
+
 
 string Arbol_Binario_Busqueda::r_inorder(NodoArbol *current){
 

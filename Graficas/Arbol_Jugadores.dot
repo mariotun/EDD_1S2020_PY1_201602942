@@ -11,27 +11,19 @@ fillcolor=limegreen;
 node[shape=record,height=0.5 style=filled fontcolor=black fillcolor=goldenrod fontsize=20 ];
 
 
-25769968848[label="<f0> |<f1>Nombre: mario |<f2> " ]; 
-25770344352[label="<f0> |<f1>Nombre: alejandra |<f2>" ]
-25770344624[label="<f0> |<f1>Nombre: nicolas |<f2>" ]
-25770344928[label="<f0> |<f1>Nombre: carlos |<f2>" ]
-25770344928[label="<f0> |<f1>Nombre: carlos |<f2>" ]
-25770345008[label="<f0> |<f1>Nombre: zaina |<f2>" ]
-25770345008[label="<f0> |<f1>Nombre: zaina |<f2>" ]
-25770345488[label="<f0> |<f1>Nombre: xiomara |<f2>" ]
-25770345488[label="<f0> |<f1>Nombre: xiomara |<f2>" ]
-25770345488[label="<f0> |<f1>Nombre: xiomara |<f2>" ]
-25770345568[label="<f0> |<f1>Nombre: raul |<f2>" ]
-25770345568[label="<f0> |<f1>Nombre: raul |<f2>" ]
-25770345568[label="<f0> |<f1>Nombre: raul |<f2>" ]
-25770345568[label="<f0> |<f1>Nombre: raul |<f2>" ]
+25770475696[label="<f0> |<f1>Nombre: mario |<f2> " ]; 
+25770475888[label="<f0> |<f1>Nombre: sandy |<f2>" ]
+25770476400[label="<f0> |<f1>Nombre: nicol |<f2>" ]
+25770476400[label="<f0> |<f1>Nombre: nicol |<f2>" ]
+25770476976[label="<f0> |<f1>Nombre: alejandra |<f2>" ]
+25770476864[label="<f0> |<f1>Nombre: ramiro |<f2>" ]
+25770476864[label="<f0> |<f1>Nombre: ramiro |<f2>" ]
+25770476864[label="<f0> |<f1>Nombre: ramiro |<f2>" ]
 
-25769968848:f0->25770344352:f1 [color=blue]
-25769968848:f2->25770344624:f1 [color=blue ]
-25770344352:f2->25770344928:f1 [color=blue ]
-25770344624:f2->25770345008:f1 [color=blue ]
-25770345008:f0->25770345488:f1 [color=blue]
-25770345488:f0->25770345568:f1 [color=blue]
+25770475696:f2->25770475888:f1 [color=blue ]
+25770475888:f0->25770476400:f1 [color=blue]
+25770475696:f0->25770476976:f1 [color=blue]
+25770476400:f2->25770476864:f1 [color=blue ]
 
  }
 

@@ -68,6 +68,7 @@ void Lista_Doble_Circular::Insertar(NodoLCD *palabra){
         palabra->next=NULL;
         palabra->back=last;
         last=palabra;
+       // palabra->next=first;
         }
 }
 
@@ -178,7 +179,9 @@ string Lista_Doble_Circular::ArchivoGrafica(){
           actual=actual->next;
 
     }
-    cadena+="->"+static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(uno)))->str();
+    cadena+="[dir=both color=black];\n\n";
+    //cadena+="->"+static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(uno)))->str();
+    cadena+="\n"+static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(uno)))->str()+"->"+static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(last)))->str();;
 
     cadena+="\n";
     cadena+="[dir=both color=black];\n";

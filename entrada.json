@@ -26,6 +26,6 @@
    { "palabra" : "animales" },
    { "palabra" : "personas" },
    { "palabra" : "bosques" },
-   { "palabra" : "paisaje" }
+  { "palabra" : "paisaje" }
                ]
 }
