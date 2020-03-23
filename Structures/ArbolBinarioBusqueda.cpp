@@ -29,6 +29,7 @@ class NodoArbol{
 
     public:
         string Nombre_Judador;
+        int id;//PARA IR A OBTENERLOS CON MAS FACILIDA
         Lista_Simple_Ordenada *scoreboard;
         Lista_Doble *fichas;
         NodoArbol *left;
@@ -41,7 +42,7 @@ class NodoArbol{
 NodoArbol::NodoArbol(){ }
 
 NodoArbol::NodoArbol(string Nombre_Jugador){
-
+   
     this->Nombre_Judador=Nombre_Jugador;
     this->scoreboard=new Lista_Simple_Ordenada(1);
     this->fichas=new Lista_Doble();
@@ -64,6 +65,7 @@ class Arbol_Binario_Busqueda{
         string flechas3;
         int resultado=0;
         int res;
+        int identificador=0;
         NodoArbol *jugador;
 
         Arbol_Binario_Busqueda();
@@ -83,8 +85,8 @@ class Arbol_Binario_Busqueda{
         void MostrarJugador();//--* PARA MOSTRAR JUGADORES A ELEGIR
         void MostrarJ(NodoArbol *mj);//--* PARA MOSTRAR  JUGADORES A ELEGIR
         
-        NodoArbol JugadorObtenido(NodoArbol *current,string nombre);//<> PARA INTERACTUAR CON EL JUGADOR
-        NodoArbol ObtenerJugador(string nombre);//<> PARA INTERACTUAR CON EL JUGADOR
+        NodoArbol *JugadorObtenido(NodoArbol *current,int id_nombre);//<> PARA INTERACTUAR CON EL JUGADOR
+        NodoArbol *ObtenerJugador(int id_nombre);//<> PARA INTERACTUAR CON EL JUGADOR
         
         void MostarMejoresPuntajes();//ES PARA EL SCOREBOARD GENERAL
 
@@ -108,7 +110,9 @@ void Arbol_Binario_Busqueda::Agregar(NodoArbol *Jugador){
 
 
     if(root==NULL){
+        identificador++;
 
+        Jugador->id=identificador;
         root=Jugador;
              // static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(actual)))->str();
         Nodo+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(Jugador)))->str();
@@ -120,7 +124,7 @@ void Arbol_Binario_Busqueda::Agregar(NodoArbol *Jugador){
     }else{
         
         if(recorrer(Jugador->Nombre_Judador.c_str())==0){
-
+            identificador++;
         Agregar_Recursivo(root,Jugador);
         
         }else{ cout<<"\nUsuario ya existente,escriba otro nombre\n"; }
@@ -131,6 +135,8 @@ void Arbol_Binario_Busqueda::Agregar(NodoArbol *Jugador){
 
 void Arbol_Binario_Busqueda::Agregar_Recursivo(NodoArbol *current,NodoArbol *Jugador){
 
+   
+   
    resultado=strcmp(Jugador->Nombre_Judador.c_str(),current->Nombre_Judador.c_str());
    // cout<<"Resultado: "<<resultado<<" ";
 
@@ -146,6 +152,8 @@ void Arbol_Binario_Busqueda::Agregar_Recursivo(NodoArbol *current,NodoArbol *Jug
             Agregar_Recursivo(current->left,Jugador);
 
         }else{
+
+            Jugador->id=identificador;
             current->left=Jugador;
 
             Enlaces+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(current)))->str();
@@ -161,6 +169,7 @@ void Arbol_Binario_Busqueda::Agregar_Recursivo(NodoArbol *current,NodoArbol *Jug
             Agregar_Recursivo(current->right,Jugador);
 
         }else {
+            Jugador->id=identificador;
             current->right=Jugador;
 
             Enlaces+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(current)))->str();
@@ -228,12 +237,11 @@ void Arbol_Binario_Busqueda::MostrarJugador(){
 
 void Arbol_Binario_Busqueda::MostrarJ(NodoArbol *mj){
 
+    cout<<"(*) "<<mj->id<<"--"<<mj->Nombre_Judador<<"\n";
+
     if(mj->left != NULL){
         MostrarJ(mj->left);
     }
-
-        cout<<"(*) "<<mj->Nombre_Judador<<"\n";
-    
 
     if(mj->right != NULL){
         MostrarJ(mj->right);
@@ -242,26 +250,26 @@ void Arbol_Binario_Busqueda::MostrarJ(NodoArbol *mj){
 
 }
 
-NodoArbol Arbol_Binario_Busqueda::ObtenerJugador(string nombre){
+NodoArbol *Arbol_Binario_Busqueda::ObtenerJugador(int  id_nombre){
 
     jugador=NULL;
-    return ( JugadorObtenido(root,nombre) );
+    return ( JugadorObtenido(root,id_nombre) );
 }
 
-NodoArbol Arbol_Binario_Busqueda::JugadorObtenido(NodoArbol *current,string nombre ){
+NodoArbol *Arbol_Binario_Busqueda::JugadorObtenido(NodoArbol *current,int id_nombre ){
 
     if(current->left != NULL){
-        JugadorObtenido(current->left,nombre);
+        JugadorObtenido(current->left,id_nombre);
     }
    
-    if( strcmp(current->Nombre_Judador.c_str(),nombre.c_str()) == 0 ){ 
+    if(current->id == id_nombre ){ 
         
         jugador=current;
         
     }
 
     if(current->right != NULL){
-        JugadorObtenido(current->right,nombre);
+        JugadorObtenido(current->right,id_nombre);
     }
 
     return (jugador);

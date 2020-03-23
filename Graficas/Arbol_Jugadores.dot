@@ -11,19 +11,12 @@ fillcolor=limegreen;
 node[shape=record,height=0.5 style=filled fontcolor=black fillcolor=goldenrod fontsize=20 ];
 
 
-25770475696[label="<f0> |<f1>Nombre: mario |<f2> " ]; 
-25770475888[label="<f0> |<f1>Nombre: sandy |<f2>" ]
-25770476400[label="<f0> |<f1>Nombre: nicol |<f2>" ]
-25770476400[label="<f0> |<f1>Nombre: nicol |<f2>" ]
-25770476976[label="<f0> |<f1>Nombre: alejandra |<f2>" ]
-25770476864[label="<f0> |<f1>Nombre: ramiro |<f2>" ]
-25770476864[label="<f0> |<f1>Nombre: ramiro |<f2>" ]
-25770476864[label="<f0> |<f1>Nombre: ramiro |<f2>" ]
+25770475744[label="<f0> |<f1>Nombre: omar |<f2> " ]; 
+25770475952[label="<f0> |<f1>Nombre: maria |<f2>" ]
+25770476352[label="<f0> |<f1>Nombre: raul |<f2>" ]
 
-25770475696:f2->25770475888:f1 [color=blue ]
-25770475888:f0->25770476400:f1 [color=blue]
-25770475696:f0->25770476976:f1 [color=blue]
-25770476400:f2->25770476864:f1 [color=blue ]
+25770475744:f0->25770475952:f1 [color=blue]
+25770475744:f2->25770476352:f1 [color=blue ]
 
  }
 

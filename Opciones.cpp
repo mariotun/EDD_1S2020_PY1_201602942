@@ -25,14 +25,16 @@ class Opciones_Programa{
         void opcion_dos();
         void opcion_tres();
         void opcion_cuatro();
+        int ValidarNombre(string nombre);
         string ruta;
         Lista_Doble_Circular *lcd;
         Arbol_Binario_Busqueda *abb;
 
-        NodoArbol jugador1;
-        NodoArbol jugador2;
-        string nombre1;
-        string nombre2;
+        NodoArbol *jugador1;
+        NodoArbol *jugador2;
+        char nombre1[0];
+        char nombre2[0];
+        int entrada;
 }; 
 
 Opciones_Programa::Opciones_Programa(){
@@ -40,6 +42,22 @@ Opciones_Programa::Opciones_Programa(){
     abb=new Arbol_Binario_Busqueda();
     lcd=new Lista_Doble_Circular();
  }
+
+//------------------------------------------------------------------------------------------------------------------------
+
+int Opciones_Programa::ValidarNombre(string nombre){
+
+    for(int i=0;i<nombre.length();i++){
+
+        if( !( (nombre[i]>=65 && nombre[i]<=90) || (nombre[i]>=97 && nombre[i]<=122) ) ){
+            return 0;
+        }
+
+    }
+
+    return 1;
+
+}
 
 //------------------------------------------------------------------------------------------------------------------------
 
@@ -120,14 +138,22 @@ void Opciones_Programa::opcion_dos(){
     bool salida=false;
     char op;
 
+        //char nombre[20];
         string nombre;
         //cout<<"Presione x para salir\n\n";
-        cout<<" Ingrese el Nombre del Jugados: ";
+        cout<<" Ingrese el Nombre del Jugador(solo letras): ";
         cin>>nombre;
 
+
+
+        if( ValidarNombre(nombre)==1){
+
         abb->Agregar(new NodoArbol(nombre.c_str()));
+        entrada++;
 
-
+        }else{
+            cout<<"\nNombre incorrecto,debe ser solo con letras\n";
+        }
 
 }
 
@@ -135,27 +161,58 @@ void Opciones_Programa::opcion_dos(){
 
 void Opciones_Programa::opcion_tres(){
 
+    if(entrada >= 2){
+
     jugador1=NULL;
     jugador2=NULL;
-    nombre1="";
-    nombre2="";
+    nombre1;
+    nombre2;
+    int cont=0;
+    bool sa=false;
+    cout<<"op_tres\n";
     
-    cout<<">>>>>>>>>> Jugadores Dispobiles <<<<<<<<<<\n";
-    cout<<"Escribe el Nombre de los 2 Jugadores para la partida:\n";
-    abb->MostrarJugador();
-    
-    if(abb->recorrer()==0){
 
-       juagador1=abb->ObtenerJugador();
+    do{
         
-    }else{ cout<<"\nUsuario escrito no esta en los mostrados anteriormente\n"; }
+        int vec[1];
+    cout<<"\n---------- Jugadores Disponibles ----------\n";
+    abb->MostrarJugador();
+    cout<<"Elija el primer jugador para la partida:\n";
+    cin>>nombre1;
+    vec[0]=atoi(nombre1);
+    cout<<"Elija el segundo jugador para la partida:\n";
+    cin>>nombre2;
+    vec[1]=atoi(nombre2);
 
-
-
-
-
-
+    //int n1=static_cast<int>(nombre1);
+    //int n2=static_cast<int>(nombre2);
+   // cout<<"n1: "<<vec[0]<<endl;
+   // cout<<" n2: "<<vec[1]<<endl;
     
+    if(abb->ObtenerJugador( vec[0] )!=NULL && abb->ObtenerJugador(vec[1] )!=NULL){
+       
+        jugador1=abb->ObtenerJugador( vec[0] );
+        jugador2=abb->ObtenerJugador( vec[1] );
+        sa=true;
+        cout<<"J1: "<<jugador1->Nombre_Judador<<endl;
+        cout<<"J2: "<<jugador2->Nombre_Judador<<endl;
+
+    }else{ cout<<"\nError al elegir alguno de los jugadores,verifique nuevamente\n"; }
+
+        
+    
+    }while(sa!=true);
+
+
+    /*do{//PARA LOS TURNOS DE CADA JUGADOR
+
+        
+
+    }while();*/
+
+    cout<<"estoy fuera\n";
+
+    }else{ cout<<"\nPor lo menos debe de haber ingresado dos Jugadores para elegirlos\n"; }
 
 
 }

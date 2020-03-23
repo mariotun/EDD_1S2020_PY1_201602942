@@ -63,6 +63,10 @@ class Matrizz{
         string  write_file();
         void Graficar();
 
+       // NodoMatriz *temp=head->right;
+       // NodoMatriz *te=temp;
+       // NodoMatriz *enlace=temp;//puntero para recorrer los enlaces
+
 };
 
 Matrizz::Matrizz(){
@@ -232,6 +236,8 @@ void Matrizz::add_headery(int y){
 void Matrizz::print_nodos_x(){
 
      NodoMatriz *temp=head->right;
+     cadenasdex="";
+     enlacesx="";
     // ls2=new ListaS();//inicializar una nueva lista simple para linealizar por columna
 
      while(temp->right != NULL){
@@ -245,6 +251,7 @@ void Matrizz::print_nodos_x(){
         // cout<<temp->down->g;
         NodoMatriz *te=temp;
         NodoMatriz *enlace=temp;//puntero para recorrer los enlaces
+
        // cadenasdex+="node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]\n";
          while(te->down != NULL){
 
@@ -309,7 +316,7 @@ void Matrizz::print_nodos_x(){
 
               //cout<<"-->";
 
-
+              cadenasdex+="node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]\n";  
               cadenasdex+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(te->down)))->str();
               cadenasdex+="[label=\"";
               cadenasdex+=static_cast<std::ostringstream*>(&(std::ostringstream()<<te->down->letra.c_str()))->str();
@@ -341,6 +348,8 @@ void Matrizz::print_nodos_x(){
 void Matrizz::print_nodos_y(){
 
      NodoMatriz *temp=head->down;
+     cadenasdey="";
+     enlacesy="";
      //ls=new ListaS();//inicializar una nueva lista simple para linealizar por fila
 
      while(temp->down != NULL){
@@ -457,17 +466,20 @@ string Matrizz::write_file(){
      cadena+="digraph ";
      cadena+="tablero";
      cadena+="{ \n\n";
-     cadena+="subgraph cluster_1 {\n\n";
+     
+     cadena+="graph[ranksep= \"0.5\",nodesep= \"0.5\"];\n";
 
+     cadena+="subgraph cluster_1 {\n\n";
+     
      cadena+="fontname=algerian\n";
-     cadena+="label= \"TABLERO_DEL_JUEGO \";\n ";
+     cadena+="label= \"Matriz de Letras \";\n ";
      cadena+="labelloc=t;\n";
      cadena+="fontcolor=blue4;\n";
      cadena+="fontsize=25;\n";
      cadena+="style=filled;\n";
      cadena+="fillcolor=steelblue2;\n\n";
 
-     cadena+="graph[ranksep= \"0.5\",nodesep= \"0.5\"];\n";
+     //cadena+="graph[ranksep= \"0.5\",nodesep= \"0.5\"];\n";
      cadena+="node [shape=box fillcolor=chartreuse3];\n";
      cadena+="mt[label= \"Matrix\" style=radial group=0]\n";
 

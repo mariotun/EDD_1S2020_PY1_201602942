@@ -8,8 +8,8 @@
 //#include "Structures/ListaDobleCircular.cpp"
 //#include "Structures/Cola.cpp"
 //#include "Structures/ArbolBinarioBusqueda.cpp"
-/*#include "Structures/Matriz.cpp"
-#include "Structures/ListaSimpleOrdenada.cpp"
+//#include "Structures/Matriz.cpp"
+/*#include "Structures/ListaSimpleOrdenada.cpp"
 #include "Structures/ListaDoble.cpp"
 
 #include "json.hpp"
@@ -25,22 +25,65 @@ char opcion;
 Opciones_Programa *op=new Opciones_Programa();
 //string ruta;
 
+   int x,y;
+string letra;
 
 int main(){
 
 /*string cadena="raul";
 int suma=0;
-    for(int x=0;x<cadena.length();x++){
+    for(int x=0;x<cadena.length();x++){B
+    
 
         //cadena[x];
         suma=suma+cadena[x];
     }
     cout<<suma;*/
-   
-
   
 
-   do{
+   /* do{
+        x=0;
+        y=0;
+        letra="";
+
+        cout<<"\n\n----------> Creacion de una Matriz <----------\n\n";
+        cout<<"     1.Insertar\n\n";
+        cout<<"     2.Graficar\n\n";
+        cout<<"     3.Salir\n\n";
+        cin>>opcion;
+        switch(opcion){
+
+            case '1':
+                cout<<"Posicion X: ";
+                cin>>x;
+                cout<<"\nPosicion Y: ";
+                cin>>y;
+                cout<<"\nDato: ";
+                cin>>letra;
+                mt->add(x,y,letra.c_str());
+
+            break;
+
+            case '2':
+                mt->Graficar();
+            break;
+
+            case '3':
+                salir=true;
+            break;
+
+            default:
+                cout<<"\n!!!!!Opcion Incorrecta\n";
+            break;
+        }
+
+        
+
+
+    }while(salir!= true);*/
+   
+
+  do{
 
         cout<<"\n\n---------------> SCRABBLE++ <---------------\n";
         cout<<"|                                          |\n";
@@ -74,7 +117,9 @@ int suma=0;
 
         case '3':
             cout<<"tres\n";
+            try{
             op->opcion_tres();
+            }catch(int e){ cout<<"\nError al elegir!!\n"<<e;}
             break;
 
         case '4':
