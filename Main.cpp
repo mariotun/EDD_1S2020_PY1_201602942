@@ -33,12 +33,14 @@ int main(){
 /*string cadena="raul";
 int suma=0;
     for(int x=0;x<cadena.length();x++){B
-    
+
 
         //cadena[x];
         suma=suma+cadena[x];
     }
     cout<<suma;*/
+
+  
   
 
    /* do{
@@ -83,7 +85,7 @@ int suma=0;
     }while(salir!= true);*/
    
 
-  do{
+   do{
 
         cout<<"\n\n---------------> SCRABBLE++ <---------------\n";
         cout<<"|                                          |\n";
@@ -265,18 +267,16 @@ void Leer_Json(string ruta){
     abb->graph_posorder();*/
 
 
-    /*Cola *cl=new Cola();
+    /*  Cola *cl=new Cola();
     cl->Insertar(new NodoCola("M",5));
     cl->Insertar(new NodoCola("F",2));
     cl->Insertar(new NodoCola("S",3));
     cl->Insertar(new NodoCola("Q",4));
-    cl->Insertar(new NodoCola("L",8));
-    cl->Insertar(new NodoCola("Y",1));
-    cl->Insertar(new NodoCola("T",6));
-    cl->Insertar(new NodoCola("P",6));
-    cl->Insertar(new NodoCola("R",6));
-    cl->Eliminar();
-    cl->Eliminar();
+    cout<<"f:"<<cl->Eliminar()<<endl;
+    cout<<"f:"<<cl->Eliminar()<<endl;
+    cout<<"f:"<<cl->Eliminar()<<endl;
+    cout<<"f:"<<cl->Eliminar()<<endl;
+    cout<<"f:"<<cl->Eliminar()<<endl;
     cl->Graficar();*/
     
 

@@ -1,24 +1,14 @@
 digraph pila {
 label=Cola_Fichas;
 labelloc=t;
-node [margin=0.4 fontcolor=black  shape=record style=filled fillcolor=orange  color=black];
+node [margin=0.3 fontcolor=black  shape=record style=filled fillcolor=orange  color=black];
 
 struct1[
 label="{
-^salida|Ficha: S\l
- Valor: 3 pts.\l
-|Ficha: Q\l
- Valor: 4 pts.\l
-|Ficha: L\l
- Valor: 8 pts.\l
-|Ficha: Y\l
- Valor: 1 pts.\l
-|Ficha: T\l
- Valor: 6 pts.\l
-|Ficha: P\l
- Valor: 6 pts.\l
-|Ficha: R\l
- Valor: 6 pts.\l
+^salida|Ficha: F\l
+ Valor: 2 pts.\l
+|Ficha: M\l
+ Valor: 5 pts.\l
 }" 
 ];
 }

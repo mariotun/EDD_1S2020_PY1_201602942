@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <stdlib.h>
+#include <cstdlib>//para el random
 
 #include "Structures/ListaDobleCircular.cpp"
 #include "Structures/Cola.cpp"
@@ -26,9 +27,11 @@ class Opciones_Programa{
         void opcion_tres();
         void opcion_cuatro();
         int ValidarNombre(string nombre);
+        void fichas();
         string ruta;
         Lista_Doble_Circular *lcd;
         Arbol_Binario_Busqueda *abb;
+        Cola *cl;
 
         NodoArbol *jugador1;
         NodoArbol *jugador2;
@@ -41,6 +44,7 @@ Opciones_Programa::Opciones_Programa(){
 
     abb=new Arbol_Binario_Busqueda();
     lcd=new Lista_Doble_Circular();
+    cl=new Cola();
  }
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -56,6 +60,185 @@ int Opciones_Programa::ValidarNombre(string nombre){
     }
 
     return 1;
+
+}
+
+//------------------------------------------------------------------------------------------------------------------------
+
+void Opciones_Programa::fichas(){
+
+          cl=new Cola();
+          int alfabeto=1;
+          int r=0;
+          int a=1,b=1,c=1,d=1,e=1,f=1,g=1,h=1,i=1,j=1,l=1,m=1,n=1;
+          int nn=1,o=1,p=1,q=1,r2=1,s=1,t=1,u=1,v=1,x=1,y=1,z=1;
+
+    while (alfabeto<=95){
+
+        r=rand() % 25 + 1;
+
+        //fichas(random);
+        //alfabeto++;
+        
+if(r==1 && a<=12){  
+    //cout<<"---->\n";
+    cl->Insertar(new NodoCola("a",1));
+    alfabeto++;
+    a++;
+
+}else if(r==2 && e<=12){
+    cl->Insertar(new NodoCola("e",1));
+    alfabeto++;
+    e++;
+
+}
+else if(r==3 && o<=9){
+    cl->Insertar(new NodoCola("o",1));
+    alfabeto++;
+    o++;
+    
+}
+else if(r==4 && i<=6){
+    cl->Insertar(new NodoCola("i",1));
+    alfabeto++;
+    i++;
+  
+}
+else if(r==5 && s<=6){
+    cl->Insertar(new NodoCola("s",1));
+    alfabeto++;
+    s++;
+    
+}
+else if(r==6 && n<=5){
+    cl->Insertar(new NodoCola("n",1));
+    alfabeto++;
+    n++;
+    
+}
+else if(r==7 && l<=4){
+    cl->Insertar(new NodoCola("l",1));
+    alfabeto++;
+    l++;
+    
+}
+else if(r==8 && r2<=5){
+    cl->Insertar(new NodoCola("r",1));
+    alfabeto++;
+    r2++;
+    
+}
+else if(r==9 && u<=5){
+    cl->Insertar(new NodoCola("u",1));
+    alfabeto++;
+    u++;
+    
+}
+else if(r==10 && t<=4){
+    cl->Insertar(new NodoCola("t",1));
+    alfabeto++;
+    t++;
+    
+}else if(r==11 && d<=5){
+    cl->Insertar(new NodoCola("d",2));
+    alfabeto++;
+    d++;
+
+}
+else if(r==12 && g<=2){
+    cl->Insertar(new NodoCola("g",2));
+    alfabeto++;
+    g++;
+    
+}
+else if(r==13 && c<=4){
+    cl->Insertar(new NodoCola("c",3));
+    alfabeto++;
+    c++;
+    
+}
+else if(r==14 && b<=2){
+    cl->Insertar(new NodoCola("b",3));
+    alfabeto++;
+    b++;
+    
+}
+else if(r==15 && m<=2){
+    cl->Insertar(new NodoCola("m",3));
+    alfabeto++;
+    m++;
+    
+}
+else if(r==16 && p<=2){
+    cl->Insertar(new NodoCola("p",3));
+    alfabeto++;
+    p++;
+    
+}
+else if(r==17 && h<=2){
+    cl->Insertar(new NodoCola("h",4));
+    alfabeto++;
+    h++;
+    
+}
+else if(r==18 && f<=1){
+    cl->Insertar(new NodoCola("f",4));
+    alfabeto++;
+    f++;
+    
+}
+else if(r==19 && v<=1){
+    cl->Insertar(new NodoCola("v",4));
+    alfabeto++;
+    v++;
+    
+}else if(r==20 && y<=1){
+    cl->Insertar(new NodoCola("y",4));
+    alfabeto++;
+    y++;
+
+}
+else if(r==21 && q<=1){
+    cl->Insertar(new NodoCola("q",5));
+    alfabeto++;
+    q++;
+    
+}
+else if(r==22 && j<=1){
+    cl->Insertar(new NodoCola("j",8));
+    alfabeto++;
+    j++;
+    
+}
+else if(r==23 && nn<=1){
+    cl->Insertar(new NodoCola("ñ",8));
+    alfabeto++;
+    nn++;
+    
+}
+else if(r==24 && x<=1){
+    cl->Insertar(new NodoCola("x",8));
+    alfabeto++;
+    x++;
+    
+}
+else if(r==25 && z<=1){
+    cl->Insertar(new NodoCola("z",10));
+    alfabeto++;
+    z++;
+    
+}
+
+
+
+    }//FIN DEL WHILE
+
+cout<<"\nYA SE INGRESARON TODAS LAS FICHAS\n";
+cout<<"a:"<<a<<" b:"<<b<<" c:"<<c<<" d:"<<d<<" e:"<<e<<" f:"<<f<<" g:"<<g<<" h:"<<h<<" i:"<<i<<" j:"<<j<<endl;
+cout<<"l:"<<l<<" m:"<<m<<" n:"<<n<<" ñ:"<<nn<<" o:"<<o<<" p:"<<p<<" q:"<<q<<" r:"<<r2<<" s:"<<s<<" t:"<<t<<" u:"<<u<<endl;
+cout<<"v:"<<v<<" x:"<<x<<" y:"<<y<<" z:"<<z<<endl;
+
+
 
 }
 
@@ -167,10 +350,9 @@ void Opciones_Programa::opcion_tres(){
     jugador2=NULL;
     nombre1;
     nombre2;
-    int cont=0;
+   // int random=0;
     bool sa=false;
-    cout<<"op_tres\n";
-    
+   
 
     do{
         
@@ -203,6 +385,12 @@ void Opciones_Programa::opcion_tres(){
     
     }while(sa!=true);
 
+    //TOCA HACER EL RANDOM PARA METER LA 
+  
+    fichas();
+    
+
+    
 
     /*do{//PARA LOS TURNOS DE CADA JUGADOR
 
@@ -250,6 +438,7 @@ void Opciones_Programa::opcion_cuatro(){
 
         case 'b':
             cout<<"b\n";
+            cl->Graficar();
             break;
 
         case 'c':

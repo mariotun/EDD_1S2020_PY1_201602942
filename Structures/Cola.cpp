@@ -39,7 +39,7 @@ class Cola{
 
         void Insertar(NodoCola *ficha);
         bool Buscar(string ficha);
-        void Eliminar();
+        string Eliminar();
         void Desplegar();
         string ArchivoGrafica();
         void Graficar();
@@ -48,14 +48,17 @@ class Cola{
 
 void Cola::Insertar(NodoCola *ficha){
 
-	if(first==NULL){
-		first=ficha;
-		first->next=NULL;
-		last=first;
-	}else{
-		last->next=ficha;
-		ficha->next=NULL;
+	if(last==NULL){
 		last=ficha;
+		last->next=NULL;
+		first=last;
+	}else{
+		//first->next=ficha;
+        
+        ficha->next=first;
+        first=ficha;
+		//ficha->next=NULL;
+		
 	}
 	
 }
@@ -86,27 +89,34 @@ bool Cola::Buscar(string ficha){
 }
 
 
- void Cola::Eliminar(){
+ string Cola::Eliminar(){
 
      NodoCola *aux;
      //aux->next=NULL;
      NodoCola *inicio;
+     string fi="";
 
      if(first != NULL){
 
          if(first==last){
+             fi=first->ficha;
              first=NULL;
+             
              //delete(first);
          }else{
 
          aux=first;
+         fi=first->ficha;
          first=first->next;
          delete(aux);
          
 
          }
 
+         return fi;
+
      }else{
+         return fi;
          cout<<"No existe Nodo para eliminar";
      }
 
@@ -165,7 +175,7 @@ bool Cola::Buscar(string ficha){
 
    void Cola::Graficar(){
 
-  
+  if(first!=NULL){
 
     FILE *fichero;
     //fichero = fopen("/home/mario/Escritorio/Practica#1/Graficas.dot", "wt");
@@ -183,7 +193,7 @@ bool Cola::Buscar(string ficha){
    system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Cola_Fichas.dot");
    system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Cola_Fichas.dot.png");
  
-
+  }else{ cout<<"\nNO se puede generar el diagrama de las fichas\n"; }
 
 
    }
