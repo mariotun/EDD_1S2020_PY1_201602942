@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 #include <stdlib.h>
-#include <cstdlib>//para el random
+//#include <stdlib.h>//para el random
 
 #include "Structures/ListaDobleCircular.cpp"
 #include "Structures/Cola.cpp"
@@ -27,7 +27,7 @@ class Opciones_Programa{
         void opcion_tres();
         void opcion_cuatro();
         int ValidarNombre(string nombre);
-        void fichas();
+        void fichas(Cola *cl);
         string ruta;
         Lista_Doble_Circular *lcd;
         Arbol_Binario_Busqueda *abb;
@@ -37,7 +37,7 @@ class Opciones_Programa{
         NodoArbol *jugador2;
         char nombre1[0];
         char nombre2[0];
-        int entrada;
+        int entrada,entrada2;
 }; 
 
 Opciones_Programa::Opciones_Programa(){
@@ -65,9 +65,9 @@ int Opciones_Programa::ValidarNombre(string nombre){
 
 //------------------------------------------------------------------------------------------------------------------------
 
-void Opciones_Programa::fichas(){
+void Opciones_Programa::fichas(Cola *cl){
 
-          cl=new Cola();
+          //cl=new Cola();
           int alfabeto=1;
           int r=0;
           int a=1,b=1,c=1,d=1,e=1,f=1,g=1,h=1,i=1,j=1,l=1,m=1,n=1;
@@ -345,18 +345,20 @@ void Opciones_Programa::opcion_dos(){
 void Opciones_Programa::opcion_tres(){
 
     if(entrada >= 2){
-
+        entrada2++;
     jugador1=NULL;
     jugador2=NULL;
     nombre1;
     nombre2;
    // int random=0;
     bool sa=false;
-   
+    string fichax,fichax2;
+    int vec[2];
+
 
     do{
         
-        int vec[1];
+       
     cout<<"\n---------- Jugadores Disponibles ----------\n";
     abb->MostrarJugador();
     cout<<"Elija el primer jugador para la partida:\n";
@@ -371,7 +373,7 @@ void Opciones_Programa::opcion_tres(){
    // cout<<"n1: "<<vec[0]<<endl;
    // cout<<" n2: "<<vec[1]<<endl;
     
-    if(abb->ObtenerJugador( vec[0] )!=NULL && abb->ObtenerJugador(vec[1] )!=NULL){
+    if(abb->ObtenerJugador( vec[0] )!=NULL && abb->ObtenerJugador( vec[1] )!=NULL){
        
         jugador1=abb->ObtenerJugador( vec[0] );
         jugador2=abb->ObtenerJugador( vec[1] );
@@ -379,16 +381,41 @@ void Opciones_Programa::opcion_tres(){
         cout<<"J1: "<<jugador1->Nombre_Judador<<endl;
         cout<<"J2: "<<jugador2->Nombre_Judador<<endl;
 
-    }else{ cout<<"\nError al elegir alguno de los jugadores,verifique nuevamente\n"; }
-
-        
+    }else{ cout<<"\nError al elegir alguno de los jugadores,verifique nuevamente\n"; }   
     
     }while(sa!=true);
 
     //TOCA HACER EL RANDOM PARA METER LA 
-  
-    fichas();
+    cl=new Cola();
+    fichas(cl);
+
+   /* cout<<"fic:"<<cl->Eliminar()<<endl;
+    cout<<"fic:"<<cl->Eliminar()<<endl;
+    cout<<"fic:"<<cl->Eliminar()<<endl;
+    cout<<"fic:"<<cl->Eliminar()<<endl;
+    cout<<"fic:"<<cl->Eliminar()<<endl;
+    cout<<"fic:"<<cl->Eliminar()<<endl;
+    cout<<"fic:"<<cl->Eliminar()<<endl;*/
+
+    for (int i = 0; i < 7; i++) {
+     
+        if( (fichax=cl->Eliminar())!="w"){
+            jugador1->fichas->Insertar(new NodoLD(fichax));
+            cout<<fichax;
+        }else{ cout<<"\nSe acabaron las fichas"; }
+    }
+    cout<<endl;
+    for (int j = 0;  j< 7; j++) {
+     
+        if( (fichax2=cl->Eliminar())!="w"){
+            jugador2->fichas->Insertar(new NodoLD(fichax2));
+            cout<<fichax2;
+        }else{ cout<<"\nSe acabaron las fichas"; }
+    }
     
+    
+    jugador1->fichas->Graficar();
+    //jugador2->fichas->Graficar();
 
     
 
@@ -448,14 +475,17 @@ void Opciones_Programa::opcion_cuatro(){
 
         case 'd':
             cout<<"d\n";
+            abb->graph_inorder();
             break;
 
         case 'e':
             cout<<"e\n";
+            abb->graph_preorder();
             break;
 
         case 'f':
             cout<<"f\n";
+            abb->graph_posorder();
             break;
         
         case 'g':
@@ -468,10 +498,34 @@ void Opciones_Programa::opcion_cuatro(){
 
         case 'i':
             cout<<"i\n";
+
+
+            
             break;
 
         case 'j':
-            cout<<"j\n";
+            
+            if(entrada2 >= 1){
+            cout<<"i\n";
+            char opcc;
+            cout<<"(1)Jugador1 (2)Jugador2 \n";
+            cin>>opcc;
+            switch(opcc){
+                case '1':
+                jugador1->fichas->Graficar();
+                break;
+
+                case '2':
+                jugador2->fichas->Graficar();
+                break;
+
+                defautl:
+
+                break;
+            }
+
+            }else{ cout<<"\nError,Por lo menos se requiere haber iniciado una partida\n"; }
+
             break;
 
         case 'k':

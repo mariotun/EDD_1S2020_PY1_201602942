@@ -116,7 +116,7 @@ bool Cola::Buscar(string ficha){
          return fi;
 
      }else{
-         return fi;
+         return "w";
          cout<<"No existe Nodo para eliminar";
      }
 

@@ -13,15 +13,14 @@ fillcolor=limegreen;
 node[margin=0.3 shape=box style=filled fontcolor=black fillcolor=goldenrod fontsize=20];
 {rank=same;
 
-25770344352[label="Nombre: alejandra " ];
-25770344928[label="Nombre: carlos " ];
-25769968848[label="Nombre: mario " ];
-25770344624[label="Nombre: nicolas " ];
-25770345568[label="Nombre: raul " ];
-25770345488[label="Nombre: xiomara " ];
-25770345008[label="Nombre: zaina " ];
+25770476512[label="Nombre: carlos " ];
+25770475776[label="Nombre: mario " ];
+25770476288[label="Nombre: pablo " ];
+25770476992[label="Nombre: raul " ];
+25770475984[label="Nombre: sandy " ];
+25770477200[label="Nombre: zaina " ];
 };
-25770344352 -> 25770344928 -> 25769968848 -> 25770344624 -> 25770345568 -> 25770345488 -> 25770345008 
+25770476512 -> 25770475776 -> 25770476288 -> 25770476992 -> 25770475984 -> 25770477200 
 
 [color=blue ];
 }

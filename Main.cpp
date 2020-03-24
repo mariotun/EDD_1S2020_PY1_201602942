@@ -119,9 +119,9 @@ int suma=0;
 
         case '3':
             cout<<"tres\n";
-            try{
+            //try{
             op->opcion_tres();
-            }catch(int e){ cout<<"\nError al elegir!!\n"<<e;}
+            //}catch(int e){ cout<<"\nError al elegir!!\n"<<e;}
             break;
 
         case '4':
