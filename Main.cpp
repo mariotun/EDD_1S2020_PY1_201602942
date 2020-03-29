@@ -3,12 +3,12 @@
 #include <string>
 #include <stdlib.h>
 
-#include "Opciones.cpp"
+//#include "Opciones.cpp"
 
 //#include "Structures/ListaDobleCircular.cpp"
 //#include "Structures/Cola.cpp"
 //#include "Structures/ArbolBinarioBusqueda.cpp"
-//#include "Structures/Matriz.cpp"
+#include "Structures/Matriz.cpp"
 /*#include "Structures/ListaSimpleOrdenada.cpp"
 #include "Structures/ListaDoble.cpp"
 
@@ -22,7 +22,7 @@ using namespace std;
 bool salir=false;
 char opcion;
 //void Leer_Json(string ruta);
-Opciones_Programa *op=new Opciones_Programa();
+//Opciones_Programa *op=new Opciones_Programa();
 //string ruta;
 
    int x,y;
@@ -41,7 +41,32 @@ int suma=0;
     cout<<suma;*/
 
   
-  
+  Matrizz *mt=new Matrizz();
+    mt->add(1,3,"m");
+    mt->add(2,3,"a");
+    mt->add(3,4,"r");
+    mt->add(4,2,"i");
+    mt->add(5,1,"o");
+    mt->add(3,1,"g");
+    mt->add(2,2,"u");
+    mt->add(4,3,"a2");
+    mt->add(2,4,"t");
+    mt->add(2,5,"e");
+    mt->Eliminar(4,3);
+    mt->Eliminar(2,5);
+    //mt->Eliminar(2,2);
+    mt->Eliminar(2,3);
+    mt->Eliminar(2,4);
+    mt->Eliminar(5,1);
+    //mt->Delete(4,3);
+
+   // mt->Delete(2,5);
+  //  mt->Delete(5,1);
+    mt->Graficar();
+
+
+
+
 
    /* do{
         x=0;
@@ -85,7 +110,7 @@ int suma=0;
     }while(salir!= true);*/
    
 
-   do{
+  /* do{
 
         cout<<"\n\n---------------> SCRABBLE++ <---------------\n";
         cout<<"|                                          |\n";
@@ -147,7 +172,7 @@ int suma=0;
     
     }while(salir!= true);
 
-    exit(1);
+    exit(1);*/
 
     return 0;
 }

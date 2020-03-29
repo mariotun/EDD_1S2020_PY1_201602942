@@ -14,48 +14,52 @@ fillcolor=steelblue2;
 node [shape=box fillcolor=chartreuse3];
 mt[label= "Matrix" style=radial group=0]
 {rank=same;
-25770476496[label= "5 " style=radial,group=5]
-25770476256[label= "8 " style=radial,group=8]
-25770475952[label= "10 " style=radial,group=10]
-0[label= "12 " style=radial,group=12]
-mt->25770476496->25770476256->25770475952->0[dir=both];};
+25770344640[label= "1 " style=radial,group=1]
+25770344816[label= "2 " style=radial,group=2]
+25770345056[label= "3 " style=radial,group=3]
+0[label= "4 " style=radial,group=4]
+mt->25770344640->25770344816->25770345056->0[dir=both];};
 
-25770475832[label= "6 " style=radial,group=0]
-25770476680[label= "7 " style=radial,group=0]
-25770476376[label= "8 " style=radial,group=0]
-25770476152[label= "9 " style=radial,group=0]
-56[label= "10 " style=radial,group=0]
-mt->25770475832->25770476680->25770476376->25770476152->56[dir=both];
+25770345176[label= "1 " style=radial,group=0]
+25770344520[label= "2 " style=radial,group=0]
+25770344936[label= "3 " style=radial,group=0]
+25770346040[label= "4 " style=radial,group=0]
+56[label= "5 " style=radial,group=0]
+mt->25770345176->25770344520->25770344936->25770346040->56[dir=both];
 
 node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770475840[label="h" style=radial,group=5];
+25770344528[label="m" style=radial,group=1];
 node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770477808[label="u" style=radial,group=8];
+25770345648[label="u" style=radial,group=2];
 node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770476768[label="p" style=radial,group=8];
+25770345536[label="g" style=radial,group=3];
 node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770476384[label="a" style=radial,group=10];
+25770344944[label="r" style=radial,group=3];
 node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770476960[label="m" style=radial,group=12];
+25770345184[label="i" style=radial,group=4];
 
 
-25770476496->25770475840[dir=both]
-25770476256->25770477808->25770476768[dir=both]
-25770475952->25770476384[dir=both]
-0->25770476960[dir=both]
+25770344640->25770344528[dir=both]
+25770344816->25770345648[dir=both]
+25770345056->25770345536->25770344944[dir=both]
+0->25770345184[dir=both]
 
-25770477808[label="u"];
-25770475840[label="h"];
-25770476768[label="p"];
-25770476384[label="a"];
-25770476960[label="m"];
+25770345536[label="g"];
+25770345648[label="u"];
+25770345184[label="i"];
+25770344528[label="m"];
+25770344704[label="a"];
+25770345760[label="a2"];
+25770345872[label="t"];
+25770344944[label="r"];
+25770346048[label="e"];
 
 
-{rank=same;25770475832->25770477808[dir=both] } 
-{rank=same;25770476680->25770475840[dir=both] } 
-{rank=same;25770476376->25770476768[dir=both] } 
-{rank=same;25770476152->25770476384[dir=both] } 
-{rank=same;56->25770476960[dir=both] }
+{rank=same;25770345176->25770345536[dir=both] } 
+{rank=same;25770344520->25770345648->25770345184[dir=both] } 
+{rank=same;25770344936->25770344528->25770344704->25770345760[dir=both] } 
+{rank=same;25770346040->25770345872->25770344944[dir=both] } 
+{rank=same;56->25770346048[dir=both] }
  }
 
 }

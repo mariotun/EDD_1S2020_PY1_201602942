@@ -45,6 +45,8 @@ class Matrizz{
 
     public:
         NodoMatriz *head;
+        NodoMatriz *primero;
+        NodoMatriz *ultimo;
         string cadenasdex;
         string enlacesx;
         string cadenasdey;
@@ -57,6 +59,9 @@ class Matrizz{
         void add_headerx(int x);//para crear cabeceras en x
         void add_headery(int y);//para crear cabeceras en y
         void Delete(int x,int y);
+        void Eliminar(int x,int y);
+        void EliminarColumna(int x,int y);
+        void EliminarFila(int x,int y);
         int search(int x,int y);
         void print_nodos_x();
         void print_nodos_y();
@@ -95,6 +100,8 @@ void Matrizz::add_x(NodoMatriz *new_nodo,int x){
     if(temp->down == NULL){
         temp->down=new_nodo;
         new_nodo->up=temp;
+        
+
 
     }else{
 
@@ -107,6 +114,7 @@ void Matrizz::add_x(NodoMatriz *new_nodo,int x){
         if(tempo->down==NULL){//por si el dato se ingresa de ultimo
             tempo->down=new_nodo;
             new_nodo->up=tempo;
+            
 
         }
 
@@ -230,6 +238,298 @@ void Matrizz::add_headery(int y){
          }
 
      }
+
+}
+
+void  Matrizz::Eliminar(int x,int y){
+    EliminarColumna(x,y);
+    EliminarFila(x,y);
+
+}
+
+
+void Matrizz::EliminarColumna(int x,int y){
+
+    NodoMatriz* actual ;//= new NodoMatriz();
+	actual = head;
+	NodoMatriz* anterior;// = new NodoMatriz();
+	anterior=NULL;
+	
+    bool encontrado = false;
+	int nodoBuscado = 0;
+    int cant=0;
+	//cout << " Ingrese el dato del Nodo a Buscar para Eliminar: ";
+	//cin >> nodoBuscado;
+    
+	if(head!=NULL){
+
+        while(actual->x != x){
+         actual=actual->right;
+        }
+
+        if(actual->down == NULL){
+         //temp->down=new_nodo;
+         //new_nodo->up=temp;
+       cout<<"no hay nada en esa columna"<<endl;
+        }else{
+
+            NodoMatriz *otro=actual->down;
+            cout<<"PRIMERO:"<<otro->letra<<endl;
+           // anterior=actual;
+            NodoMatriz *elim,*elim2,*elim3;
+            //otro->down != NULL && encontrado!=true
+         while(otro!= NULL && encontrado!=true){
+                cant++;
+
+                if(otro->y==y){
+                    cout<<"----->se encontro: "<<otro->letra<<endl;
+
+                    if(otro->down==NULL && otro->up==actual){//por si es el unico en la columna
+                    cout<<"soy en unico en la columna\n";
+
+                    elim=actual->left;
+                    elim->right=NULL;
+                    actual->left=NULL;
+                    elim2=otro->left;
+                    elim2->right=NULL;
+
+                    encontrado=true;
+
+                    }else if(otro->down!=NULL && otro->up==actual){//por si es el primero y no es el unico
+                    cout<<"soy el primero y no soy el unico\n";
+
+                    //elim=otro->up;
+                    //elim->down=otro->down;
+                    elim=otro->down;
+                    elim->up=actual;
+                    actual->down=elim;
+
+                   // otro->left->right=otro->right;
+
+
+
+                    encontrado=true;
+
+
+                    }else if(otro->down!=NULL && otro->up!=actual){//por si es el de en medio
+                    cout<<"soy el de enmedio\n"<<otro->up->letra<<" - "<<otro->down->letra;
+
+                   
+                   /* elim=otro->up;
+                    elim2=otro->down;
+
+                    otro->up=elim3;
+                    otro->down=elim3;
+
+                    elim->down=elim2;*/
+
+                    elim=otro;
+                    elim->up->down=elim->down;
+                    elim->down->up=elim->up;
+                    //elim->left->right=elim->right;
+                    
+                    //elim->down=NULL;SE ELIMINO EL ULTIMO
+                    //elim=NULL;
+                
+
+                    encontrado=true;
+
+                    }else{//por si es el ultimo
+                    cout<<"soy en ultimo\n";
+                    
+                    elim=otro;
+                    elim->up->down=NULL;
+                    otro->up=NULL;
+                    
+                    encontrado=true;
+
+
+                    }
+
+                } 
+                //cout<<"cant: "<<cant<<"otro: "<<otro->letra<<endl;
+			/*if(otro->down->y == y){
+				cout << "\n Nodo con el dato ( " << otro->down->letra << " ) Encontrado";
+				
+				if( otro->down->up==actual && actual->left!=head){//SI HAY SOLO UNO
+                 cout<<"(CASO UNO)";
+					//primero = primero->siguiente;
+					//primero->atras = NULL;
+                    if(otro->down->down==NULL){
+                   cout<<"si es el UNICO\n";
+                    elim=actual->left;
+                    elim->right=NULL;
+                    actual->left=NULL;
+                    elim2=otro->down->left;
+                    elim2->right=NULL;
+                    encontrado=true;
+                    
+                    }else{
+                         cout<<"si hay mas\n";   
+                         actual->down=otro->down->down;
+                         //cout<<"anterior"<<anterior->letra<<endl;
+                      
+                       // otro->down=otro->down->down;
+                        encontrado=true;
+
+
+
+                    }
+
+				}else if(otro->down->down==NULL){//SI HAY QUE ELIMINAR EL ULTIMO
+                    cout<<" (CASO ULTIMO)";
+                    cout<<"-->"<<anterior->letra;//a
+                    cout<<"-->"<<otro->letra;//t
+                    
+                    elim=new NodoMatriz();
+                    elim->letra="y";
+                    elim2=new NodoMatriz();
+                    elim2->letra="x";
+                    
+                    anterior->down=elim2;
+                    elim2->down=otro;
+
+                    
+                    
+                    //elim2=otro->down;
+                    //elim2->down=otro->down;
+
+
+                    //elim=anterior->down;
+                    //elim->down=NULL;
+
+
+                   // delete(anterior->down);
+                    //elim=otro->down->up;
+                    //elim->down=NULL;
+                   
+                    elim3=otro->down->left;
+                    elim3->right=NULL;
+
+                    
+
+					//ultimo = anterior;
+
+				}else{//SI HAY QUE ELIMINAR EN MEDIO
+                    cout<<"(CASO MEDIO)";
+                    cout<<"ant:"<<anterior->down->letra;//a
+                    cout<<"otro:"<<otro->down->letra;//t
+					anterior->down->down = otro->down->down;
+					otro->down->up = anterior;
+
+                    otro->down->left=otro->down->right;
+                    
+				}
+				
+				cout << "\n Nodo Eliminado\n";
+				encontrado = true;
+			}//FIN DEL IF*/
+			//anterior = actual;
+            anterior= otro;
+            //cout<<"anterior:"<<anterior->letra<<endl;
+			otro=otro->down;
+            //cout<<"otro:"<<otro->letra<<endl;
+
+		}//FIN DEL WHILE
+		
+		if(!encontrado){
+			cout << "\n Nodo no Encontrado\n\n";
+		
+        }
+		
+     }//FIN DEL ESLSE DEL SEGUNDO IF
+
+    }//FIN DEL PRIMER IF EN EL METODO
+    else{ cout << "\n La listas se encuentra Vacia\n\n"; }
+		
+}
+
+
+void Matrizz::Delete(int x,int y){
+    cout<<"---->entro a delete\n";
+    NodoMatriz *temp=head;
+    NodoMatriz *aux=NULL;
+     bool encontrado=false;
+     int cant=0;
+     //Node *temp;
+
+     while(temp->x != x){
+         temp=temp->right;
+    }
+
+     if(temp->down == NULL){
+         //temp->down=new_nodo;
+         //new_nodo->up=temp;
+       cout<<"no hay nada en esa columna"<<endl;
+     }else{
+
+         NodoMatriz *otro=temp;
+         NodoMatriz *elim,*elim2;
+         NodoMatriz *elim3,*elim4;
+
+    while(otro->down != NULL && encontrado!=true){
+        cant++;
+       if(otro->down->y == y ){
+            cout<<"el dato se encontro y es: "<<otro->down->letra<<" con cant= "<<cant<<endl;
+
+            if(cant==1 && temp->left!=head){
+                cout<<"solo uno"<<temp->x<<"\n";
+                elim=temp->left;
+                elim->right=NULL;
+                temp->left=NULL;
+                elim2=otro->down->left;
+                elim2->right=NULL;
+                encontrado=true;
+            }else{
+                
+                if(otro->down->down==NULL){
+                    cout<<"ultimo\n";
+
+                    //cout<<"elim:"<<elim->down->up->letra;
+                    elim2=new NodoMatriz();
+                    elim2=NULL;
+                    otro->down->up->down=elim2;
+                    
+                    //elim=otro->down;
+                    //elim->up=elim2;
+                    //elim->left=elim2;
+                    
+                    //delete(elim2);
+                    //elim3=otro->down->left;
+                    //elim3->right=NULL;
+                    
+
+                    encontrado=true;
+
+                }else{
+                        cout<<"no entro\n";
+                }
+
+            }
+
+            /*if(otro->down == NULL){//eliminar si este nodo es el ultimo
+
+               /* aux->down=NULL;
+                otro->down=aux;
+                aux=otro->up;
+
+                cout<<"eliminno si es el ultimo";
+
+            }
+
+            encontrado=true;*/
+
+
+
+        }
+
+        //otro->down=otro->down->down;
+        otro=otro->down;
+       
+    }
+
+     }//cierre del else principal
+
 
 }
 

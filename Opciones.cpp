@@ -28,6 +28,7 @@ class Opciones_Programa{
         void opcion_cuatro();
         int ValidarNombre(string nombre);
         void fichas(Cola *cl);
+        void HTML(string nom1,string nom2,int pt1,int pt2); 
         string ruta;
         Lista_Doble_Circular *lcd;
         Arbol_Binario_Busqueda *abb;
@@ -352,8 +353,10 @@ void Opciones_Programa::opcion_tres(){
     nombre2;
    // int random=0;
     bool sa=false;
+    bool sa2=false;
     string fichax,fichax2;
     int vec[2];
+    char jue;
 
 
     do{
@@ -385,7 +388,7 @@ void Opciones_Programa::opcion_tres(){
     
     }while(sa!=true);
 
-    //TOCA HACER EL RANDOM PARA METER LA 
+    //TOCA HACER EL RANDOM PARA METER LAS FICHAS
     cl=new Cola();
     fichas(cl);
 
@@ -413,17 +416,30 @@ void Opciones_Programa::opcion_tres(){
         }else{ cout<<"\nSe acabaron las fichas"; }
     }
     
-    
-    jugador1->fichas->Graficar();
-    //jugador2->fichas->Graficar();
 
     
+    do{//PARA LOS TURNOS DE CADA JUGADOR
 
-    /*do{//PARA LOS TURNOS DE CADA JUGADOR
+    cout<<"(1)Salir\n (2)Ver Tablero\n";
 
+    cin>>jue;
+    switch(jue){
+        case '1':
+        sa2=true;
+        break;
+
+        case '2':
+            HTML();
+        break;
+
+
+    }
         
 
-    }while();*/
+    }while(sa2!=true);
+
+
+
 
     cout<<"estoy fuera\n";
 
@@ -494,6 +510,7 @@ void Opciones_Programa::opcion_cuatro(){
 
         case 'h':
             cout<<"h\n";
+            
             break;
 
         case 'i':
@@ -548,3 +565,47 @@ void Opciones_Programa::opcion_cuatro(){
 
 }
 
+
+
+//------------------------------------------------------------------------------------------------------------------------
+
+void Opciones_Programa::HTML(string nom1,string nom2,int pt1,int pt2){
+
+    string cadena;
+
+    cadena+="<!DOCTYPE html>\n";
+    cadena+="<html>\n";
+    cadena+=" <head>\n";
+    cadena+="  <meta charset=\"utf-8\">\n";
+    cadena+="  <title>SCRABBLE++</title>\n";
+    cadena+=" </head>\n";
+    cadena+="   <body background=\"C:/Users/HP/Desktop/EDD/Proyecto1/fondo5.jpg\">\n";
+    cadena+=" <table border=5 align=\"center\" color=black >\n\n";
+    cadena+=" <tr border=\"blue\">\n";
+    cadena+="  <th><strong> <font size=5.5 style=\"background-color:black;\" color=white>TABLERO DEL JUEGO</font> </strong></th>\n";
+    cadena+="  <th><strong> <font size=5.5 style=\"background-color:black;\" color=white>JUGADOR</font> </strong></th>\n";
+    cadena+="  <th><strong> <font size=5.5 style=\"background-color:black;\" color=white>PUNTUACION</font> </strong></th>\n";
+    cadena+=" </tr>\n\n";
+    cadena+=" <tr>\n";
+    cadena+="  <td rowspan=\"2\">  <img src=\" C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Table_Juego.dot.png\" alt=\"No se puede mostar el Tablero del Juego\" width=\"\"100\"\" height=\"\"100\"\" /> </td>\n";
+    cadena+="  <td align=\"center\"> <font size=6 style=\"background-color:yellow;\" color=black>"+ nom1.c_str() +"</font> </td>\n";
+    cadena+="  <td align=\"center\"> <font size=6 style=\"background-color:orange;\" color=black>"+ pt1 +"</font> </td>\n";
+    cadena+=" </tr>\n\n";
+    cadena+=" <tr>\n";
+    cadena+="  <td align=\"center\"> <font size=6 style=\"background-color:yellow;\" color=black>"+ nom2.c_str() +"</font> </td>\n";
+    cadena+="  <td align=\"center\"> <font size=6 style=\"background-color:orange;\" color=black>"+ pt2 +"</font> </td>\n";
+    cadena+=" </tr>\n\n";
+    cadena+=" </table>\n";
+    //cadena+=" </div>\n";
+    cadena+="   </body>\n";
+    cadena+="</html>\n";
+
+    FILE *fichero;
+    fichero = fopen("C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/TableroJ.html", "w");
+    fputs(cadena.c_str(),fichero);
+    fputs("\n",fichero);
+    fclose(fichero);
+   system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/TableroJ.html");
+
+
+}
