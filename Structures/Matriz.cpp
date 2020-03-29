@@ -290,8 +290,8 @@ void Matrizz::EliminarColumna(int x,int y){
                     elim=actual->left;
                     elim->right=NULL;
                     actual->left=NULL;
-                    elim2=otro->left;
-                    elim2->right=NULL;
+                   // elim2=otro->left;
+                   // elim2->right=NULL;
 
                     encontrado=true;
 
@@ -442,6 +442,100 @@ void Matrizz::EliminarColumna(int x,int y){
     }//FIN DEL PRIMER IF EN EL METODO
     else{ cout << "\n La listas se encuentra Vacia\n\n"; }
 		
+}
+
+void Matrizz::EliminarFila(int x,int y){
+
+    NodoMatriz* actual ;
+	actual = head;
+	
+    bool encontrado = false;
+	
+    int cant=0;
+	
+	if(head!=NULL){
+
+        while(actual->y != y){
+         actual=actual->down;
+        }
+
+        if(actual->right == NULL){
+         
+       cout<<"no hay nada en esa fila"<<endl;
+        }else{
+
+            NodoMatriz *otro=actual->right;
+            cout<<"PRIMERO:"<<otro->letra<<endl;
+           
+            NodoMatriz *elim,*elim2,*elim3;
+            
+         while(otro!= NULL && encontrado!=true){
+                cant++;
+
+                if(otro->x==x){
+                    cout<<"----->se encontro: "<<otro->letra<<endl;
+
+                    if(otro->right==NULL && otro->left==actual){//por si es el unico en la fila
+                    cout<<"soy en unico en la columna\n";
+
+                    elim=actual->up;
+                    elim->down=NULL;
+                    actual->up=NULL;
+                   // elim2=otro->up;
+                    //elim2->down=NULL;
+
+                    encontrado=true;
+
+                    }else if(otro->right!=NULL && otro->left==actual){//por si es el primero y no es el unico
+                    cout<<"soy el primero y no soy el unico\n";
+
+                    elim=otro->right;
+                    elim->left=actual;
+                    actual->right=elim;
+
+                    encontrado=true;
+
+
+                    }else if(otro->right!=NULL && otro->left!=actual){//por si es el de en medio
+                    cout<<"soy el de enmedio\n"<<otro->left->letra<<" - "<<otro->right->letra;
+
+                    elim=otro;
+                    elim->left->right=elim->right;
+                    elim->right->left=elim->left;
+                   
+                    encontrado=true;
+
+                    }else{//por si es el ultimo
+                    cout<<"soy en ultimo\n";
+                    
+                    elim=otro;
+                    elim->left->right=NULL;
+                    otro->left=NULL;
+                    
+                    encontrado=true;
+
+
+                    }
+
+                } 
+                // anterior= otro;
+            //cout<<"anterior:"<<anterior->letra<<endl;
+			otro=otro->right;
+            //cout<<"otro:"<<otro->letra<<endl;
+
+		}//FIN DEL WHILE
+		
+		if(!encontrado){
+			cout << "\n Nodo no Encontrado\n\n";
+		
+        }
+		
+     }//FIN DEL ESLSE DEL SEGUNDO IF
+
+    }//FIN DEL PRIMER IF EN EL METODO
+    else{ cout << "\n La listas se encuentra Vacia\n\n"; }
+
+
 }
 
 
