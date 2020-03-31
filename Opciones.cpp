@@ -429,7 +429,7 @@ void Opciones_Programa::opcion_tres(){
         break;
 
         case '2':
-            HTML();
+            HTML("MARIOT","SANDYG",100,100);
         break;
 
 
@@ -588,12 +588,12 @@ void Opciones_Programa::HTML(string nom1,string nom2,int pt1,int pt2){
     cadena+=" </tr>\n\n";
     cadena+=" <tr>\n";
     cadena+="  <td rowspan=\"2\">  <img src=\" C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Table_Juego.dot.png\" alt=\"No se puede mostar el Tablero del Juego\" width=\"\"100\"\" height=\"\"100\"\" /> </td>\n";
-    cadena+="  <td align=\"center\"> <font size=6 style=\"background-color:yellow;\" color=black>"+ nom1.c_str() +"</font> </td>\n";
-    cadena+="  <td align=\"center\"> <font size=6 style=\"background-color:orange;\" color=black>"+ pt1 +"</font> </td>\n";
+    cadena+="  <td align=\"center\"> <font size=6 style=\"background-color:yellow;\" color=black>"+ nom1 +"</font> </td>\n";
+    cadena+="  <td align=\"center\"> <font size=6 style=\"background-color:orange;\" color=black>"+ to_string(pt1) +"</font> </td>\n";
     cadena+=" </tr>\n\n";
     cadena+=" <tr>\n";
-    cadena+="  <td align=\"center\"> <font size=6 style=\"background-color:yellow;\" color=black>"+ nom2.c_str() +"</font> </td>\n";
-    cadena+="  <td align=\"center\"> <font size=6 style=\"background-color:orange;\" color=black>"+ pt2 +"</font> </td>\n";
+    cadena+="  <td align=\"center\"> <font size=6 style=\"background-color:yellow;\" color=black>"+ nom2 +"</font> </td>\n";
+    cadena+="  <td align=\"center\"> <font size=6 style=\"background-color:orange;\" color=black>"+ to_string(pt2) +"</font> </td>\n";
     cadena+=" </tr>\n\n";
     cadena+=" </table>\n";
     //cadena+=" </div>\n";

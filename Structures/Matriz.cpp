@@ -274,7 +274,7 @@ void Matrizz::EliminarColumna(int x,int y){
         }else{
 
             NodoMatriz *otro=actual->down;
-            cout<<"PRIMERO:"<<otro->letra<<endl;
+            //cout<<"PRIMERO:"<<otro->letra<<endl;
            // anterior=actual;
             NodoMatriz *elim,*elim2,*elim3;
             //otro->down != NULL && encontrado!=true
@@ -287,11 +287,27 @@ void Matrizz::EliminarColumna(int x,int y){
                     if(otro->down==NULL && otro->up==actual){//por si es el unico en la columna
                     cout<<"soy en unico en la columna\n";
 
-                    elim=actual->left;
-                    elim->right=NULL;
-                    actual->left=NULL;
-                   // elim2=otro->left;
-                   // elim2->right=NULL;
+                    if(actual->right==NULL){//pregunto si es una cabecera del final
+                        elim=actual->left;
+                        elim->right=NULL;
+                        actual->left=NULL;
+
+
+                     // elim2=otro->left;
+                     // elim2->right=NULL;
+
+                    }else if(actual->left!=NULL && actual->right!=NULL){//por si la cabecera esta en medio
+                       
+                        elim=actual->left;
+                        elim2=actual->right;
+                        elim->right=elim2;
+                        elim2->left=elim;
+
+                        //actual->left=NULL;
+                        //actual->right=NULL;
+                      }
+
+                    
 
                     encontrado=true;
 
@@ -446,7 +462,7 @@ void Matrizz::EliminarColumna(int x,int y){
 
 void Matrizz::EliminarFila(int x,int y){
 
-    NodoMatriz* actual ;
+    NodoMatriz* actual =new NodoMatriz();
 	actual = head;
 	
     bool encontrado = false;
@@ -464,8 +480,9 @@ void Matrizz::EliminarFila(int x,int y){
        cout<<"no hay nada en esa fila"<<endl;
         }else{
 
-            NodoMatriz *otro=actual->right;
-            cout<<"PRIMERO:"<<otro->letra<<endl;
+            NodoMatriz *otro=new NodoMatriz();
+            otro=actual->right;
+            //cout<<"PRIMERO:"<<otro->letra<<endl;
            
             NodoMatriz *elim,*elim2,*elim3;
             
@@ -476,13 +493,53 @@ void Matrizz::EliminarFila(int x,int y){
                     cout<<"----->se encontro: "<<otro->letra<<endl;
 
                     if(otro->right==NULL && otro->left==actual){//por si es el unico en la fila
-                    cout<<"soy en unico en la columna\n";
+                    cout<<"soy el unico en la fila\n";
+                       
+                       //otro->left=NULL;//para desenlazar el nodo en si
+                       //actual->right=NULL;
 
-                    elim=actual->up;
-                    elim->down=NULL;
-                    actual->up=NULL;
-                   // elim2=otro->up;
-                    //elim2->down=NULL;
+                    if(actual->down==NULL){//pregunto si es una lateral que esta de ultimo
+                       cout<<"soy la ultima latera\n";
+                        elim=actual->up;
+                        elim->down=NULL;
+                       actual->up=NULL;
+
+
+                      //elim2=otro->up;
+                      //elim2->down=NULL;
+
+                    }else if(actual->up!=NULL && actual->down!=NULL){//por si una lateral se encuentra en medio
+                        cout<<"soy una lateral en medio\n";
+                        //cout<<"up:"<<actual->up->y<<" down:"<<actual->down->y;
+                        elim=new NodoMatriz();
+                        elim2=new NodoMatriz();
+                       // elim3=new NodoMatriz();
+                        
+                       // cout<<"actual:"<<actual->y<<endl;
+                        elim=actual->up;
+                        //cout<<"up:"<<elim->y;
+                        elim2=actual->down;
+                        //cout<<" ,down:"<<elim2->y;
+                        elim->down=elim2;
+                        elim2->up=elim;
+
+                        //actual->up=elim3;
+                        //actual->down=elim3;
+                        
+                        
+                        //actual=NULL;
+                        //delete(actual);
+
+                         //elim3->up=NULL;
+                         //elim3->down=NULL;
+
+                        //actual->up=NULL;
+                        //actual->down=NULL;
+                        //actual=NULL;
+
+                    }
+
+                    
 
                     encontrado=true;
 
@@ -629,6 +686,8 @@ void Matrizz::Delete(int x,int y){
 
 void Matrizz::print_nodos_x(){
 
+    if(head!=NULL && head->right!=NULL && head->down!=NULL){
+
      NodoMatriz *temp=head->right;
      cadenasdex="";
      enlacesx="";
@@ -737,9 +796,14 @@ void Matrizz::print_nodos_x(){
 
      cout<<"\n";
 
+
+    }else{ cout<<"NO SE PUEDEN MOSTRAR LOS NODOS X\n"; }
+
 }
 
 void Matrizz::print_nodos_y(){
+
+    if(head!=NULL && head->right!=NULL && head->down!=NULL){
 
      NodoMatriz *temp=head->down;
      cadenasdey="";
@@ -851,6 +915,9 @@ void Matrizz::print_nodos_y(){
 
      cout<<"\n";
 
+
+    }else{ enlacesy+="\n\n}\n"; cout<<"NO SE PUEDE MOSTRAR NODOS Y\n"; }
+
 }
 
 string Matrizz::write_file(){
@@ -881,11 +948,14 @@ string Matrizz::write_file(){
 
       //cadena2+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(tem->primero)))->str();
       //cadena2+=  static_cast<std::ostringstream*>(&(std::ostringstream()<<insercion->dato))->str();
+if(head!=NULL && head->right!=NULL  && head->down!=NULL){
 
      NodoMatriz *temp=head;
      NodoMatriz *enlase=head;
      NodoMatriz *temp2=head;
      NodoMatriz *enlase2=head;
+
+        
 
      while(temp->right != NULL){
 
@@ -940,6 +1010,8 @@ string Matrizz::write_file(){
            }
        }
        cadena+="[dir=both];";
+
+        }else{cout<<"NO SE PUEDE GRAFICAR PORQUE NO HAY NADA\n"; }
 
 
      return cadena;

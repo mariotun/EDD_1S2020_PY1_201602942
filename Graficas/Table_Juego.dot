@@ -14,46 +14,18 @@ fillcolor=steelblue2;
 node [shape=box fillcolor=chartreuse3];
 mt[label= "Matrix" style=radial group=0]
 {rank=same;
-25770344640[label= "1 " style=radial,group=1]
-25770344816[label= "2 " style=radial,group=2]
-25770345056[label= "3 " style=radial,group=3]
-0[label= "4 " style=radial,group=4]
-mt->25770344640->25770344816->25770345056->0[dir=both];};
-
-25770345176[label= "1 " style=radial,group=0]
-25770344520[label= "2 " style=radial,group=0]
-25770344936[label= "3 " style=radial,group=0]
-56[label= "4 " style=radial,group=0]
-mt->25770345176->25770344520->25770344936->56[dir=both];
-
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770344528[label="m" style=radial,group=1];
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770345648[label="u" style=radial,group=2];
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770345536[label="g" style=radial,group=3];
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770344944[label="r" style=radial,group=3];
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770345184[label="i" style=radial,group=4];
 
 
-25770344640->25770344528[dir=both]
-25770344816->25770345648[dir=both]
-25770345056->25770345536->25770344944[dir=both]
-0->25770345184[dir=both]
-
-25770345536[label="g"];
-25770345648[label="u"];
-25770345184[label="i"];
-25770344528[label="m"];
-25770344944[label="r"];
 
 
-{rank=same;25770345176->25770345536[dir=both] } 
-{rank=same;25770344520->25770345648->25770345184[dir=both] } 
-{rank=same;25770344936->25770344528[dir=both] } 
-{rank=same;56->25770344944[dir=both] }
+
+
+
+
+
+
+}
+
  }
 
 }

@@ -3,12 +3,12 @@
 #include <string>
 #include <stdlib.h>
 
-//#include "Opciones.cpp"
+#include "Opciones.cpp"
 
 //#include "Structures/ListaDobleCircular.cpp"
 //#include "Structures/Cola.cpp"
 //#include "Structures/ArbolBinarioBusqueda.cpp"
-#include "Structures/Matriz.cpp"
+//#include "Structures/Matriz.cpp"
 /*#include "Structures/ListaSimpleOrdenada.cpp"
 #include "Structures/ListaDoble.cpp"
 
@@ -22,7 +22,7 @@ using namespace std;
 bool salir=false;
 char opcion;
 //void Leer_Json(string ruta);
-//Opciones_Programa *op=new Opciones_Programa();
+Opciones_Programa *op=new Opciones_Programa();
 //string ruta;
 
    int x,y;
@@ -41,33 +41,6 @@ int suma=0;
     cout<<suma;*/
 
   
-  Matrizz *mt=new Matrizz();
-    mt->add(1,3,"m");
-    mt->add(2,3,"a");
-    mt->add(3,4,"r");
-    mt->add(4,2,"i");
-    mt->add(5,1,"o");
-    mt->add(3,1,"g");
-    mt->add(2,2,"u");
-    mt->add(4,3,"a2");
-    mt->add(2,4,"t");
-    mt->add(2,5,"e");
-    mt->Eliminar(4,3);
-    mt->Eliminar(2,5);
-    //mt->Eliminar(2,2);
-    mt->Eliminar(2,3);
-    mt->Eliminar(2,4);
-    mt->Eliminar(5,1);
-    //mt->Delete(4,3);
-
-   // mt->Delete(2,5);
-  //  mt->Delete(5,1);
-    mt->Graficar();
-
-
-
-
-
    /* do{
         x=0;
         y=0;
@@ -110,7 +83,7 @@ int suma=0;
     }while(salir!= true);*/
    
 
-  /* do{
+   do{
 
         cout<<"\n\n---------------> SCRABBLE++ <---------------\n";
         cout<<"|                                          |\n";
@@ -172,7 +145,7 @@ int suma=0;
     
     }while(salir!= true);
 
-    exit(1);*/
+    exit(1);
 
     return 0;
 }
@@ -247,29 +220,27 @@ void Leer_Json(string ruta){
   /*Matrizz *mt=new Matrizz();
     mt->add(1,3,"m");
     mt->add(2,3,"a");
-    mt->add(3,3,"r");
-    mt->add(4,3,"i");
-    mt->add(5,3,"o");
-    mt->add(2,1,"g");
+    mt->add(6,7,"r");
+    mt->add(8,2,"i");
+    mt->add(5,1,"o");
+    mt->add(6,1,"g");
     mt->add(2,2,"u");
-    mt->add(2,3,"a");
-    mt->add(2,4,"t");
-    mt->add(2,5,"e");
-    mt->add(5,2,"c");
-    mt->add(5,3,"o");
-    mt->add(5,4,"m");
-    mt->add(5,5,"i");
-    mt->add(5,6,"d");
-    mt->add(5,7,"a");
-    mt->add(2,5,"jajaj");
-    mt->add(3,5,"m");
-    mt->add(4,5,"p");
-    mt->add(5,5,"i");
-    mt->add(6,5,"r");
-    mt->add(7,5,"e");
-    mt->add(7,1,"s");
-    mt->add(7,2,"o");
-    mt->add(7,3,"l");
+    mt->add(8,3,"a2");
+    mt->add(2,7,"t");
+    mt->add(2,10,"e");
+    mt->add(3,4,"z");
+    mt->add(4,5,"x");
+    mt->add(9,11,"bb");
+    mt->add(10,6,"uu");
+
+    mt->Eliminar(2,2);
+    mt->Eliminar(2,7);
+    mt->Eliminar(8,3);
+    mt->Eliminar(1,3);
+    mt->Eliminar(3,4);
+    mt->Eliminar(10,6);
+    mt->Eliminar(6,7);
+    mt->Eliminar(9,11);
     mt->Graficar();*/
 
 
