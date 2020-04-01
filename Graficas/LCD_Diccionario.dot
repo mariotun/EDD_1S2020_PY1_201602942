@@ -12,29 +12,29 @@ fontcolor=black
 style=filled
 fillcolor=burlywood
 labelloc=t;{rank=same;
-25770491664[label=" hola"];
-25770491696[label=" mundo"];
-25770491728[label=" proyecto"];
-25770491760[label=" comida"];
-25770491792[label=" estudios"];
-25770491824[label=" animales"];
-25770491856[label=" personas"];
-25770491888[label=" bosques"];
-25770491920[label=" paisaje"];
+25770491776[label=" hola"];
+25770491808[label=" mundo"];
+25770491840[label=" proyecto"];
+25770491872[label=" comida"];
+25770491904[label=" dia"];
+25770491936[label=" sol"];
+25770491968[label=" personas"];
+25770492000[label=" bosques"];
+25770492032[label=" luna"];
 };
 
-25770491664->
-25770491696->
-25770491728->
-25770491760->
-25770491792->
-25770491824->
-25770491856->
-25770491888->
-25770491920[dir=both color=black];
+25770491776->
+25770491808->
+25770491840->
+25770491872->
+25770491904->
+25770491936->
+25770491968->
+25770492000->
+25770492032[dir=both color=black];
 
 
-25770491664->25770491920
+25770491776->25770492032
 [dir=both color=black];
 
  }

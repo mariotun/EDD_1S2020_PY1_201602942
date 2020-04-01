@@ -282,10 +282,10 @@ void Matrizz::EliminarColumna(int x,int y){
                 cant++;
 
                 if(otro->y==y){
-                    cout<<"----->se encontro: "<<otro->letra<<endl;
+                    //cout<<"----->se encontro: "<<otro->letra<<endl;
 
                     if(otro->down==NULL && otro->up==actual){//por si es el unico en la columna
-                    cout<<"soy en unico en la columna\n";
+                    //cout<<"soy en unico en la columna\n";
 
                     if(actual->right==NULL){//pregunto si es una cabecera del final
                         elim=actual->left;
@@ -312,7 +312,7 @@ void Matrizz::EliminarColumna(int x,int y){
                     encontrado=true;
 
                     }else if(otro->down!=NULL && otro->up==actual){//por si es el primero y no es el unico
-                    cout<<"soy el primero y no soy el unico\n";
+                    //cout<<"soy el primero y no soy el unico\n";
 
                     //elim=otro->up;
                     //elim->down=otro->down;
@@ -328,7 +328,7 @@ void Matrizz::EliminarColumna(int x,int y){
 
 
                     }else if(otro->down!=NULL && otro->up!=actual){//por si es el de en medio
-                    cout<<"soy el de enmedio\n"<<otro->up->letra<<" - "<<otro->down->letra;
+                    //cout<<"soy el de enmedio\n"<<otro->up->letra<<" - "<<otro->down->letra;
 
                    
                    /* elim=otro->up;
@@ -351,7 +351,7 @@ void Matrizz::EliminarColumna(int x,int y){
                     encontrado=true;
 
                     }else{//por si es el ultimo
-                    cout<<"soy en ultimo\n";
+                    //cout<<"soy en ultimo\n";
                     
                     elim=otro;
                     elim->up->down=NULL;
@@ -363,84 +363,7 @@ void Matrizz::EliminarColumna(int x,int y){
                     }
 
                 } 
-                //cout<<"cant: "<<cant<<"otro: "<<otro->letra<<endl;
-			/*if(otro->down->y == y){
-				cout << "\n Nodo con el dato ( " << otro->down->letra << " ) Encontrado";
-				
-				if( otro->down->up==actual && actual->left!=head){//SI HAY SOLO UNO
-                 cout<<"(CASO UNO)";
-					//primero = primero->siguiente;
-					//primero->atras = NULL;
-                    if(otro->down->down==NULL){
-                   cout<<"si es el UNICO\n";
-                    elim=actual->left;
-                    elim->right=NULL;
-                    actual->left=NULL;
-                    elim2=otro->down->left;
-                    elim2->right=NULL;
-                    encontrado=true;
-                    
-                    }else{
-                         cout<<"si hay mas\n";   
-                         actual->down=otro->down->down;
-                         //cout<<"anterior"<<anterior->letra<<endl;
-                      
-                       // otro->down=otro->down->down;
-                        encontrado=true;
-
-
-
-                    }
-
-				}else if(otro->down->down==NULL){//SI HAY QUE ELIMINAR EL ULTIMO
-                    cout<<" (CASO ULTIMO)";
-                    cout<<"-->"<<anterior->letra;//a
-                    cout<<"-->"<<otro->letra;//t
-                    
-                    elim=new NodoMatriz();
-                    elim->letra="y";
-                    elim2=new NodoMatriz();
-                    elim2->letra="x";
-                    
-                    anterior->down=elim2;
-                    elim2->down=otro;
-
-                    
-                    
-                    //elim2=otro->down;
-                    //elim2->down=otro->down;
-
-
-                    //elim=anterior->down;
-                    //elim->down=NULL;
-
-
-                   // delete(anterior->down);
-                    //elim=otro->down->up;
-                    //elim->down=NULL;
-                   
-                    elim3=otro->down->left;
-                    elim3->right=NULL;
-
-                    
-
-					//ultimo = anterior;
-
-				}else{//SI HAY QUE ELIMINAR EN MEDIO
-                    cout<<"(CASO MEDIO)";
-                    cout<<"ant:"<<anterior->down->letra;//a
-                    cout<<"otro:"<<otro->down->letra;//t
-					anterior->down->down = otro->down->down;
-					otro->down->up = anterior;
-
-                    otro->down->left=otro->down->right;
-                    
-				}
-				
-				cout << "\n Nodo Eliminado\n";
-				encontrado = true;
-			}//FIN DEL IF*/
-			//anterior = actual;
+               
             anterior= otro;
             //cout<<"anterior:"<<anterior->letra<<endl;
 			otro=otro->down;
@@ -490,16 +413,16 @@ void Matrizz::EliminarFila(int x,int y){
                 cant++;
 
                 if(otro->x==x){
-                    cout<<"----->se encontro: "<<otro->letra<<endl;
+                    //cout<<"----->se encontro: "<<otro->letra<<endl;
 
                     if(otro->right==NULL && otro->left==actual){//por si es el unico en la fila
-                    cout<<"soy el unico en la fila\n";
+                   // cout<<"soy el unico en la fila\n";
                        
                        //otro->left=NULL;//para desenlazar el nodo en si
                        //actual->right=NULL;
 
                     if(actual->down==NULL){//pregunto si es una lateral que esta de ultimo
-                       cout<<"soy la ultima latera\n";
+                       //cout<<"soy la ultima latera\n";
                         elim=actual->up;
                         elim->down=NULL;
                        actual->up=NULL;
@@ -509,7 +432,7 @@ void Matrizz::EliminarFila(int x,int y){
                       //elim2->down=NULL;
 
                     }else if(actual->up!=NULL && actual->down!=NULL){//por si una lateral se encuentra en medio
-                        cout<<"soy una lateral en medio\n";
+                        //cout<<"soy una lateral en medio\n";
                         //cout<<"up:"<<actual->up->y<<" down:"<<actual->down->y;
                         elim=new NodoMatriz();
                         elim2=new NodoMatriz();
@@ -544,7 +467,7 @@ void Matrizz::EliminarFila(int x,int y){
                     encontrado=true;
 
                     }else if(otro->right!=NULL && otro->left==actual){//por si es el primero y no es el unico
-                    cout<<"soy el primero y no soy el unico\n";
+                    //cout<<"soy el primero y no soy el unico\n";
 
                     elim=otro->right;
                     elim->left=actual;
@@ -554,7 +477,7 @@ void Matrizz::EliminarFila(int x,int y){
 
 
                     }else if(otro->right!=NULL && otro->left!=actual){//por si es el de en medio
-                    cout<<"soy el de enmedio\n"<<otro->left->letra<<" - "<<otro->right->letra;
+                   // cout<<"soy el de enmedio\n"<<otro->left->letra<<" - "<<otro->right->letra;
 
                     elim=otro;
                     elim->left->right=elim->right;
@@ -563,7 +486,7 @@ void Matrizz::EliminarFila(int x,int y){
                     encontrado=true;
 
                     }else{//por si es el ultimo
-                    cout<<"soy en ultimo\n";
+                    //cout<<"soy en ultimo\n";
                     
                     elim=otro;
                     elim->left->right=NULL;

@@ -42,6 +42,9 @@ class Opciones_Programa{
         char nombre1[0];
         char nombre2[0];
         int entrada,entrada2;
+        int *psnx;
+        int *psny;
+        int cantLetras=0;;
 }; 
 
 Opciones_Programa::Opciones_Programa(){
@@ -62,6 +65,9 @@ Opciones_Programa::Opciones_Programa(){
     char opcion;
     char opcion2;
     char letra;
+
+    //int *psnx;
+    //int *psny;
     
 
 while(salir2!=true){
@@ -69,6 +75,11 @@ while(salir2!=true){
     opcion2;
     int contt=0;
     string palabraa;
+    int verificar=0;
+     psnx=new int[30];
+     psny=new int[30];
+     cantLetras=0;
+    
     cout<<"\n1.-Salir Del Juego\n";
     cout<<"\n2.-Iniciar Turno\n";
     cin>>opcion2;
@@ -86,14 +97,13 @@ while(salir2!=true){
         //y=0;
         
         bool xb=true,yb=true,lb=true;
-        int psnx[30];
-        int psny[30];
+        
         //string palabraa;
         salir=false;
         string lt;
         opcion;
         letra;
-        int verificar=0;
+        
         string x,y;
         
 
@@ -106,6 +116,7 @@ while(salir2!=true){
 
             case '1'://**************************************************************************
                 verificar++;
+                
                 cout<<"Posicion X: ";
                 cin>>x;
                 cout<<"\nPosicion Y: ";
@@ -113,7 +124,7 @@ while(salir2!=true){
                 cout<<"\nDato: "; 
                 cin>>letra;
 
-                cout<<"------>letra:"<<letra<<endl;
+               // cout<<"------>letra:"<<letra<<endl;
 
                  for(int i=0;i<x.length();i++){
 
@@ -132,7 +143,7 @@ while(salir2!=true){
                     }
 
                 }
-                cout<<"------>letra:"<<letra<<endl;
+                //cout<<"------>letra:"<<letra<<endl;
                
                     if(  !( (letra>=65 && letra<=90) || (letra>=97 && letra<=122) )  ){
                         cout<<"letra malo\n";
@@ -140,7 +151,7 @@ while(salir2!=true){
                     }
 
                 //cout<<xb<<" , "<<yb<<" , "<<lb<<endl;
-                cout<<"------>letra:"<<letra<<endl;
+                //cout<<"------>letra:"<<letra<<endl;
                 
                 if(xb==true && yb==true && lb==true){
                     palabraa+=letra; 
@@ -149,13 +160,14 @@ while(salir2!=true){
 
                     mt->add(stoi(x),stoi(y),lt+letra);
                     contt++;
+                    cantLetras++;
                     cout<<"se ingreso\n";
 
                 }else{
                     cout<<"no se ingreso\n";    
                 }
                 
-                cout<<"------>letra:"<<letra<<endl;
+               // cout<<"------>letra:"<<letra<<endl;
 
             break;
 
@@ -170,16 +182,25 @@ while(salir2!=true){
                 bool respuesta=lcd->Buscar(palabraa);
 
                 if(respuesta==false){
-                    cout<<"\nPalabra no encontrada en el Diccionario\n";
+                    cout<<"\nPalabra no encontrada en el Diccionario, Se quitara del Tablero!!\n";
+                    
 
-                    for(int z=0;z<30;z++){
+                    for(int z=0;z<cantLetras;z++){
 
-                        if(psnx[z]!=0 && psny[z]!=0){
+                        if( (psnx[z]!=0) && (psny[z]!=0) ){
+                            //cout<<"px:"<<psnx[z]<<",py:"<<psny[z]<<endl;
                         mt->Eliminar(psnx[z],psny[z]);
                         }
                     }
 
                 }else if(respuesta==true ){
+                    for(int z=0;z<cantLetras;z++){
+
+                        if( (psnx[z]!=0) && (psny[z]!=0) ){
+                           // cout<<"Bpx:"<<psnx[z]<<",Bpy:"<<psny[z]<<endl;
+                        //mt->Eliminar(psnx[z],psny[z]);
+                        }
+                    }
                     cout<<"\n¡¡¡ Se acepto la palabra !!!\n";
 
                 }
@@ -573,7 +594,7 @@ void Opciones_Programa::opcion_tres(){
     for (int i = 0; i < 7; i++) {
      
         if( (fichax=cl->Eliminar())!=NULL){
-            //jugador1->fichas->Insertar(new NodoLD(fichax->ficha));
+            jugador1->fichas->Insertar(new NodoLD(fichax->ficha));
             cout<<fichax->ficha;
         }else{ cout<<"\nSe acabaron las fichas"; }
     }
@@ -581,7 +602,7 @@ void Opciones_Programa::opcion_tres(){
     for (int j = 0;  j< 7; j++) {
      
         if( (fichax2=cl->Eliminar())!=NULL){
-            //jugador2->fichas->Insertar(new NodoLD(fichax2->ficha));
+            jugador2->fichas->Insertar(new NodoLD(fichax2->ficha));
             cout<<fichax2->ficha;
         }else{ cout<<"\nSe acabaron las fichas"; }
     }

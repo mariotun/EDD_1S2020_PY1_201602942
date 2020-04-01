@@ -3,10 +3,10 @@
 #include <string>
 #include <stdlib.h>
 
-//#include "Opciones.cpp"
+#include "Opciones.cpp"
 
 //#include "Structures/ListaDobleCircular.cpp"
-#include "Structures/Cola.cpp"
+//#include "Structures/Cola.cpp"
 //#include "Structures/ArbolBinarioBusqueda.cpp"
 //#include "Structures/Matriz.cpp"
 /*#include "Structures/ListaSimpleOrdenada.cpp"
@@ -26,36 +26,32 @@ char opcion;
 char opcion2;
 char letra;
 //void Leer_Json(string ruta);
-//Opciones_Programa *op=new Opciones_Programa();
+Opciones_Programa *op=new Opciones_Programa();
 //string ruta;
 
 string x,y;
 
+int *a;
 
 int main(){
 
+a=new int[30];
+a[1]=5;
+a[2]=7;
+a[3]=1;
+int r=0;
 
-    Cola *cl=new Cola();
-    cl->Insertar(new NodoCola("M",5));
-    cl->Insertar(new NodoCola("F",2));
-    cl->Insertar(new NodoCola("S",3));
-    cl->Insertar(new NodoCola("Q",4));
-    cl->Insertar(new NodoCola("h",4));
-    /*cl->elimina();
-    cl->elimina();
-    cl->elimina();
-    cl->elimina();
-    cl->elimina();*/
-    NodoCola *elim=cl->Eliminar();
-    NodoCola *elim2=cl->Eliminar();
-    
-    cout<<"ficha:"<<elim->ficha<<" ,pts:"<<elim->puntos<<endl;
-    cout<<"ficha:"<<elim2->ficha<<" ,pts:"<<elim2->puntos<<endl;
-   cl->Graficar();
+for(int x=0;x<30;x++){
+    if(a[x]!=0){
+    cout<<"\nvalor: "<<a[x]<<endl;
+    r+=a[x];
 
+    }
+  
+}
+cout<<"R:"<<r;
 
-
-   /*do{
+   do{
 
         cout<<"\n\n---------------> SCRABBLE++ <---------------\n";
         cout<<"|                                          |\n";
@@ -117,7 +113,7 @@ int main(){
     
     }while(salir!= true);
 
-    exit(1);*/
+    exit(1);
 
     return 0;
 }
@@ -237,17 +233,19 @@ void Leer_Json(string ruta){
     abb->graph_posorder();*/
 
 
-    /*  Cola *cl=new Cola();
+    /*Cola *cl=new Cola();
     cl->Insertar(new NodoCola("M",5));
     cl->Insertar(new NodoCola("F",2));
     cl->Insertar(new NodoCola("S",3));
     cl->Insertar(new NodoCola("Q",4));
-    cout<<"f:"<<cl->Eliminar()<<endl;
-    cout<<"f:"<<cl->Eliminar()<<endl;
-    cout<<"f:"<<cl->Eliminar()<<endl;
-    cout<<"f:"<<cl->Eliminar()<<endl;
-    cout<<"f:"<<cl->Eliminar()<<endl;
-    cl->Graficar();*/
+    cl->Insertar(new NodoCola("h",4));
+    
+    NodoCola *elim=cl->Eliminar();
+    NodoCola *elim2=cl->Eliminar();
+    
+    cout<<"ficha:"<<elim->ficha<<" ,pts:"<<elim->puntos<<endl;
+    cout<<"ficha:"<<elim2->ficha<<" ,pts:"<<elim2->puntos<<endl;
+   cl->Graficar();*/
     
 
    /*Lista_Doble_Circular *lcd=new Lista_Doble_Circular();
