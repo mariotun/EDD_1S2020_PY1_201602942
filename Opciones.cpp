@@ -29,12 +29,13 @@ class Opciones_Programa{
         int ValidarNombre(string nombre);
         void fichas(Cola *cl);
         void HTML(string nom1,string nom2,int pt1,int pt2); 
-        void TURNOS();
+        void TURNOS(string jug1,string jug2,int pt1,int pt2);
 
         string ruta;
         Lista_Doble_Circular *lcd;
         Arbol_Binario_Busqueda *abb;
         Cola *cl;
+        Matrizz *mt;
 
         NodoArbol *jugador1;
         NodoArbol *jugador2;
@@ -52,19 +53,22 @@ Opciones_Programa::Opciones_Programa(){
 
  //------------------------------------------------------------------------------------------------------------------------
 
- void Opciones_Programa::TURNOS(){
+ void Opciones_Programa::TURNOS(string jug1,string jug2,int pt1,int pt2){
 
-    Matrizz *mt=new Matrizz();
+    mt=new Matrizz();
     bool salir=false;
     bool salir2=false;
 
     char opcion;
     char opcion2;
     char letra;
+    
 
 while(salir2!=true){
 
     opcion2;
+    int contt=0;
+    string palabraa;
     cout<<"\n1.-Salir Del Juego\n";
     cout<<"\n2.-Iniciar Turno\n";
     cin>>opcion2;
@@ -82,10 +86,16 @@ while(salir2!=true){
         //y=0;
         
         bool xb=true,yb=true,lb=true;
+        int psnx[30];
+        int psny[30];
+        //string palabraa;
         salir=false;
         string lt;
         opcion;
         letra;
+        int verificar=0;
+        string x,y;
+        
 
         cout<<"\n\n----------> Creacion de una Matriz <----------\n\n";
         cout<<"     1.Insertar\n\n";
@@ -94,7 +104,8 @@ while(salir2!=true){
         cin>>opcion;
         switch(opcion){
 
-            case '1':
+            case '1'://**************************************************************************
+                verificar++;
                 cout<<"Posicion X: ";
                 cin>>x;
                 cout<<"\nPosicion Y: ";
@@ -132,7 +143,12 @@ while(salir2!=true){
                 cout<<"------>letra:"<<letra<<endl;
                 
                 if(xb==true && yb==true && lb==true){
+                    palabraa+=letra; 
+                    psnx[contt]=stoi(x);
+                    psny[contt]=stoi(y);   
+
                     mt->add(stoi(x),stoi(y),lt+letra);
+                    contt++;
                     cout<<"se ingreso\n";
 
                 }else{
@@ -143,12 +159,37 @@ while(salir2!=true){
 
             break;
 
-            case '2':
+            case '2'://**************************************************************************
                 mt->Graficar();
+                HTML(jug1,jug2,pt1,pt2);
             break;
 
-            case '3':
+            case '3'://**************************************************************************
+
+                if(verificar>=3){
+                bool respuesta=lcd->Buscar(palabraa);
+
+                if(respuesta==false){
+                    cout<<"\nPalabra no encontrada en el Diccionario\n";
+
+                    for(int z=0;z<30;z++){
+
+                        if(psnx[z]!=0 && psny[z]!=0){
+                        mt->Eliminar(psnx[z],psny[z]);
+                        }
+                    }
+
+                }else if(respuesta==true ){
+                    cout<<"\n¡¡¡ Se acepto la palabra !!!\n";
+
+                }
+
+                }else{ cout<<"\n No se han ingresado por lomenos 3 letras\n"; }
+
+
                 salir=true;
+
+
             break;
 
             default:
@@ -169,11 +210,12 @@ while(salir2!=true){
 
         }//cierre del switch
         
-    }
+    }//cierre del primer while
 
 
 
- }
+ }//cierre del metodo
+
 
 //------------------------------------------------------------------------------------------------------------------------
 
@@ -481,11 +523,12 @@ void Opciones_Programa::opcion_tres(){
    // int random=0;
     bool sa=false;
     bool sa2=false;
-    string fichax,fichax2;
+    //string fichax,fichax2;
+    NodoCola *fichax,*fichax2;
     int vec[2];
     char jue;
-
-
+    
+    
     do{
         
        
@@ -529,23 +572,24 @@ void Opciones_Programa::opcion_tres(){
 
     for (int i = 0; i < 7; i++) {
      
-        if( (fichax=cl->Eliminar())!="w"){
-            jugador1->fichas->Insertar(new NodoLD(fichax));
-            cout<<fichax;
+        if( (fichax=cl->Eliminar())!=NULL){
+            //jugador1->fichas->Insertar(new NodoLD(fichax->ficha));
+            cout<<fichax->ficha;
         }else{ cout<<"\nSe acabaron las fichas"; }
     }
     cout<<endl;
     for (int j = 0;  j< 7; j++) {
      
-        if( (fichax2=cl->Eliminar())!="w"){
-            jugador2->fichas->Insertar(new NodoLD(fichax2));
-            cout<<fichax2;
+        if( (fichax2=cl->Eliminar())!=NULL){
+            //jugador2->fichas->Insertar(new NodoLD(fichax2->ficha));
+            cout<<fichax2->ficha;
         }else{ cout<<"\nSe acabaron las fichas"; }
     }
     
-
+        
+        TURNOS(jugador1->Nombre_Judador,jugador2->Nombre_Judador,5,5);
     
-    do{//PARA LOS TURNOS DE CADA JUGADOR
+    /*do{//PARA LOS TURNOS DE CADA JUGADOR
 
     cout<<"(1)Salir\n (2)Ver Tablero\n";
 
@@ -556,14 +600,14 @@ void Opciones_Programa::opcion_tres(){
         break;
 
         case '2':
-            HTML("MARIOT","SANDYG",100,100);
+            //HTML("MARIOT","SANDYG",100,100);
         break;
 
 
     }
         
 
-    }while(sa2!=true);
+    }while(sa2!=true);*/
 
 
 

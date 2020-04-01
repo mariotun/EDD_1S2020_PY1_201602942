@@ -16,6 +16,7 @@ class NodoCola{
         string ficha;
         int puntos;
         NodoCola *next; 
+        NodoCola *back;
         NodoCola();
         NodoCola(string ficha,int puntos);
   
@@ -39,10 +40,14 @@ class Cola{
 
         void Insertar(NodoCola *ficha);
         bool Buscar(string ficha);
-        string Eliminar();
+        //string Eliminar();
+        NodoCola *Eliminar();
+        void elimina();
         void Desplegar();
         string ArchivoGrafica();
         void Graficar();
+
+        NodoCola *ficha;
 
 };
 
@@ -51,12 +56,16 @@ void Cola::Insertar(NodoCola *ficha){
 	if(last==NULL){
 		last=ficha;
 		last->next=NULL;
+        last->back=NULL;//------->(*)
 		first=last;
+      
 	}else{
 		//first->next=ficha;
         
         ficha->next=first;
+        first->back=ficha;//------>(*)
         first=ficha;
+        //last=ficha;
 		//ficha->next=NULL;
 		
 	}
@@ -89,34 +98,86 @@ bool Cola::Buscar(string ficha){
 }
 
 
- string Cola::Eliminar(){
+void Cola::elimina(){
 
      NodoCola *aux;
      //aux->next=NULL;
      NodoCola *inicio;
-     string fi="";
+     //string fi="";
+     //ficha=NULL;
 
-     if(first != NULL){
+     if(last != NULL){
 
-         if(first==last){
-             fi=first->ficha;
+         if(last==first){
+             //fi=first->ficha;
+             //ficha=first;
+             cout<<"solo hay uno";
+             last=NULL;
              first=NULL;
              
              //delete(first);
          }else{
-
-         aux=first;
-         fi=first->ficha;
-         first=first->next;
-         delete(aux);
+             /*cout<<"\nlast:"<<last->ficha;
+            // cout<<"\nnext:"<<last->next->ficha;
+             cout<<"\nback:"<<last->back->ficha;
+             cout<<"\nback-back:"<<last->back->back->ficha;*/
+         
+         last=last->back;
+         last->next=NULL;
          
 
          }
 
-         return fi;
+         //return fi;
+        // return ficha;
 
      }else{
-         return "w";
+         //return "w";
+          //return NULL;
+         cout<<"No existe Nodo para eliminar";
+     }
+
+
+}
+
+ NodoCola *Cola::Eliminar(){
+
+    NodoCola *aux;
+     //aux->next=NULL;
+     NodoCola *inicio;
+     //string fi="";
+     //ficha=NULL;
+
+     if(last != NULL){
+
+         if(last==first){
+             //fi=first->ficha;
+             //ficha=first;
+             cout<<"solo hay uno";
+             aux=last;
+             last=NULL;
+             first=NULL;
+             
+             return aux;
+             //delete(first);
+         }else{
+             /*cout<<"\nlast:"<<last->ficha;
+            // cout<<"\nnext:"<<last->next->ficha;
+             cout<<"\nback:"<<last->back->ficha;
+             cout<<"\nback-back:"<<last->back->back->ficha;*/
+         aux=last;
+         last=last->back;
+         last->next=NULL;
+         
+
+         }
+
+         //return fi;
+         return aux;
+
+     }else{
+         //return "w";
+          return NULL;
          cout<<"No existe Nodo para eliminar";
      }
 
@@ -175,7 +236,7 @@ bool Cola::Buscar(string ficha){
 
    void Cola::Graficar(){
 
-  if(first!=NULL){
+  //if(first!=NULL){
 
     FILE *fichero;
     //fichero = fopen("/home/mario/Escritorio/Practica#1/Graficas.dot", "wt");
@@ -193,7 +254,7 @@ bool Cola::Buscar(string ficha){
    system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Cola_Fichas.dot");
    system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Cola_Fichas.dot.png");
  
-  }else{ cout<<"\nNO se puede generar el diagrama de las fichas\n"; }
+  //}else{ cout<<"\nNO se puede generar el diagrama de las fichas\n"; }
 
 
    }

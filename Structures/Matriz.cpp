@@ -1053,7 +1053,8 @@ void Matrizz::Graficar(){
     fclose(fichero);
 
     system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Table_Juego.dot");
-    system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Table_Juego.dot.png");
+    //system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Table_Juego.dot.png");
+    //NO LO VAMOS ABRIR AUTOMATICAMENTE, PORQUE ESTA EL HTML VASICO
 
 
 }
