@@ -29,6 +29,8 @@ class Opciones_Programa{
         int ValidarNombre(string nombre);
         void fichas(Cola *cl);
         void HTML(string nom1,string nom2,int pt1,int pt2); 
+        void TURNOS();
+
         string ruta;
         Lista_Doble_Circular *lcd;
         Arbol_Binario_Busqueda *abb;
@@ -46,6 +48,131 @@ Opciones_Programa::Opciones_Programa(){
     abb=new Arbol_Binario_Busqueda();
     lcd=new Lista_Doble_Circular();
     cl=new Cola();
+ }
+
+ //------------------------------------------------------------------------------------------------------------------------
+
+ void Opciones_Programa::TURNOS(){
+
+    Matrizz *mt=new Matrizz();
+    bool salir=false;
+    bool salir2=false;
+
+    char opcion;
+    char opcion2;
+    char letra;
+
+while(salir2!=true){
+
+    opcion2;
+    cout<<"\n1.-Salir Del Juego\n";
+    cout<<"\n2.-Iniciar Turno\n";
+    cin>>opcion2;
+
+    switch(opcion2){
+
+        case '1':
+            salir2=true;
+        break;
+
+        case '2':
+
+    do{
+        //x=0;
+        //y=0;
+        
+        bool xb=true,yb=true,lb=true;
+        salir=false;
+        string lt;
+        opcion;
+        letra;
+
+        cout<<"\n\n----------> Creacion de una Matriz <----------\n\n";
+        cout<<"     1.Insertar\n\n";
+        cout<<"     2.Graficar\n\n";
+        cout<<"     3.Validar y Terminar Turno\n\n";
+        cin>>opcion;
+        switch(opcion){
+
+            case '1':
+                cout<<"Posicion X: ";
+                cin>>x;
+                cout<<"\nPosicion Y: ";
+                cin>>y;
+                cout<<"\nDato: "; 
+                cin>>letra;
+
+                cout<<"------>letra:"<<letra<<endl;
+
+                 for(int i=0;i<x.length();i++){
+
+                    if( !( (x[i]>=48 && x[i]<=57) ) ){
+                        cout<<"x malo\n";
+                        xb=false;
+                    }
+
+                }
+
+                for(int i=0;i<y.length();i++){
+
+                    if( !( (y[i]>=48 && y[i]<=57) ) ){
+                        cout<<"y malo\n";
+                        yb=false;
+                    }
+
+                }
+                cout<<"------>letra:"<<letra<<endl;
+               
+                    if(  !( (letra>=65 && letra<=90) || (letra>=97 && letra<=122) )  ){
+                        cout<<"letra malo\n";
+                        lb=false;
+                    }
+
+                //cout<<xb<<" , "<<yb<<" , "<<lb<<endl;
+                cout<<"------>letra:"<<letra<<endl;
+                
+                if(xb==true && yb==true && lb==true){
+                    mt->add(stoi(x),stoi(y),lt+letra);
+                    cout<<"se ingreso\n";
+
+                }else{
+                    cout<<"no se ingreso\n";    
+                }
+                
+                cout<<"------>letra:"<<letra<<endl;
+
+            break;
+
+            case '2':
+                mt->Graficar();
+            break;
+
+            case '3':
+                salir=true;
+            break;
+
+            default:
+                cout<<"\n!!!!!Opcion Incorrecta\n";
+            break;
+        }
+
+        
+
+
+    }while(salir!= true);
+
+        break;
+
+        default:
+        cout<<"\nERROR al elegir la opcion\n";
+        break;
+
+        }//cierre del switch
+        
+    }
+
+
+
  }
 
 //------------------------------------------------------------------------------------------------------------------------

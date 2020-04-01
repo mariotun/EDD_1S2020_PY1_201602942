@@ -3,12 +3,12 @@
 #include <string>
 #include <stdlib.h>
 
-#include "Opciones.cpp"
+//#include "Opciones.cpp"
 
 //#include "Structures/ListaDobleCircular.cpp"
 //#include "Structures/Cola.cpp"
 //#include "Structures/ArbolBinarioBusqueda.cpp"
-//#include "Structures/Matriz.cpp"
+#include "Structures/Matriz.cpp"
 /*#include "Structures/ListaSimpleOrdenada.cpp"
 #include "Structures/ListaDoble.cpp"
 
@@ -20,13 +20,20 @@ using namespace std;
 //using json = nlohmann::json;
 
 bool salir=false;
+bool salir2=false;
+
 char opcion;
+char opcion2;
+char letra;
 //void Leer_Json(string ruta);
-Opciones_Programa *op=new Opciones_Programa();
+//Opciones_Programa *op=new Opciones_Programa();
 //string ruta;
 
-   int x,y;
-string letra;
+string x,y;
+
+
+void Jugador1();
+void Jugador2();
 
 int main(){
 
@@ -40,16 +47,37 @@ int suma=0;
     }
     cout<<suma;*/
 
-  
-   /* do{
-        x=0;
-        y=0;
-        letra="";
+Matrizz *mt=new Matrizz();
+
+while(salir2!=true){
+
+    opcion2;
+    cout<<"\n1.-Salir Del Juego\n";
+    cout<<"\n2.-Iniciar Turno\n";
+    cin>>opcion2;
+
+    switch(opcion2){
+
+        case '1':
+            salir2=true;
+        break;
+
+        case '2':
+
+    do{
+        //x=0;
+        //y=0;
+        
+        bool xb=true,yb=true,lb=true;
+        salir=false;
+        string lt;
+        opcion;
+        letra;
 
         cout<<"\n\n----------> Creacion de una Matriz <----------\n\n";
         cout<<"     1.Insertar\n\n";
         cout<<"     2.Graficar\n\n";
-        cout<<"     3.Salir\n\n";
+        cout<<"     3.Validar y Terminar Turno\n\n";
         cin>>opcion;
         switch(opcion){
 
@@ -58,9 +86,47 @@ int suma=0;
                 cin>>x;
                 cout<<"\nPosicion Y: ";
                 cin>>y;
-                cout<<"\nDato: ";
+                cout<<"\nDato: "; 
                 cin>>letra;
-                mt->add(x,y,letra.c_str());
+
+                cout<<"------>letra:"<<letra<<endl;
+
+                 for(int i=0;i<x.length();i++){
+
+                    if( !( (x[i]>=48 && x[i]<=57) ) ){
+                        cout<<"x malo\n";
+                        xb=false;
+                    }
+
+                }
+
+                for(int i=0;i<y.length();i++){
+
+                    if( !( (y[i]>=48 && y[i]<=57) ) ){
+                        cout<<"y malo\n";
+                        yb=false;
+                    }
+
+                }
+                cout<<"------>letra:"<<letra<<endl;
+               
+                    if(  !( (letra>=65 && letra<=90) || (letra>=97 && letra<=122) )  ){
+                        cout<<"letra malo\n";
+                        lb=false;
+                    }
+
+                //cout<<xb<<" , "<<yb<<" , "<<lb<<endl;
+                cout<<"------>letra:"<<letra<<endl;
+                
+                if(xb==true && yb==true && lb==true){
+                    mt->add(stoi(x),stoi(y),lt+letra);
+                    cout<<"se ingreso\n";
+
+                }else{
+                    cout<<"no se ingreso\n";    
+                }
+                
+                cout<<"------>letra:"<<letra<<endl;
 
             break;
 
@@ -80,10 +146,20 @@ int suma=0;
         
 
 
-    }while(salir!= true);*/
-   
+    }while(salir!= true);
 
-   do{
+        break;
+
+        default:
+        cout<<"\nERROR al elegir la opcion\n";
+        break;
+
+        }//cierre del switch
+        
+    }
+
+
+   /*do{
 
         cout<<"\n\n---------------> SCRABBLE++ <---------------\n";
         cout<<"|                                          |\n";
@@ -145,10 +221,105 @@ int suma=0;
     
     }while(salir!= true);
 
-    exit(1);
+    exit(1);*/
 
     return 0;
 }
+
+void Jugador1(){
+    int x=0;
+    int y=0;
+    string  letra="";
+    bool salir=false;
+    char opcion;
+    do{
+        
+
+        cout<<"\n\n----------> TURNO JUGADOR 1 <----------\n\n";
+        cout<<"     1.Insertar\n\n";
+        cout<<"     2.Graficar\n\n";
+        cout<<"     3.Sal\n\n";
+        cin>>opcion;
+        switch(opcion){
+
+            case '1':
+                cout<<"Posicion X: ";
+                cin>>x;
+                cout<<"\nPosicion Y: ";
+                cin>>y;
+                cout<<"\nDato: ";
+                cin>>letra;
+                //mt->add(x,y,letra.c_str());
+
+            break;
+
+            case '2':
+                //mt->Graficar();
+            break;
+
+            case '3':
+                salir=true;
+            break;
+
+            default:
+                cout<<"\n!!!!!Opcion Incorrecta\n";
+            break;
+        }
+
+    }while(salir!= true);
+
+
+}
+
+void Jugador2(){
+    int x=0;
+    int y=0;
+    string  letra="";
+    bool salir=false;
+    char opcion;
+    do{
+       
+
+        cout<<"\n\n----------> TURNO JUGADOR 2 <----------\n\n";
+        cout<<"     1.Insertar\n\n";
+        cout<<"     2.Graficar\n\n";
+        cout<<"     3.Salir\n\n";
+        cin>>opcion;
+        switch(opcion){
+
+            case '1':
+                cout<<"Posicion X: ";
+                cin>>x;
+                cout<<"\nPosicion Y: ";
+                cin>>y;
+                cout<<"\nDato: ";
+                cin>>letra;
+               // mt->add(x,y,letra.c_str());
+
+            break;
+
+            case '2':
+                //mt->Graficar();
+            break;
+
+            case '3':
+                salir=true;
+            break;
+
+            default:
+                cout<<"\n!!!!!Opcion Incorrecta\n";
+            break;
+        }
+
+    }while(salir!= true);
+
+
+}
+
+
+
+
+
 
 /*
 void Leer_Json(string ruta){
