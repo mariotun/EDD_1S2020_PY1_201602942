@@ -17,6 +17,7 @@ class NodoMatriz{
         int x;
         int y;
         string letra;
+        string colorf;
         int tipo_casilla;
         NodoMatriz *up;
         NodoMatriz *down;
@@ -24,6 +25,7 @@ class NodoMatriz{
         NodoMatriz *right;
         NodoMatriz();
         NodoMatriz(int x,int y,string letra);
+        NodoMatriz(int x,int y,string letra,string colorf);
         
 };
 
@@ -33,11 +35,24 @@ NodoMatriz::NodoMatriz(int x,int y,string letra){
     this->x=x;
     this->y=y;
     this->letra=letra;
+    this->colorf="tan2";
     this->up=NULL;
     this->down=NULL;
     this->left=NULL;
     this->right=NULL;
 }
+
+NodoMatriz::NodoMatriz(int x,int y,string letra,string colorf){
+    this->x=x;
+    this->y=y;
+    this->letra=letra;
+    this->colorf=colorf;
+    this->up=NULL;
+    this->down=NULL;
+    this->left=NULL;
+    this->right=NULL;
+}
+
 
 //************************************************************************************
 
@@ -53,6 +68,7 @@ class Matrizz{
         string enlacesy;
         Matrizz();
         void add(int x,int y,string letra);
+        void add(int x,int y,string letra,string color);
         void add_x(NodoMatriz *new_node,int x);
         void add_y(NodoMatriz *new_node,int y);
         void add_Node(int x,int y,string letra);
@@ -75,7 +91,7 @@ class Matrizz{
 };
 
 Matrizz::Matrizz(){
-    NodoMatriz *temp=new NodoMatriz(0,0,"");
+    NodoMatriz *temp=new NodoMatriz(-1,-1,"");
     head=temp;
 }
 
@@ -84,6 +100,16 @@ void Matrizz::add(int x,int y,string letra){
     add_headerx(x);
     add_headery(y);
     NodoMatriz *new_node=new NodoMatriz(x,y,letra);
+    add_x(new_node,x);
+    add_y(new_node,y);
+
+}
+
+void Matrizz::add(int x,int y,string letra,string color){
+
+    add_headerx(x);
+    add_headery(y);
+    NodoMatriz *new_node=new NodoMatriz(x,y,letra,color);
     add_x(new_node,x);
     add_y(new_node,y);
 
@@ -638,7 +664,8 @@ void Matrizz::print_nodos_x(){
              //cout<<"-->";
               //te=te->down;
               //enlace=enlace->down;
-             cadenasdex+="node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]\n";
+             cadenasdex+="node[shape=box height=0.5 style=filled fontcolor=black fillcolor=";
+             cadenasdex+=static_cast<std::ostringstream*>(&(std::ostringstream()<<te->down->colorf.c_str()))->str()+"]\n";
              cadenasdex+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(te->down)))->str();
              cadenasdex+="[label=\"";
              cadenasdex+=static_cast<std::ostringstream*>(&(std::ostringstream()<<te->down->letra.c_str()))->str();
@@ -692,7 +719,8 @@ void Matrizz::print_nodos_x(){
 
               //cout<<"-->";
 
-              cadenasdex+="node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]\n";  
+              cadenasdex+="node[shape=box height=0.5 style=filled fontcolor=black fillcolor=";  
+              cadenasdex+=static_cast<std::ostringstream*>(&(std::ostringstream()<<te->down->colorf.c_str()))->str()+"]\n";
               cadenasdex+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(te->down)))->str();
               cadenasdex+="[label=\"";
               cadenasdex+=static_cast<std::ostringstream*>(&(std::ostringstream()<<te->down->letra.c_str()))->str();

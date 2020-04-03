@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 #include "Opciones.cpp"
-
+//#include"LPosEspeciales.cpp"
 //#include "Structures/ListaDobleCircular.cpp"
 //#include "Structures/Cola.cpp"
 //#include "Structures/ArbolBinarioBusqueda.cpp"
@@ -31,25 +31,23 @@ Opciones_Programa *op=new Opciones_Programa();
 
 string x,y;
 
-int *a;
+
 
 int main(){
 
-a=new int[30];
-a[1]=5;
-a[2]=7;
-a[3]=1;
-int r=0;
+    /*Matrizz *mt=new Matrizz();
+    mt->add(1,3,"m");
+    mt->add(2,3,"a");
+    mt->add(6,7,"r","purple");
+    mt->add(8,2,"i");
+    mt->add(0,0,"X","white");
+    mt->add(0,8,"y","white");
+    mt->add(3,0,"z","white");
+    mt->add(5,1,"o","green2");
+    mt->add(6,1,"g");
+    mt->Graficar();*/
 
-for(int x=0;x<30;x++){
-    if(a[x]!=0){
-    cout<<"\nvalor: "<<a[x]<<endl;
-    r+=a[x];
-
-    }
-  
-}
-cout<<"R:"<<r;
+    
 
    do{
 

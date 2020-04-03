@@ -68,6 +68,8 @@ class Arbol_Binario_Busqueda{
         int identificador=0;
         NodoArbol *jugador;
 
+        string fl;
+
         Arbol_Binario_Busqueda();
 
         void Agregar(NodoArbol *Jugador);
@@ -337,6 +339,7 @@ void Arbol_Binario_Busqueda::Graficar(){
 string Arbol_Binario_Busqueda::r_inorder(NodoArbol *current){
 
     string texto="";
+    //string flechas="";
     
 
     if (current->left != NULL){
@@ -348,7 +351,9 @@ string Arbol_Binario_Busqueda::r_inorder(NodoArbol *current){
     texto+=static_cast<std::ostringstream*>(&(std::ostringstream()<<current->Nombre_Judador))->str();
     texto+=" \" ];\n";
 
+   
     flechas+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(current)))->str()+ " -> ";
+    
 
     if (current->right != NULL){
         texto+= r_inorder(current->right);
@@ -427,12 +432,13 @@ void Arbol_Binario_Busqueda::graph_inorder(){
     fputs(r_inorder(root).c_str(),fichero_inorder);
 
     fputs("};\n",fichero_inorder);
-    string fl=flechas.erase(flechas.find_last_of('-'));
+    fl=flechas.erase(flechas.find_last_of('-'));
     fputs(fl.c_str(),fichero_inorder);
 
     fputs("\n\n[color=blue ];\n",fichero_inorder);
     fputs("}\n\n}",fichero_inorder);
-
+    fl="";
+    flechas="";
     fclose(fichero_inorder);
 
     system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Inorden.dot");
@@ -470,6 +476,9 @@ void Arbol_Binario_Busqueda::graph_preorder(){
     fputs("\n\n[color=blue ];\n",fichero_Preorder);
     fputs("}\n\n}",fichero_Preorder);
 
+    fl="";
+    flechas2="";
+
     fclose(fichero_Preorder);
 
     system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Preorden.dot");
@@ -506,6 +515,9 @@ void Arbol_Binario_Busqueda::graph_posorder(){
 
     fputs("\n\n[color=blue ];\n",fichero_Posorder);
     fputs("}\n\n}",fichero_Posorder);
+
+    fl="";
+    flechas3="";
 
     fclose(fichero_Posorder);
 

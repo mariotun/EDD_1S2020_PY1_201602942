@@ -14,52 +14,49 @@ fillcolor=steelblue2;
 node [shape=box fillcolor=chartreuse3];
 mt[label= "Matrix" style=radial group=0]
 {rank=same;
-25770512240[label= "5 " style=radial,group=5]
-25770512416[label= "6 " style=radial,group=6]
-25770512592[label= "7 " style=radial,group=7]
-0[label= "8 " style=radial,group=8]
-mt->25770512240->25770512416->25770512592->0[dir=both];};
+25770513280[label= "0 " style=radial,group=0]
+25770513648[label= "1 " style=radial,group=1]
+0[label= "2 " style=radial,group=2]
+mt->25770513280->25770513648->0[dir=both];};
 
-25770517704[label= "6 " style=radial,group=0]
-25770517880[label= "7 " style=radial,group=0]
-25770518056[label= "8 " style=radial,group=0]
-56[label= "9 " style=radial,group=0]
-mt->25770517704->25770517880->25770518056->56[dir=both];
+25770512320[label= "2 " style=radial,group=0]
+25770515376[label= "3 " style=radial,group=0]
+25770515808[label= "10 " style=radial,group=0]
+25770516192[label= "11 " style=radial,group=0]
+64[label= "12 " style=radial,group=0]
+mt->25770512320->25770515376->25770515808->25770516192->64[dir=both];
 
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770510432[label="h" style=radial,group=5];
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770512304[label="o" style=radial,group=6];
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770517712[label="d" style=radial,group=6];
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770517888[label="i" style=radial,group=6];
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770518064[label="a" style=radial,group=6];
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770512480[label="l" style=radial,group=7];
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor= tan2]
-25770512656[label="a" style=radial,group=8];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
+25770512720[label="s" style=radial,group=0];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
+25770515392[label="d" style=radial,group=0];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
+25770515872[label="i" style=radial,group=0];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
+25770516256[label="a" style=radial,group=0];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
+25770513408[label="o" style=radial,group=1];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
+25770513968[label="l" style=radial,group=2];
 
 
-25770512240->25770510432[dir=both]
-25770512416->25770512304->25770517712->25770517888->25770518064[dir=both]
-25770512592->25770512480[dir=both]
-0->25770512656[dir=both]
+25770513280->25770512720->25770515392->25770515872->25770516256[dir=both]
+25770513648->25770513408[dir=both]
+0->25770513968[dir=both]
 
-25770510432[label="h"];
-25770512304[label="o"];
-25770512480[label="l"];
-25770512656[label="a"];
-25770517712[label="d"];
-25770517888[label="i"];
-25770518064[label="a"];
+25770512720[label="s"];
+25770513408[label="o"];
+25770513968[label="l"];
+25770515392[label="d"];
+25770515872[label="i"];
+25770516256[label="a"];
 
 
-{rank=same;25770517704->25770510432->25770512304->25770512480->25770512656[dir=both] } 
-{rank=same;25770517880->25770517712[dir=both] } 
-{rank=same;25770518056->25770517888[dir=both] } 
-{rank=same;56->25770518064[dir=both] }
+{rank=same;25770512320->25770512720->25770513408[dir=both] } 
+{rank=same;25770515376->25770513968[dir=both] } 
+{rank=same;25770515808->25770515392[dir=both] } 
+{rank=same;25770516192->25770515872[dir=both] } 
+{rank=same;64->25770516256[dir=both] }
  }
 
 }

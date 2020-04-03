@@ -9,6 +9,7 @@
 #include "Structures/Cola.cpp"
 #include "Structures/ArbolBinarioBusqueda.cpp"
 #include "Structures/Matriz.cpp"
+#include "LPosEspeciales.cpp"
 //#include "Structures/ListaSimpleOrdenada.cpp"
 //#include "Structures/ListaDoble.cpp"
 #include "json.hpp"
@@ -29,13 +30,15 @@ class Opciones_Programa{
         int ValidarNombre(string nombre);
         void fichas(Cola *cl);
         void HTML(string nom1,string nom2,int pt1,int pt2); 
-        void TURNOS(string jug1,string jug2,int pt1,int pt2);
+        void TURNOS(NodoArbol *jug1,NodoArbol *jug2,int pt1,int pt2);
 
         string ruta;
         Lista_Doble_Circular *lcd;
         Arbol_Binario_Busqueda *abb;
         Cola *cl;
         Matrizz *mt;
+        Lista_PE *lpeDobles;
+        Lista_PE *lpeTriples;
 
         NodoArbol *jugador1;
         NodoArbol *jugador2;
@@ -44,7 +47,11 @@ class Opciones_Programa{
         int entrada,entrada2;
         int *psnx;
         int *psny;
-        int cantLetras=0;;
+        int cantLetras=0;
+        int dimensionMatriz;
+        int abrirHTML=0;
+        
+
 }; 
 
 Opciones_Programa::Opciones_Programa(){
@@ -52,11 +59,13 @@ Opciones_Programa::Opciones_Programa(){
     abb=new Arbol_Binario_Busqueda();
     lcd=new Lista_Doble_Circular();
     cl=new Cola();
+    //lpe=new Lista_PE();
+    
  }
 
  //------------------------------------------------------------------------------------------------------------------------
 
- void Opciones_Programa::TURNOS(string jug1,string jug2,int pt1,int pt2){
+ void Opciones_Programa::TURNOS(NodoArbol *jug1,NodoArbol *jug2,int pt1,int pt2){
 
     mt=new Matrizz();
     bool salir=false;
@@ -66,6 +75,10 @@ Opciones_Programa::Opciones_Programa(){
     char opcion2;
     char letra;
 
+    NodoArbol *nombreJ;
+    int tur1=1;
+    int tur2=0;
+    abrirHTML=0;
     //int *psnx;
     //int *psny;
     
@@ -76,10 +89,11 @@ while(salir2!=true){
     int contt=0;
     string palabraa;
     int verificar=0;
-     psnx=new int[30];
-     psny=new int[30];
-     cantLetras=0;
-    
+    psnx=new int[30];
+    psny=new int[30];
+    cantLetras=0;
+    //nombreJ=NULL;
+
     cout<<"\n1.-Salir Del Juego\n";
     cout<<"\n2.-Iniciar Turno\n";
     cin>>opcion2;
@@ -91,6 +105,19 @@ while(salir2!=true){
         break;
 
         case '2':
+        
+        if(tur1==1){
+            //cout<<"-----*turno1\n";
+            nombreJ=jug1;
+            //tur2=2;
+            tur1=2;
+        }else if(tur1==2){
+            //cout<<"-----*turno2\n";
+            nombreJ=jug2;
+            tur1=1;
+            //tur2=0;
+        }
+        
 
     do{
         //x=0;
@@ -106,11 +133,13 @@ while(salir2!=true){
         
         string x,y;
         
-
+        
         cout<<"\n\n----------> Creacion de una Matriz <----------\n\n";
+        cout<<" JUGADOR: "<<nombreJ->Nombre_Judador<<endl<<endl;
         cout<<"     1.Insertar\n\n";
-        cout<<"     2.Graficar\n\n";
-        cout<<"     3.Validar y Terminar Turno\n\n";
+        cout<<"     2.Ver Tablero\n\n";
+        cout<<"     3.Fichas Disponibles\n\n";
+        cout<<"     4.Validar y Terminar Turno\n\n";
         cin>>opcion;
         switch(opcion){
 
@@ -153,18 +182,26 @@ while(salir2!=true){
                 //cout<<xb<<" , "<<yb<<" , "<<lb<<endl;
                 //cout<<"------>letra:"<<letra<<endl;
                 
-                if(xb==true && yb==true && lb==true){
+        if( (xb==true) && (yb==true) && (lb==true) && (stoi(x)<=dimensionMatriz) && (stoi(y)<=dimensionMatriz) ){
                     palabraa+=letra; 
                     psnx[contt]=stoi(x);
                     psny[contt]=stoi(y);   
-
-                    mt->add(stoi(x),stoi(y),lt+letra);
+                    
+                    if( lpeDobles->Buscar(stoi(x),stoi(y))==true ){
+                        mt->add(stoi(x),stoi(y),lt+letra,"tomato2");
+                    }else if( lpeTriples->Buscar(stoi(x),stoi(y))==true){
+                        mt->add(stoi(x),stoi(y),lt+letra,"slateblue3");
+                    }else{
+                        mt->add(stoi(x),stoi(y),lt+letra);
+                    }
                     contt++;
                     cantLetras++;
                     cout<<"se ingreso\n";
 
                 }else{
-                    cout<<"no se ingreso\n";    
+                    cout<<"NO se ingreso.Posiciones o Dato fuera de rango\n";
+                    cout<<"Rango de Posiciones de ser Menor o Igual a: "<<dimensionMatriz<<endl;  
+
                 }
                 
                // cout<<"------>letra:"<<letra<<endl;
@@ -173,10 +210,15 @@ while(salir2!=true){
 
             case '2'://**************************************************************************
                 mt->Graficar();
-                HTML(jug1,jug2,pt1,pt2);
+                HTML(jug1->Nombre_Judador,jug2->Nombre_Judador,pt1,pt2);
             break;
 
             case '3'://**************************************************************************
+                nombreJ->fichas->Mostrar();
+
+            break;
+
+            case '4'://**************************************************************************
 
                 if(verificar>=3){
                 bool respuesta=lcd->Buscar(palabraa);
@@ -187,10 +229,10 @@ while(salir2!=true){
 
                     for(int z=0;z<cantLetras;z++){
 
-                        if( (psnx[z]!=0) && (psny[z]!=0) ){
-                            //cout<<"px:"<<psnx[z]<<",py:"<<psny[z]<<endl;
+                        //if( (psnx[z]!=0) && (psny[z]!=0) ){
+                            cout<<"px:"<<psnx[z]<<",py:"<<psny[z]<<endl;
                         mt->Eliminar(psnx[z],psny[z]);
-                        }
+                        //}
                     }
 
                 }else if(respuesta==true ){
@@ -437,7 +479,9 @@ cout<<"v:"<<v<<" x:"<<x<<" y:"<<y<<" z:"<<z<<endl;
 
 void Opciones_Programa::opcion_uno(){
 
-    lcd=new Lista_Doble_Circular();
+    /*lcd=new Lista_Doble_Circular();//para guardar las palabras
+    lpeDobles=new Lista_PE();//para guardar los posiciones Dobles
+    lpeTriples=new Lista_PE();//para guardar los posiciones Triples*/
 
     cout<<"\nEscrita la ruta del archivo: ";
     cin>>ruta;
@@ -445,21 +489,29 @@ void Opciones_Programa::opcion_uno(){
     json j2;
  //string filename = "C:/Users/HP/Desktop/EDD/Proyecto1/entrada.json";
  string filename=ruta;
- int dimension;
- int x,y;
+ /*dimensionMatriz=0;
+ int x,y;*/
 
  ifstream reader(filename);
   if (reader.fail()){
         cout << "El archivo no existe, verifique que la ruta y el archivo exista." << endl << endl;
     }else{
         
+        lcd=new Lista_Doble_Circular();//para guardar las palabras
+        lpeDobles=new Lista_PE();//para guardar los posiciones Dobles
+        lpeTriples=new Lista_PE();//para guardar los posiciones Triples
+
+    
+        dimensionMatriz=0;
+        int x,y;
+
      reader>>j2;
 
 
     //for (int i = 0; i < j2.size(); i++){ //INICION DE J2
 
-        dimension = j2["dimension"];
-        cout<<"\n\nDimensioM:"<<dimension<<endl;
+        dimensionMatriz = j2["dimension"];
+        cout<<"\n\nDimensioM:"<<dimensionMatriz<<endl;
 
         json casillas=j2["casillas"];
         
@@ -469,22 +521,24 @@ void Opciones_Programa::opcion_uno(){
             json dobles=casillas["dobles"];
             for (int y = 0; y < dobles.size(); y++){
                 json coordenadas1=dobles[y];
-                cout<<coordenadas1["x"]<<" , "<<coordenadas1["y"]<<endl;
+                //cout<<coordenadas1["x"]<<" , "<<coordenadas1["y"]<<endl;
+                lpeDobles->Insertar(new NodoLPE(coordenadas1["x"],coordenadas1["y"]));
             }
-            
+            lpeDobles->Mostrar();
 
             json triples=casillas["triples"];
             for (int x = 0; x < triples.size(); x++){
                 json coordenadas2=triples[x];
-                cout<<coordenadas2["x"]<<" , "<<coordenadas2["y"]<<endl;
+                //cout<<coordenadas2["x"]<<" , "<<coordenadas2["y"]<<endl;
+                lpeTriples->Insertar(new NodoLPE(coordenadas2["x"],coordenadas2["y"]));
             }
-        
+            lpeTriples->Mostrar();
 
             json diccionario=j2["diccionario"];
             //json palabra=diccionario["palabra"];
             for(int p=0 ; p<diccionario.size();p++){
                 json palabra=diccionario[p];
-                cout<<"palabra: "<<palabra["palabra"]<<endl;
+                //cout<<"palabra: "<<palabra["palabra"]<<endl;
                 lcd->Insertar(new NodoLCD(palabra["palabra"]));
                
             }
@@ -608,7 +662,7 @@ void Opciones_Programa::opcion_tres(){
     }
     
         
-        TURNOS(jugador1->Nombre_Judador,jugador2->Nombre_Judador,5,5);
+        TURNOS(jugador1,jugador2,5,5);
     
     /*do{//PARA LOS TURNOS DE CADA JUGADOR
 
@@ -764,6 +818,7 @@ void Opciones_Programa::opcion_cuatro(){
 void Opciones_Programa::HTML(string nom1,string nom2,int pt1,int pt2){
 
     string cadena;
+    abrirHTML++;
 
     cadena+="<!DOCTYPE html>\n";
     cadena+="<html>\n";
@@ -797,7 +852,9 @@ void Opciones_Programa::HTML(string nom1,string nom2,int pt1,int pt2){
     fputs(cadena.c_str(),fichero);
     fputs("\n",fichero);
     fclose(fichero);
-   system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/TableroJ.html");
 
+    if(abrirHTML==1){
+   system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/TableroJ.html");
+    }
 
 }
