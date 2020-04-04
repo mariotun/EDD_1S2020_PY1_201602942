@@ -13,19 +13,21 @@ class NodoLD{
 
     public:
         string ficha;
+        int puntos;
         NodoLD *next;
         NodoLD *back;
         NodoLD();
-        NodoLD(string palabra);
+        NodoLD(string palabra,int puntos);
 
 };
 
 
 NodoLD::NodoLD(){ }
 
-NodoLD::NodoLD(string ficha){
+NodoLD::NodoLD(string ficha,int puntos){
 
     this->ficha=ficha;
+    this->puntos=puntos;
 }
 
 //*********************************************************************************************************************
@@ -40,6 +42,7 @@ class Lista_Doble{
         void Insertar(NodoLD *ficha);
         bool Buscar(string ficha);
         void Mostrar();
+        NodoLD *Eliminar(string letraficha);
         string ArchivoGrafica();
         void Graficar();
 
@@ -118,6 +121,60 @@ bool Lista_Doble::Buscar(string palabra){
     }
 
    // return encontrado;
+}
+
+
+NodoLD *Lista_Doble::Eliminar(string letraficha){
+
+    NodoLD *actual=new NodoLD();
+    actual=first;
+    NodoLD* anterior = new NodoLD();
+	anterior = NULL;
+    bool encontrado=false;
+    
+    if(first!=NULL){
+
+        while (actual!=NULL && encontrado!=true){
+
+            if(actual->ficha==letraficha){
+              
+              if(actual==first){
+                  first=first->next;
+                  first->back=NULL;
+
+              }else if(actual==last){
+                  anterior->next = NULL;
+				  last = anterior;
+
+              }else{
+                  anterior->next = actual->next;
+				  actual->next->back = anterior;
+
+              }
+                encontrado=true; 
+                return actual;
+                
+            }
+
+            anterior = actual;
+            actual=actual->next;
+            
+			
+        }
+
+        if(!encontrado){
+           // cout<<"El nodo no se encontro en la lista doble circular"<<endl;
+         return NULL;
+        }
+       
+    }else{
+        cout<<"La lista dodle se encuetra vacia"<<endl;
+
+    }
+
+   // return encontrado;
+
+
 }
 
 

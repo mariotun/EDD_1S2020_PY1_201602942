@@ -47,6 +47,7 @@ class Opciones_Programa{
         int entrada,entrada2;
         int *psnx;
         int *psny;
+        string *fichaeliminar;
         int cantLetras=0;
         int dimensionMatriz;
         int abrirHTML=0;
@@ -58,7 +59,7 @@ Opciones_Programa::Opciones_Programa(){
 
     abb=new Arbol_Binario_Busqueda();
     lcd=new Lista_Doble_Circular();
-    cl=new Cola();
+    //cl=new Cola();
     //lpe=new Lista_PE();
     
  }
@@ -76,11 +77,15 @@ Opciones_Programa::Opciones_Programa(){
     char letra;
 
     NodoArbol *nombreJ;
+    int puntosGeneral;
     int tur1=1;
     int tur2=0;
     abrirHTML=0;
     //int *psnx;
     //int *psny;
+
+    int puntaje1=0;
+    int puntaje2=0;
     
 
 while(salir2!=true){
@@ -91,7 +96,10 @@ while(salir2!=true){
     int verificar=0;
     psnx=new int[30];
     psny=new int[30];
+    fichaeliminar=new string[10];
+    int posFielim=0;
     cantLetras=0;
+    puntosGeneral=0;
     //nombreJ=NULL;
 
     cout<<"\n1.-Salir Del Juego\n";
@@ -101,6 +109,8 @@ while(salir2!=true){
     switch(opcion2){
 
         case '1':
+            //jug1->scoreboard->Insertar(new NodoLSO(puntaje1));
+            //jug2->scoreboard->Insertar(new NodoLSO(puntaje2));
             salir2=true;
         break;
 
@@ -109,11 +119,16 @@ while(salir2!=true){
         if(tur1==1){
             //cout<<"-----*turno1\n";
             nombreJ=jug1;
+           // puntosGeneral=puntaje1;
+           // puntaje1=puntosGeneral;
+
             //tur2=2;
             tur1=2;
         }else if(tur1==2){
             //cout<<"-----*turno2\n";
             nombreJ=jug2;
+            //puntosGeneral=puntaje2;
+            //puntaje2=puntosGeneral;
             tur1=1;
             //tur2=0;
         }
@@ -124,6 +139,7 @@ while(salir2!=true){
         //y=0;
         
         bool xb=true,yb=true,lb=true;
+        bool letficha=true;
         
         //string palabraa;
         salir=false;
@@ -132,6 +148,7 @@ while(salir2!=true){
         letra;
         
         string x,y;
+        string ltr;
         
         
         cout<<"\n\n----------> Creacion de una Matriz <----------\n\n";
@@ -179,10 +196,19 @@ while(salir2!=true){
                         lb=false;
                     }
 
-                //cout<<xb<<" , "<<yb<<" , "<<lb<<endl;
-                //cout<<"------>letra:"<<letra<<endl;
+                    ltr;
+                    if( (nombreJ->fichas->Buscar(ltr+=letra)==true) ){
+                            cout<<"es su ficha\n";
+                            //ltr;
+                            fichaeliminar[posFielim]=ltr;
+                            cout<<"mi fichas para eliminar es:"<<fichaeliminar[posFielim];
+                            posFielim++;
+
+                    }else if((nombreJ->fichas->Buscar(ltr+=letra)==false)){ cout<<"NO es su ficha\n"; letficha=false;}
+
                 
-        if( (xb==true) && (yb==true) && (lb==true) && (stoi(x)<=dimensionMatriz) && (stoi(y)<=dimensionMatriz) ){
+                
+        if( (letficha==true) && (xb==true) && (yb==true) && (lb==true) && (stoi(x)<=dimensionMatriz) && (stoi(y)<=dimensionMatriz) ){
                     palabraa+=letra; 
                     psnx[contt]=stoi(x);
                     psny[contt]=stoi(y);   
@@ -196,10 +222,10 @@ while(salir2!=true){
                     }
                     contt++;
                     cantLetras++;
-                    cout<<"se ingreso\n";
+                    cout<<"se ingreso la ficha\n";
 
                 }else{
-                    cout<<"NO se ingreso.Posiciones o Dato fuera de rango\n";
+                    cout<<"NO se ingreso.Posiciones fuera de rango o No se tiene esa ficha\n";
                     cout<<"Rango de Posiciones de ser Menor o Igual a: "<<dimensionMatriz<<endl;  
 
                 }
@@ -210,7 +236,7 @@ while(salir2!=true){
 
             case '2'://**************************************************************************
                 mt->Graficar();
-                HTML(jug1->Nombre_Judador,jug2->Nombre_Judador,pt1,pt2);
+                HTML(jug1->Nombre_Judador,jug2->Nombre_Judador,puntaje1,puntaje2);
             break;
 
             case '3'://**************************************************************************
@@ -227,7 +253,8 @@ while(salir2!=true){
                     cout<<"\nPalabra no encontrada en el Diccionario, Se quitara del Tablero!!\n";
                     
 
-                    for(int z=0;z<cantLetras;z++){
+                    //for(int z=0;z<cantLetras;z++){
+                    for(int z=0;z<posFielim;z++){
 
                         //if( (psnx[z]!=0) && (psny[z]!=0) ){
                             cout<<"px:"<<psnx[z]<<",py:"<<psny[z]<<endl;
@@ -236,13 +263,24 @@ while(salir2!=true){
                     }
 
                 }else if(respuesta==true ){
-                    for(int z=0;z<cantLetras;z++){
-
-                        if( (psnx[z]!=0) && (psny[z]!=0) ){
+                    for(int z=0;z<posFielim;z++){
+                        cout<<"FichaEliminar:"<<fichaeliminar[z];
+                       puntosGeneral+=nombreJ->fichas->Eliminar(fichaeliminar[z])->puntos;//PARA ELIMINAR LAS FICHAS EN LA LD DEL JUGADOR
+                        
+                        //if( (psnx[z]!=0) && (psny[z]!=0) ){
                            // cout<<"Bpx:"<<psnx[z]<<",Bpy:"<<psny[z]<<endl;
                         //mt->Eliminar(psnx[z],psny[z]);
-                        }
+                        //}
                     }
+
+                    if(tur1==2){
+                        puntaje1+=puntosGeneral;
+                    }else if(tur1==1){
+                        puntaje2+=puntosGeneral;
+                    }
+
+                    cout<<"\nPUNTAJE:"<<puntosGeneral<<endl;
+
                     cout<<"\n¡¡¡ Se acepto la palabra !!!\n";
 
                 }
@@ -255,7 +293,7 @@ while(salir2!=true){
 
             break;
 
-            default:
+            default://**************************************************************************
                 cout<<"\n!!!!!Opcion Incorrecta\n";
             break;
         }
@@ -648,7 +686,7 @@ void Opciones_Programa::opcion_tres(){
     for (int i = 0; i < 7; i++) {
      
         if( (fichax=cl->Eliminar())!=NULL){
-            jugador1->fichas->Insertar(new NodoLD(fichax->ficha));
+            jugador1->fichas->Insertar(new NodoLD(fichax->ficha,fichax->puntos));
             cout<<fichax->ficha;
         }else{ cout<<"\nSe acabaron las fichas"; }
     }
@@ -656,7 +694,7 @@ void Opciones_Programa::opcion_tres(){
     for (int j = 0;  j< 7; j++) {
      
         if( (fichax2=cl->Eliminar())!=NULL){
-            jugador2->fichas->Insertar(new NodoLD(fichax2->ficha));
+            jugador2->fichas->Insertar(new NodoLD(fichax2->ficha,fichax2->puntos));
             cout<<fichax2->ficha;
         }else{ cout<<"\nSe acabaron las fichas"; }
     }

@@ -14,7 +14,7 @@
 
 #include "json.hpp"
 #include <unistd.h>*/
-
+//#include "Structures/ListaDoble.cpp"
 
 using namespace std;
 //using json = nlohmann::json;
@@ -46,6 +46,28 @@ int main(){
     mt->add(5,1,"o","green2");
     mt->add(6,1,"g");
     mt->Graficar();*/
+   /* char h='h';
+    char k='k';
+    Lista_Doble *ld=new Lista_Doble();
+    ld->Insertar(new NodoLD("r"));
+    ld->Insertar(new NodoLD("h"));
+    ld->Insertar(new NodoLD("p"));
+    ld->Insertar(new NodoLD("a"));
+    ld->Insertar(new NodoLD("k"));
+
+    string h2;
+    //h2+=h;
+
+    bool i=ld->Buscar(h2+=h);
+    h2="";
+    //h2+=k;
+    bool j=ld->Buscar(h2+=k);
+
+    cout<<"h: "<<i<<" ,k: "<<j<<endl;
+    
+    if(i==true && j==true){
+        cout<<"Los dos existen\n";
+    }else{ cout<<"NO existen\n"; }*/
 
     
 

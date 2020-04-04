@@ -14,49 +14,22 @@ fillcolor=steelblue2;
 node [shape=box fillcolor=chartreuse3];
 mt[label= "Matrix" style=radial group=0]
 {rank=same;
-25770513280[label= "0 " style=radial,group=0]
-25770513648[label= "1 " style=radial,group=1]
-0[label= "2 " style=radial,group=2]
-mt->25770513280->25770513648->0[dir=both];};
+0[label= "5 " style=radial,group=5]
+mt->0[dir=both];};
 
-25770512320[label= "2 " style=radial,group=0]
-25770515376[label= "3 " style=radial,group=0]
-25770515808[label= "10 " style=radial,group=0]
-25770516192[label= "11 " style=radial,group=0]
-64[label= "12 " style=radial,group=0]
-mt->25770512320->25770515376->25770515808->25770516192->64[dir=both];
+64[label= "7 " style=radial,group=0]
+mt->64[dir=both];
 
 node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
-25770512720[label="s" style=radial,group=0];
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
-25770515392[label="d" style=radial,group=0];
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
-25770515872[label="i" style=radial,group=0];
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
-25770516256[label="a" style=radial,group=0];
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
-25770513408[label="o" style=radial,group=1];
-node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
-25770513968[label="l" style=radial,group=2];
+25770521136[label="d" style=radial,group=5];
 
 
-25770513280->25770512720->25770515392->25770515872->25770516256[dir=both]
-25770513648->25770513408[dir=both]
-0->25770513968[dir=both]
+0->25770521136[dir=both]
 
-25770512720[label="s"];
-25770513408[label="o"];
-25770513968[label="l"];
-25770515392[label="d"];
-25770515872[label="i"];
-25770516256[label="a"];
+25770521136[label="d"];
 
 
-{rank=same;25770512320->25770512720->25770513408[dir=both] } 
-{rank=same;25770515376->25770513968[dir=both] } 
-{rank=same;25770515808->25770515392[dir=both] } 
-{rank=same;25770516192->25770515872[dir=both] } 
-{rank=same;64->25770516256[dir=both] }
+{rank=same;64->25770521136[dir=both] }
  }
 
 }
