@@ -10,6 +10,7 @@
 #include "Structures/ArbolBinarioBusqueda.cpp"
 #include "Structures/Matriz.cpp"
 #include "LPosEspeciales.cpp"
+#include "Structures/ListaSimple2.cpp"
 //#include "Structures/ListaSimpleOrdenada.cpp"
 //#include "Structures/ListaDoble.cpp"
 #include "json.hpp"
@@ -40,7 +41,7 @@ class Opciones_Programa{
         Matrizz *mt;
         Lista_PE *lpeDobles;
         Lista_PE *lpeTriples;
-        Lista_Simple *PuntajeGeneralJugadores;
+        Lista_Simple2 *PuntajeGeneralJugadores;
 
         NodoArbol *jugador1;
         NodoArbol *jugador2;
@@ -62,7 +63,7 @@ class Opciones_Programa{
 Opciones_Programa::Opciones_Programa(){
 
     abb=new Arbol_Binario_Busqueda();
-    PuntajeGeneralJugadores=new Lista_Simple();
+    PuntajeGeneralJugadores=new Lista_Simple2();
     lcd=new Lista_Doble_Circular();
     cl=new Cola();//se inicializo por si alguno quiere ver la cola vacia en los reportes antes de introducirlas
     //lpe=new Lista_PE();
@@ -852,6 +853,13 @@ void Opciones_Programa::opcion_cuatro(){
         
         case 'g':
             cout<<"g\n";
+            PuntajeGeneralJugadores->Insertar(new NodoLS2("mario",20));
+            PuntajeGeneralJugadores->Insertar(new NodoLS2("carlos",60));
+            PuntajeGeneralJugadores->Insertar(new NodoLS2("lucia",10));
+            PuntajeGeneralJugadores->Insertar(new NodoLS2("oscar",13));
+            PuntajeGeneralJugadores->Insertar(new NodoLS2("alejandra",36));
+            PuntajeGeneralJugadores->Graficar();
+
             break;
 
         case 'h':

@@ -7,17 +7,23 @@ subgraph cluster_1 {
 
 fontname=algerian
 fontsize=25;
-label="Lista_Fichas_Disponibles";
+label="Lista_Puntajes_Jugadores";
 fontcolor=blue
 style=filled
 fillcolor=chartreuse3
 labelloc=t;{rank=same;
-25770499504[label=" 4"];
-25770509136[label=" 0"];
+25770475872[label=" mario , 20"];
+25770475952[label=" carlos , 60"];
+25770476032[label=" lucia , 10"];
+25770476112[label=" oscar , 13"];
+25770476192[label=" alejandra , 36"];
 };
 
-25770499504->
-25770509136
+25770475872->
+25770475952->
+25770476032->
+25770476112->
+25770476192
 [dir=front color=black];
 
  }

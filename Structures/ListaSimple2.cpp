@@ -9,55 +9,55 @@
 
 using namespace std;
 
-class NodoLS{
+class NodoLS2{
 
     public:
-        //string ficha;
+        string nombre;
         int puntos;
-        NodoLS *next;
+        NodoLS2 *next;
         //NodoLD *back;
-        NodoLS();
-        NodoLS(int puntos);
+        NodoLS2();
+        NodoLS2(string nombre,int puntos);
 
 };
 
 
-NodoLS::NodoLS(){ }
+NodoLS2::NodoLS2(){ }
 
-NodoLS::NodoLS(int puntos){
-   
+NodoLS2::NodoLS2(string nombre,int puntos){
+    this->nombre=nombre;
     this->puntos=puntos;
 }
 
 //*********************************************************************************************************************
 
-class Lista_Simple{
+class Lista_Simple2{
 
     public:
 
-        NodoLS *first;
-        NodoLS *last;
+        NodoLS2 *first;
+        NodoLS2 *last;
 
-        void Insertar(NodoLS *ficha);
+        void Insertar(NodoLS2 *ficha);
         bool Buscar(int ficha);
         void Mostrar();
-        NodoLS *Eliminar(int letraficha);
+        NodoLS2 *Eliminar(int letraficha);
         void Modificar(int palabra,int extras);
         string ArchivoGrafica();
         void Graficar();
 
-        Lista_Simple();
+        Lista_Simple2();
 
 };
 
-Lista_Simple::Lista_Simple(){
+Lista_Simple2::Lista_Simple2(){
     
     this->first=NULL;
     this->last=NULL;
 
 }
 
-void Lista_Simple::Insertar(NodoLS *palabra){
+void Lista_Simple2::Insertar(NodoLS2 *palabra){
 
     if(first==NULL){
         first=palabra;
@@ -98,9 +98,9 @@ void Lista_Simple::Insertar(NodoLS *palabra){
         }
 }
 
-void Lista_Simple::Mostrar(){
+void Lista_Simple2::Mostrar(){
 
-    NodoLS *actual=new NodoLS();
+    NodoLS2 *actual=new NodoLS2();
     actual=first;
 
     if(first!=NULL){
@@ -117,9 +117,9 @@ void Lista_Simple::Mostrar(){
 
 }
 
-bool Lista_Simple::Buscar(int palabra){
+bool Lista_Simple2::Buscar(int palabra){
 
-    NodoLS *actual=new NodoLS();
+    NodoLS2 *actual=new NodoLS2();
     actual=first;
     bool encontrado=false;
     
@@ -150,8 +150,8 @@ bool Lista_Simple::Buscar(int palabra){
 }
 
 
-void Lista_Simple::Modificar(int palabra,int extras){
-    NodoLS *actual=new NodoLS();
+void Lista_Simple2::Modificar(int palabra,int extras){
+    NodoLS2 *actual=new NodoLS2();
     actual=first;
     bool encontrado=false;
     
@@ -183,11 +183,11 @@ void Lista_Simple::Modificar(int palabra,int extras){
 }
 
 
-NodoLS *Lista_Simple::Eliminar(int letraficha){
+NodoLS2 *Lista_Simple2::Eliminar(int letraficha){
 
-    NodoLS *actual=new NodoLS();
+    NodoLS2 *actual=new NodoLS2();
     actual=first;
-    NodoLS* anterior = new NodoLS();
+    NodoLS2* anterior = new NodoLS2();
 	anterior = NULL;
     bool encontrado=false;
     
@@ -237,12 +237,12 @@ NodoLS *Lista_Simple::Eliminar(int letraficha){
 }
 
 
-string Lista_Simple::ArchivoGrafica(){
+string Lista_Simple2::ArchivoGrafica(){
 
     string cadena;
-    NodoLS *temporal=first;
-    NodoLS *actual=first;
-    NodoLS *uno=first;
+    NodoLS2 *temporal=first;
+    NodoLS2 *actual=first;
+    NodoLS2 *uno=first;
 
     cadena+="digraph Lista_Doble{\n\n";
     cadena+="graph[ranksep= \"0.5\",nodesep= \"0.5\"];\n";
@@ -250,7 +250,7 @@ string Lista_Simple::ArchivoGrafica(){
     cadena+="subgraph cluster_1 {\n\n";
     cadena+="fontname=algerian\n";
     cadena+="fontsize=25;\n";
-    cadena+="label=\"Lista_Puntajes_Partidas\";\n";
+    cadena+="label=\"Lista_Puntajes_Jugadores\";\n";
     cadena+="fontcolor=blue\n";
     cadena+="style=filled\n";
     cadena+="fillcolor=chartreuse3\n";
@@ -265,6 +265,8 @@ string Lista_Simple::ArchivoGrafica(){
 
             cadena+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(temporal)))->str();
             cadena+="[label=\" ";
+            cadena+=static_cast<std::ostringstream*>(&(std::ostringstream()<<temporal->nombre))->str();
+            cadena+=" , ";
             cadena+=static_cast<std::ostringstream*>(&(std::ostringstream()<<temporal->puntos))->str();
             cadena+="\"];\n";
 
@@ -301,9 +303,9 @@ string Lista_Simple::ArchivoGrafica(){
     return cadena;
 }
 
-void Lista_Simple::Graficar(){
+void Lista_Simple2::Graficar(){
 
-   NodoLS *aux=first;
+   NodoLS2 *aux=first;
 
    if(first!=NULL){
 
