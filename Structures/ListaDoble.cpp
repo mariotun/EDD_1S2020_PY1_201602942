@@ -43,6 +43,7 @@ class Lista_Doble{
         bool Buscar(string ficha);
         void Mostrar();
         NodoLD *Eliminar(string letraficha);
+        NodoLD *Eliminar2();
         void Modificar(string palabra,int extras);
         string ArchivoGrafica();
         void Graficar();
@@ -212,6 +213,40 @@ NodoLD *Lista_Doble::Eliminar(string letraficha){
 }
 
 
+NodoLD *Lista_Doble::Eliminar2(){
+
+    NodoLD *actual=new NodoLD();
+    actual=first;
+    NodoLD* anterior = new NodoLD();
+	anterior = NULL;
+    bool encontrado=false;
+    
+    if(first!=NULL){
+
+        if(first==last){
+            //cout<<"son los ultimos";
+            anterior=last;
+            first=NULL;
+            last=NULL;
+            return (anterior);
+
+        }else{
+        anterior=last;
+        last=last->back;
+        last->next=NULL;
+
+        return (anterior);
+        }
+
+    }else{
+        cout<<"La lista dodle se encuetra vacia"<<endl;
+        return NULL;
+    }
+
+}
+
+
+
 string Lista_Doble::ArchivoGrafica(){
 
     string cadena;
@@ -246,10 +281,10 @@ string Lista_Doble::ArchivoGrafica(){
         temporal=temporal->next;
         }
 
-    }else{
+    /*}else{
        // cout<<"La lista doble se encuentra vacia"<<endl;
 
-    }
+    }*/
 
     cadena+="};\n\n";
 
@@ -267,11 +302,20 @@ string Lista_Doble::ArchivoGrafica(){
           actual=actual->next;
 
     }
-   // cadena+="->"+static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(uno)))->str();
 
     cadena+="\n";
     cadena+="[dir=both  color=black];\n";
     cadena+="\n }\n\n}";
+   // cadena+="->"+static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(uno)))->str();
+    }else{
+       // cout<<"La lista doble se encuentra vacia"<<endl;
+        cadena+="Lista_de_Fichas_Vacia";
+        cadena+=" } ";
+        cadena+=" }; \n}";
+
+    }
+
+   
 
     return cadena;
 }
@@ -280,7 +324,7 @@ void Lista_Doble::Graficar(){
 
    NodoLD *aux=first;
 
-   if(first!=NULL){
+   //if(first!=NULL){
 
    FILE *fichero;
 
@@ -307,12 +351,8 @@ void Lista_Doble::Graficar(){
    system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/LD_Fichas_Jugador.dot.png");
  
 
-   }
-
-   else{
-
-     cout<<"no se puede generar el diagrama"<<endl;
-
-   }
+   //}else{
+     //cout<<"no se puede generar el diagrama"<<endl;
+   //}
 
 }

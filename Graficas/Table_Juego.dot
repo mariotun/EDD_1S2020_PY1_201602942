@@ -14,43 +14,43 @@ fillcolor=steelblue2;
 node [shape=box fillcolor=chartreuse3];
 mt[label= "Matrix" style=radial group=0]
 {rank=same;
-25770493504[label= "5 " style=radial,group=5]
+25770493904[label= "5 " style=radial,group=5]
 0[label= "6 " style=radial,group=6]
-mt->25770493504->0[dir=both];};
+mt->25770493904->0[dir=both];};
 
-25770480048[label= "6 " style=radial,group=0]
-25770480608[label= "7 " style=radial,group=0]
+25770480448[label= "6 " style=radial,group=0]
+25770481008[label= "7 " style=radial,group=0]
 64[label= "8 " style=radial,group=0]
-mt->25770480048->25770480608->64[dir=both];
+mt->25770480448->25770481008->64[dir=both];
 
 node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
-25770479584[label="s" style=radial,group=5];
+25770479952[label="s" style=radial,group=5];
 node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
-25770480112[label="a" style=radial,group=5];
+25770480512[label="a" style=radial,group=5];
 node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
-25770480672[label="u" style=radial,group=5];
+25770481072[label="u" style=radial,group=5];
 node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
-25770493632[label="g" style=radial,group=6];
+25770494032[label="g" style=radial,group=6];
 node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
-25770493952[label="e" style=radial,group=6];
+25770494384[label="e" style=radial,group=6];
 node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
-25770494304[label="n" style=radial,group=6];
+25770494736[label="n" style=radial,group=6];
 
 
-25770493504->25770479584->25770480112->25770480672[dir=both]
-0->25770493632->25770493952->25770494304[dir=both]
+25770493904->25770479952->25770480512->25770481072[dir=both]
+0->25770494032->25770494384->25770494736[dir=both]
 
-25770479584[label="s"];
-25770493632[label="g"];
-25770480112[label="a"];
-25770493952[label="e"];
-25770480672[label="u"];
-25770494304[label="n"];
+25770479952[label="s"];
+25770494032[label="g"];
+25770480512[label="a"];
+25770494384[label="e"];
+25770481072[label="u"];
+25770494736[label="n"];
 
 
-{rank=same;25770480048->25770479584->25770493632[dir=both] } 
-{rank=same;25770480608->25770480112->25770493952[dir=both] } 
-{rank=same;64->25770480672->25770494304[dir=both] }
+{rank=same;25770480448->25770479952->25770494032[dir=both] } 
+{rank=same;25770481008->25770480512->25770494384[dir=both] } 
+{rank=same;64->25770481072->25770494736[dir=both] }
  }
 
 }

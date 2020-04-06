@@ -54,6 +54,7 @@ class Opciones_Programa{
         int abrirHTML=0;
         int PuntosObtenidos1=0;
         int PuntosObtenidos2=0;
+        NodoLD *elimm;
 
 }; 
 
@@ -165,7 +166,8 @@ while(salir2!=true){
         cout<<"     1.Insertar\n\n";
         cout<<"     2.Ver Tablero\n\n";
         cout<<"     3.Fichas Disponibles\n\n";
-        cout<<"     4.Validar y Terminar Turno\n\n";
+        cout<<"     4.Intercambiar 4 Fichas\n\n";
+        cout<<"     5.Validar y Terminar Turno\n\n";
         cin>>opcion;
         switch(opcion){
 
@@ -257,6 +259,24 @@ while(salir2!=true){
             break;
 
             case '4'://**************************************************************************
+                elimm=NULL;
+                //elimm=nombreJ->fichas->Eliminar2();
+                for(int a=0;a<4;a++){
+                    elimm=nombreJ->fichas->Eliminar2();
+            cl->Insertar(new NodoCola(elimm->ficha,elimm->puntos));
+                }
+
+                for(int m=0;m<4;m++){//para darle mas fichas al jugador cuando se intercambian por otras
+                        if( (fichaxT=cl->Eliminar())!=NULL){
+                        nombreJ->fichas->Insertar(new NodoLD(fichaxT->ficha,fichaxT->puntos));
+                        }else{ cout<<"\nSe acabaron las fichas X X X\n"; }                    
+                    }
+                cout<<"\nSe intercambiaron sus 4 fichas,espere su turno para verlos\n";
+                salir=true;
+
+            break;
+
+            case '5'://**************************************************************************
 
                 if(verificar>=3){
                 bool respuesta=lcd->Buscar(palabraa);

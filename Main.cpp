@@ -11,9 +11,9 @@
 //#include "Structures/ArbolBinarioBusqueda.cpp"
 //#include "Structures/Matriz.cpp"
 //#include "Structures/ListaSimpleOrdenada.cpp"
-/*#include "Structures/ListaDoble.cpp"
+//#include "Structures/ListaDoble.cpp"
 
-#include "json.hpp"
+/*#include "json.hpp"
 #include <unistd.h>*/
 //#include "Structures/ListaDoble.cpp"
 
@@ -35,6 +35,28 @@ string x,y;
 
 
 int main(){
+
+    /*Lista_Doble *ld=new Lista_Doble();
+    ld->Insertar(new NodoLD("m",4));
+    ld->Insertar(new NodoLD("g",1));
+    ld->Insertar(new NodoLD("o",6));
+    ld->Insertar(new NodoLD("a",3));
+    ld->Insertar(new NodoLD("q",9));
+    ld->Insertar(new NodoLD("s",2));
+    ld->Insertar(new NodoLD("i",7));
+
+    cout<<"-->"<<ld->Eliminar2();
+    cout<<"\n-->"<<ld->Eliminar2();
+    cout<<"\n-->"<<ld->Eliminar2();
+    cout<<"\n-->"<<ld->Eliminar2();
+    cout<<"\n-->"<<ld->Eliminar2();
+    cout<<"\n-->"<<ld->Eliminar2();
+    cout<<"\n-->"<<ld->Eliminar2();
+     cout<<"\n-->"<<ld->Eliminar2();
+      cout<<"\n-->"<<ld->Eliminar2();
+
+    ld->Graficar();*/
+
 
     /*Lista_Simple *lsim=new Lista_Simple();
     lsim->Insertar(new NodoLS(4));
