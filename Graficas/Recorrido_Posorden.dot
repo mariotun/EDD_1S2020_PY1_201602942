@@ -13,11 +13,12 @@ fillcolor=limegreen;
 node[margin=0.3 shape=box style=filled fontcolor=black fillcolor=goldenrod fontsize=20];
 {rank=same;
 
-25770489296[label="Nombre: lucia " ];
-25770490768[label="Nombre: nicolas " ];
-25770476720[label="Nombre: mario " ];
+25770489424[label="Nombre: leonel " ];
+25770483200[label="Nombre: lidia " ];
+25770484544[label="Nombre: cristian " ];
+25770483984[label="Nombre: mario " ];
 };
-25770489296 -> 25770490768 -> 25770476720 
+25770489424 -> 25770483200 -> 25770484544 -> 25770483984 
 
 [color=blue ];
 }

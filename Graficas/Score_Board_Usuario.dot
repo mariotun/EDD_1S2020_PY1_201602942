@@ -12,10 +12,12 @@ fontcolor=blue
 style=filled
 fillcolor=chartreuse3
 labelloc=t;{rank=same;
-25770513200[label=" 0"];
+25770499504[label=" 4"];
+25770509136[label=" 0"];
 };
 
-25770513200
+25770499504->
+25770509136
 [dir=front color=black];
 
  }

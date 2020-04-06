@@ -69,6 +69,32 @@ void Lista_Simple::Insertar(NodoLS *palabra){
         palabra->next=NULL;
        // palabra->back=last;
         last=palabra;
+
+         
+       /* //if(first!=NULL){
+		NodoLS *temp=first;
+		//comparacion=strcmp(datos->palabra.c_str(),temp->sig->palabra.c_str());
+
+     while(temp->next !=NULL && temp->next->puntos > palabra->puntos){
+
+			temp=temp->next;
+		}
+
+		if(temp->next==NULL){//caso si va a ser el ultimo de la lista
+			temp->next=palabra;
+
+		}else if(temp->next != NULL){//caso si se va a ingresar en medio de la lista
+
+			NodoLS*der=temp->next;
+			temp->next=palabra;
+			palabra->next=der;
+
+		}
+        cout<<"\bSe inserto en la lista de puntajes\n";*/
+
+
+
+
         }
 }
 

@@ -40,6 +40,7 @@ class Opciones_Programa{
         Matrizz *mt;
         Lista_PE *lpeDobles;
         Lista_PE *lpeTriples;
+        Lista_Simple *PuntajeGeneralJugadores;
 
         NodoArbol *jugador1;
         NodoArbol *jugador2;
@@ -61,6 +62,7 @@ class Opciones_Programa{
 Opciones_Programa::Opciones_Programa(){
 
     abb=new Arbol_Binario_Busqueda();
+    PuntajeGeneralJugadores=new Lista_Simple();
     lcd=new Lista_Doble_Circular();
     cl=new Cola();//se inicializo por si alguno quiere ver la cola vacia en los reportes antes de introducirlas
     //lpe=new Lista_PE();

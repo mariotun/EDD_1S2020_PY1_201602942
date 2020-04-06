@@ -5,7 +5,23 @@ node [margin=0.3 fontcolor=black  shape=record style=filled fillcolor=orange  co
 
 struct1[
 label="{
-^salida|Ficha: a\l
+^salida|Ficha: u\l
+ Valor: 1 pts.\l
+|Ficha: f\l
+ Valor: 4 pts.\l
+|Ficha: ñ\l
+ Valor: 8 pts.\l
+|Ficha: n\l
+ Valor: 1 pts.\l
+|Ficha: o\l
+ Valor: 1 pts.\l
+|Ficha: n\l
+ Valor: 1 pts.\l
+|Ficha: h\l
+ Valor: 4 pts.\l
+|Ficha: r\l
+ Valor: 1 pts.\l
+|Ficha: a\l
  Valor: 1 pts.\l
 |Ficha: a\l
  Valor: 1 pts.\l
@@ -139,22 +155,6 @@ label="{
  Valor: 3 pts.\l
 |Ficha: d\l
  Valor: 2 pts.\l
-|Ficha: q\l
- Valor: 5 pts.\l
-|Ficha: d\l
- Valor: 2 pts.\l
-|Ficha: p\l
- Valor: 3 pts.\l
-|Ficha: o\l
- Valor: 1 pts.\l
-|Ficha: e\l
- Valor: 1 pts.\l
-|Ficha: m\l
- Valor: 3 pts.\l
-|Ficha: z\l
- Valor: 10 pts.\l
-|Ficha: x\l
- Valor: 8 pts.\l
 }" 
 ];
 }
