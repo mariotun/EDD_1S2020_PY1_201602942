@@ -18,8 +18,10 @@
 #include <ctime>
 #include <sstream>
 
-#include "ListaSimpleOrdenada.cpp"
+//#include "ListaSimpleOrdenada.cpp"
 #include "ListaDoble.cpp"
+//#include "LScoreIndividual.cpp"
+#include "ListaSimple.cpp"
 
 
 using namespace std;
@@ -30,7 +32,9 @@ class NodoArbol{
     public:
         string Nombre_Judador;
         int id;//PARA IR A OBTENERLOS CON MAS FACILIDA
-        Lista_Simple_Ordenada *scoreboard;
+        //Lista_Simple_Ordenada *scoreboard;
+        //Lista_Simple_Ordenada_In *PuntosPartida;
+        Lista_Simple *PuntosJuegos;
         Lista_Doble *fichas;
         NodoArbol *left;
         NodoArbol *right;
@@ -44,7 +48,8 @@ NodoArbol::NodoArbol(){ }
 NodoArbol::NodoArbol(string Nombre_Jugador){
    
     this->Nombre_Judador=Nombre_Jugador;
-    this->scoreboard=new Lista_Simple_Ordenada(1);
+   // this->scoreboard=new Lista_Simple_Ordenada(1);
+    this->PuntosJuegos=new Lista_Simple();
     this->fichas=new Lista_Doble();
     this->left=NULL;
     this->right=NULL;
@@ -411,6 +416,8 @@ string Arbol_Binario_Busqueda::r_posorder(NodoArbol *current){
 
 void Arbol_Binario_Busqueda::graph_inorder(){
 
+    if(root != NULL){
+
     FILE* fichero_inorder;
 
     fichero_inorder = fopen("C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Inorden.dot", "w");
@@ -444,11 +451,15 @@ void Arbol_Binario_Busqueda::graph_inorder(){
     system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Inorden.dot");
     system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Inorden.dot.png");
 
+    }else{
+        cout<<"\nNO se puede generar la grafica de usuarios en Orden\n";    
+    }
 
 }
 
 void Arbol_Binario_Busqueda::graph_preorder(){
 
+    if(root != NULL){
     FILE* fichero_Preorder;
 
     fichero_Preorder = fopen("C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Preorden.dot", "w");
@@ -484,11 +495,15 @@ void Arbol_Binario_Busqueda::graph_preorder(){
     system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Preorden.dot");
     system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Preorden.dot.png");
 
+    }else{
+        cout<<"\nNO se puede generar la grafica de usuarios en pre Orden\n";    
+    }
 
 }
 
 void Arbol_Binario_Busqueda::graph_posorder(){
 
+    if(root != NULL){
     FILE* fichero_Posorder;
 
     fichero_Posorder = fopen("C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Posorden.dot", "w");
@@ -524,5 +539,8 @@ void Arbol_Binario_Busqueda::graph_posorder(){
     system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Posorden.dot");
     system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Recorrido_Posorden.dot.png");
 
+    }else{
+        cout<<"\nNO se puede generar la grafica de usuarios en pos Orden\n";    
+    }
 
 }

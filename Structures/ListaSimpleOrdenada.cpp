@@ -17,10 +17,13 @@ class NodoLSO{
         string Nombre_Jugador;
         int Puntaje;
         NodoLSO *next;
+        NodoLSO();
         NodoLSO(int Puntaje);
         NodoLSO(string Nombre,int Puntaje);
 
 };
+
+NodoLSO::NodoLSO(){ }
 
 NodoLSO::NodoLSO(int Puntaje){
     this->Puntaje=Puntaje;
@@ -43,6 +46,8 @@ class Lista_Simple_Ordenada{
 		void Buscar(string palabra);
         string ArchivoGraficaP(int op);
         void GraficarP(int opc);
+        void SALUDO();
+        void Mostrar();
        // string ArchivoGraficaNP();
        // void GraficarNP();
 };
@@ -67,15 +72,20 @@ Lista_Simple_Ordenada::Lista_Simple_Ordenada(int oc){
 
 }
 
+void Lista_Simple_Ordenada::SALUDO(){ cout<<"\nHola,soy la lista de los puntajes\n"; }
+
 void Lista_Simple_Ordenada::Insertar(NodoLSO *datos){
 
     int comparacion;
- 
+    
 
 	if(first->next==NULL){
 		first->next=datos;	
+        cout<<"\nEra el unico y se Inserto\n";
 	
 	}else{
+        cout<<"\n"<<first->next->Puntaje<<endl;
+        //if(first!=NULL){
 		NodoLSO *temp=first;
 		//comparacion=strcmp(datos->palabra.c_str(),temp->sig->palabra.c_str());
 
@@ -94,18 +104,38 @@ void Lista_Simple_Ordenada::Insertar(NodoLSO *datos){
 			datos->next=der;
 
 		}
+        cout<<"\bSe inserto en la lista de puntajes\n";
 
+        //}
 
 	}
+    
+
+    }
+
+    void Lista_Simple_Ordenada::Mostrar(){
+        cout<<"\n"<<first->Puntaje<<" , "<<first->next->Puntaje<<endl;
+       //if(first!=NULL){
+        //NodoLSO *aux;
+        //aux=first->next;
+        NodoLSO *aux=first;
+
+        while(aux->next!=NULL){
+            cout<<"[ "<<aux->Puntaje<<" ]-->";
+            aux=aux->next;
+        }
 
 
+        //}else{ cout<<"SE ENCUENTAR VACIA LA LISTA SIMPLE";}
     }
 
 
 
 
 string Lista_Simple_Ordenada::ArchivoGraficaP(int op){
-
+cout<<"primero";
+    if(first!=NULL){
+cout<<"segundo";
     NodoLSO *temporal=first->next;
 	NodoLSO *actual=first->next;
 	string cadena,titulo;
@@ -114,7 +144,7 @@ string Lista_Simple_Ordenada::ArchivoGraficaP(int op){
 
 
     if( (first!=NULL) && (op==1) ){
-
+cout<<"tercero";
         cadena+="digraph Lista_Simple{\n\n";
         cadena+="subgraph cluster_1{\n\n";
         cadena+="fontname=algerian;\n";
@@ -140,7 +170,7 @@ string Lista_Simple_Ordenada::ArchivoGraficaP(int op){
 
 
     }else if( (first!=NULL) && (op==2) ){
-
+cout<<"cuarto";
         cadena+="digraph Lista_Simple_General{\n\n";
         cadena+="subgraph cluster_2{\n\n";
         cadena+="fontname=algerian;\n";
@@ -167,9 +197,7 @@ string Lista_Simple_Ordenada::ArchivoGraficaP(int op){
         }
 
 
-    }
-
-     else{
+    }else{
         cout<<"La Lista Simple se encuentra vacia"<<endl;
     }
 
@@ -193,6 +221,8 @@ string Lista_Simple_Ordenada::ArchivoGraficaP(int op){
     cadena+="\n }\n\n}";
 
     return cadena;
+
+    }else{ cout<<"\nNo hay puntos acumulados en este momento\n";}
 
 }
 

@@ -1,27 +1,22 @@
-digraph Lista_Simple{
+digraph Lista_Doble{
 
-subgraph cluster_1{
+graph[ranksep= "0.5",nodesep= "0.5"];
+node[fontcolor=black shape=box style=filled fillcolor=tan2 fontsize=20];
 
-fontname=algerian;
+subgraph cluster_1 {
+
+fontname=algerian
 fontsize=25;
-style=filled;
-fillcolor=steelblue2;
-label="Puntaje_de_Juegos";
-
- labelloc=t; 
-node[margin=0.25 style=filled fillcolor=orange shape=box];
-{rank=same;
-25770344480[label=" Juego 1\n10pts."];
-25770344416[label=" Juego 2\n8pts."];
-25770344384[label=" Juego 3\n7pts."];
-25770344320[label=" Juego 4\n4pts."];
-25770344288[label=" Juego 5\n3pts."];
-25770344448[label=" Juego 6\n2pts."];
-25770344352[label=" Juego 7\n1pts."];
+label="Lista_Fichas_Disponibles";
+fontcolor=blue
+style=filled
+fillcolor=chartreuse3
+labelloc=t;{rank=same;
+25770516288[label=" 0"];
 };
 
-25770344480->25770344416->25770344384->25770344320->25770344288->25770344448->25770344352
-[dir=front color=darkgreen];
+25770516288
+[dir=front color=black];
 
  }
 

@@ -11,22 +11,12 @@ fillcolor=limegreen;
 node[shape=record,height=0.5 style=filled fontcolor=black fillcolor=goldenrod fontsize=20 ];
 
 
-25770475840[label="<f0> |<f1>Nombre: casa |<f2> " ]; 
-25770476048[label="<f0> |<f1>Nombre: carro |<f2>" ]
-25770476448[label="<f0> |<f1>Nombre: trabajo |<f2>" ]
-25770476256[label="<f0> |<f1>Nombre: salud |<f2>" ]
-25770476256[label="<f0> |<f1>Nombre: salud |<f2>" ]
-25770477264[label="<f0> |<f1>Nombre: paz |<f2>" ]
-25770477264[label="<f0> |<f1>Nombre: paz |<f2>" ]
-25770477264[label="<f0> |<f1>Nombre: paz |<f2>" ]
-25770476704[label="<f0> |<f1>Nombre: amor |<f2>" ]
-25770476704[label="<f0> |<f1>Nombre: amor |<f2>" ]
+25770476720[label="<f0> |<f1>Nombre: mario |<f2> " ]; 
+25770490768[label="<f0> |<f1>Nombre: nicolas |<f2>" ]
+25770489296[label="<f0> |<f1>Nombre: lucia |<f2>" ]
 
-25770475840:f0->25770476048:f1 [color=blue]
-25770475840:f2->25770476448:f1 [color=blue ]
-25770476448:f0->25770476256:f1 [color=blue]
-25770476256:f0->25770477264:f1 [color=blue]
-25770476048:f0->25770476704:f1 [color=blue]
+25770476720:f2->25770490768:f1 [color=blue ]
+25770476720:f0->25770489296:f1 [color=blue]
 
  }
 

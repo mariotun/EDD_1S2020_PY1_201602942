@@ -4,13 +4,14 @@
 #include <stdlib.h>
 
 #include "Opciones.cpp"
+//#include "Structures/ListaSimple.cpp"
 //#include"LPosEspeciales.cpp"
 //#include "Structures/ListaDobleCircular.cpp"
 //#include "Structures/Cola.cpp"
 //#include "Structures/ArbolBinarioBusqueda.cpp"
 //#include "Structures/Matriz.cpp"
-/*#include "Structures/ListaSimpleOrdenada.cpp"
-#include "Structures/ListaDoble.cpp"
+//#include "Structures/ListaSimpleOrdenada.cpp"
+/*#include "Structures/ListaDoble.cpp"
 
 #include "json.hpp"
 #include <unistd.h>*/
@@ -34,6 +35,15 @@ string x,y;
 
 
 int main(){
+
+    /*Lista_Simple *lsim=new Lista_Simple();
+    lsim->Insertar(new NodoLS(4));
+    lsim->Insertar(new NodoLS(82));
+    lsim->Insertar(new NodoLS(34));
+    lsim->Insertar(new NodoLS(12));
+    lsim->Insertar(new NodoLS(90));
+    lsim->Insertar(new NodoLS(140));
+    lsim->Graficar();*/
 
     /*Matrizz *mt=new Matrizz();
     mt->add(1,3,"m");
@@ -68,7 +78,27 @@ int main(){
     if(i==true && j==true){
         cout<<"Los dos existen\n";
     }else{ cout<<"NO existen\n"; }*/
-
+    /*Lista_Simple_Ordenada_In *lso=new Lista_Simple_Ordenada_In();
+    lso->Insertar(new NodoLSOIn(3));
+    lso->Insertar(new NodoLSOIn(4));
+    lso->Insertar(new NodoLSOIn(1));
+    lso->Insertar(new NodoLSOIn(7));
+    lso->Mostrar();
+    lso->GraficarP();*/
+    
+    /*Lista_Simple_Ordenada *lso=new Lista_Simple_Ordenada(1);
+    lso->Insertar(new NodoLSO(3));
+    lso->Insertar(new NodoLSO(4));
+    lso->Insertar(new NodoLSO(1));
+    lso->Insertar(new NodoLSO(7));
+    lso->Mostrar();
+    Lista_Simple_Ordenada *lso2=new Lista_Simple_Ordenada(1);
+    lso2->Insertar(new NodoLSO(5));
+    lso2->Insertar(new NodoLSO(6));
+    lso2->Insertar(new NodoLSO(7));
+    lso2->Insertar(new NodoLSO(10));
+    lso2->Mostrar();*/
+  
     
 
    do{

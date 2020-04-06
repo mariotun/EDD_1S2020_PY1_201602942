@@ -30,6 +30,7 @@ class Opciones_Programa{
         int ValidarNombre(string nombre);
         void fichas(Cola *cl);
         void HTML(string nom1,string nom2,int pt1,int pt2); 
+        //int *HTML(string nom1,string nom2,int pt1,int pt2); 
         void TURNOS(NodoArbol *jug1,NodoArbol *jug2,int pt1,int pt2);
 
         string ruta;
@@ -51,7 +52,8 @@ class Opciones_Programa{
         int cantLetras=0;
         int dimensionMatriz;
         int abrirHTML=0;
-        
+        int PuntosObtenidos1=0;
+        int PuntosObtenidos2=0;
 
 }; 
 
@@ -59,7 +61,7 @@ Opciones_Programa::Opciones_Programa(){
 
     abb=new Arbol_Binario_Busqueda();
     lcd=new Lista_Doble_Circular();
-    //cl=new Cola();
+    cl=new Cola();//se inicializo por si alguno quiere ver la cola vacia en los reportes antes de introducirlas
     //lpe=new Lista_PE();
     
  }
@@ -86,6 +88,8 @@ Opciones_Programa::Opciones_Programa(){
 
     int puntaje1=0;
     int puntaje2=0;
+     PuntosObtenidos1=0;
+     PuntosObtenidos2=0;
     
 
 while(salir2!=true){
@@ -100,6 +104,7 @@ while(salir2!=true){
     int posFielim=0;
     cantLetras=0;
     puntosGeneral=0;
+    NodoCola *fichaxT,*fichax2T;
     //nombreJ=NULL;
 
     cout<<"\n1.-Salir Del Juego\n";
@@ -111,6 +116,10 @@ while(salir2!=true){
         case '1':
             //jug1->scoreboard->Insertar(new NodoLSO(puntaje1));
             //jug2->scoreboard->Insertar(new NodoLSO(puntaje2));
+            PuntosObtenidos1=puntaje1;
+            PuntosObtenidos2=puntaje2;
+            cout<<"PuntosFinal_1:"<<PuntosObtenidos1<<endl;
+            cout<<"PuntosFinal_2:"<<PuntosObtenidos2<<endl;
             salir2=true;
         break;
 
@@ -198,7 +207,7 @@ while(salir2!=true){
 
                     ltr;
                     if( (nombreJ->fichas->Buscar(ltr+=letra)==true) ){
-                            cout<<"es su ficha\n";
+                            cout<<"SI es su ficha\n";
                             //ltr;
                             fichaeliminar[posFielim]=ltr;
                             cout<<"mi fichas para eliminar es:"<<fichaeliminar[posFielim];
@@ -214,11 +223,14 @@ while(salir2!=true){
                     psny[contt]=stoi(y);   
                     
                     if( lpeDobles->Buscar(stoi(x),stoi(y))==true ){
-                        mt->add(stoi(x),stoi(y),lt+letra,"tomato2");
+                        mt->add(stoi(x),stoi(y),lt+=letra,"tomato2");
+                        nombreJ->fichas->Modificar(lt,2);//se multiplica la ficha encontrada por 2
+
                     }else if( lpeTriples->Buscar(stoi(x),stoi(y))==true){
-                        mt->add(stoi(x),stoi(y),lt+letra,"slateblue3");
+                        mt->add(stoi(x),stoi(y),lt+=letra,"slateblue3");
+                        nombreJ->fichas->Modificar(lt,3);//se multiplica la ficha encontrada por 3
                     }else{
-                        mt->add(stoi(x),stoi(y),lt+letra);
+                        mt->add(stoi(x),stoi(y),lt+=letra);
                     }
                     contt++;
                     cantLetras++;
@@ -271,6 +283,12 @@ while(salir2!=true){
                            // cout<<"Bpx:"<<psnx[z]<<",Bpy:"<<psny[z]<<endl;
                         //mt->Eliminar(psnx[z],psny[z]);
                         //}
+                    }
+
+                    for(int m=0;m<posFielim;m++){//para darle mas fichas al jugador cuando se acepte una palabra
+                        if( (fichaxT=cl->Eliminar())!=NULL){
+                        nombreJ->fichas->Insertar(new NodoLD(fichaxT->ficha,fichaxT->puntos));
+                        }else{ cout<<"\nSe acabaron las fichas X X X\n"; }                    
                     }
 
                     if(tur1==2){
@@ -675,13 +693,11 @@ void Opciones_Programa::opcion_tres(){
     cl=new Cola();
     fichas(cl);
 
-   /* cout<<"fic:"<<cl->Eliminar()<<endl;
-    cout<<"fic:"<<cl->Eliminar()<<endl;
-    cout<<"fic:"<<cl->Eliminar()<<endl;
-    cout<<"fic:"<<cl->Eliminar()<<endl;
-    cout<<"fic:"<<cl->Eliminar()<<endl;
-    cout<<"fic:"<<cl->Eliminar()<<endl;
-    cout<<"fic:"<<cl->Eliminar()<<endl;*/
+    //jugador1->scoreboard->SALUDO();
+   // for(int t=0;t<6;t++){
+   // jugador1->PuntosPartida->Insertar(new NodoLSOIn(t*2));
+    //    }
+   
 
     for (int i = 0; i < 7; i++) {
      
@@ -698,10 +714,28 @@ void Opciones_Programa::opcion_tres(){
             cout<<fichax2->ficha;
         }else{ cout<<"\nSe acabaron las fichas"; }
     }
+        NodoArbol *gamer1=jugador1;
+        NodoArbol *gamer2=jugador2;
     
         
-        TURNOS(jugador1,jugador2,5,5);
-    
+        TURNOS(gamer1,gamer2,5,5);
+       // cout<<"PuntajeObntenido1:"<<PuntosObtenidos1<<endl;
+       // cout<<"PuntajeObntenido2:"<<PuntosObtenidos2<<endl;
+
+        for(int x=0;x<5;x++){
+            if(x==3){
+        jugador1->PuntosJuegos->Insertar(new NodoLS(PuntosObtenidos1));
+            }
+        }
+
+        for(int y=0;y<5;y++){
+            if(y==3){
+        jugador2->PuntosJuegos->Insertar(new NodoLS(PuntosObtenidos2));
+            }
+        }
+        //jugador2->scoreboard->Insertar(new NodoLSO(PuntosObtenidos2));
+        //cout<<"PuntajeObntenido1:"<<PuntosObtenidos1<<endl;
+        //cout<<"PuntajeObntenido2:"<<PuntosObtenidos2<<endl;
     /*do{//PARA LOS TURNOS DE CADA JUGADOR
 
     cout<<"(1)Salir\n (2)Ver Tablero\n";
@@ -774,18 +808,24 @@ void Opciones_Programa::opcion_cuatro(){
             break;
 
         case 'd':
+            //if(entrada2 >= 1){
             cout<<"d\n";
             abb->graph_inorder();
+            //}else{cout<<"\nNo se puede mostrar aun por falra de datos\n";}
             break;
 
         case 'e':
+            //if(entrada2 >= 1){
             cout<<"e\n";
             abb->graph_preorder();
+            //}else{cout<<"\nNo se puede mostrar aun por falra de datos\n";}
             break;
 
         case 'f':
+           // if(entrada2 >= 1){
             cout<<"f\n";
             abb->graph_posorder();
+            //}else{cout<<"\nNo se puede mostrar aun por falra de datos\n";}
             break;
         
         case 'g':
@@ -798,7 +838,29 @@ void Opciones_Programa::opcion_cuatro(){
             break;
 
         case 'i':
+            
+            if(entrada2 >= 1){
             cout<<"i\n";
+            char opcc;
+            cout<<"(1)Jugador1 (2)Jugador2 \n";
+            cin>>opcc;
+            switch(opcc){
+                case '1':
+                //jugador1->PuntosPartida->SALUDO();
+                //jugador1->PuntosPartida->Mostrar();
+                jugador1->PuntosJuegos->Graficar();
+                break;
+
+                case '2':
+                jugador2->PuntosJuegos->Graficar();
+                break;
+
+                default:
+                    cout<<"\nOpcion incorrecta\n";
+                break;
+            }
+
+            }else{ cout<<"\nError,Por lo menos se requiere haber iniciado una partida\n"; }
 
 
             
@@ -807,7 +869,7 @@ void Opciones_Programa::opcion_cuatro(){
         case 'j':
             
             if(entrada2 >= 1){
-            cout<<"i\n";
+            cout<<"j\n";
             char opcc;
             cout<<"(1)Jugador1 (2)Jugador2 \n";
             cin>>opcc;
@@ -820,7 +882,7 @@ void Opciones_Programa::opcion_cuatro(){
                 jugador2->fichas->Graficar();
                 break;
 
-                defautl:
+                default:
 
                 break;
             }

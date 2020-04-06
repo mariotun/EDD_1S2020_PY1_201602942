@@ -14,22 +14,43 @@ fillcolor=steelblue2;
 node [shape=box fillcolor=chartreuse3];
 mt[label= "Matrix" style=radial group=0]
 {rank=same;
-0[label= "5 " style=radial,group=5]
-mt->0[dir=both];};
+25770493504[label= "5 " style=radial,group=5]
+0[label= "6 " style=radial,group=6]
+mt->25770493504->0[dir=both];};
 
-64[label= "7 " style=radial,group=0]
-mt->64[dir=both];
+25770480048[label= "6 " style=radial,group=0]
+25770480608[label= "7 " style=radial,group=0]
+64[label= "8 " style=radial,group=0]
+mt->25770480048->25770480608->64[dir=both];
 
 node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
-25770521136[label="d" style=radial,group=5];
+25770479584[label="s" style=radial,group=5];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
+25770480112[label="a" style=radial,group=5];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
+25770480672[label="u" style=radial,group=5];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
+25770493632[label="g" style=radial,group=6];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
+25770493952[label="e" style=radial,group=6];
+node[shape=box height=0.5 style=filled fontcolor=black fillcolor=tan2]
+25770494304[label="n" style=radial,group=6];
 
 
-0->25770521136[dir=both]
+25770493504->25770479584->25770480112->25770480672[dir=both]
+0->25770493632->25770493952->25770494304[dir=both]
 
-25770521136[label="d"];
+25770479584[label="s"];
+25770493632[label="g"];
+25770480112[label="a"];
+25770493952[label="e"];
+25770480672[label="u"];
+25770494304[label="n"];
 
 
-{rank=same;64->25770521136[dir=both] }
+{rank=same;25770480048->25770479584->25770493632[dir=both] } 
+{rank=same;25770480608->25770480112->25770493952[dir=both] } 
+{rank=same;64->25770480672->25770494304[dir=both] }
  }
 
 }

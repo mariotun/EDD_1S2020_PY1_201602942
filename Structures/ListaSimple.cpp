@@ -9,79 +9,78 @@
 
 using namespace std;
 
-class NodoLD{
+class NodoLS{
 
     public:
-        string ficha;
+        //string ficha;
         int puntos;
-        NodoLD *next;
-        NodoLD *back;
-        NodoLD();
-        NodoLD(string palabra,int puntos);
+        NodoLS *next;
+        //NodoLD *back;
+        NodoLS();
+        NodoLS(int puntos);
 
 };
 
 
-NodoLD::NodoLD(){ }
+NodoLS::NodoLS(){ }
 
-NodoLD::NodoLD(string ficha,int puntos){
-
-    this->ficha=ficha;
+NodoLS::NodoLS(int puntos){
+   
     this->puntos=puntos;
 }
 
 //*********************************************************************************************************************
 
-class Lista_Doble{
+class Lista_Simple{
 
     public:
 
-        NodoLD *first;
-        NodoLD *last;
+        NodoLS *first;
+        NodoLS *last;
 
-        void Insertar(NodoLD *ficha);
-        bool Buscar(string ficha);
+        void Insertar(NodoLS *ficha);
+        bool Buscar(int ficha);
         void Mostrar();
-        NodoLD *Eliminar(string letraficha);
-        void Modificar(string palabra,int extras);
+        NodoLS *Eliminar(int letraficha);
+        void Modificar(int palabra,int extras);
         string ArchivoGrafica();
         void Graficar();
 
-        Lista_Doble();
+        Lista_Simple();
 
 };
 
-Lista_Doble::Lista_Doble(){
+Lista_Simple::Lista_Simple(){
     
     this->first=NULL;
     this->last=NULL;
 
 }
 
-void Lista_Doble::Insertar(NodoLD *palabra){
+void Lista_Simple::Insertar(NodoLS *palabra){
 
     if(first==NULL){
         first=palabra;
         first->next=NULL;
-        first->back=NULL;
+        //first->back=NULL;
         last=first;
     }else{
         last->next=palabra;
         palabra->next=NULL;
-        palabra->back=last;
+       // palabra->back=last;
         last=palabra;
         }
 }
 
-void Lista_Doble::Mostrar(){
+void Lista_Simple::Mostrar(){
 
-    NodoLD *actual=new NodoLD();
+    NodoLS *actual=new NodoLS();
     actual=first;
 
     if(first!=NULL){
 
         while(actual!=NULL){
-        cout<<"[ "<<actual->ficha<<" ]"<<"-->";
+        cout<<"[ "<<actual->puntos<<" ]"<<"-->";
         actual=actual->next;
         }
 
@@ -92,9 +91,9 @@ void Lista_Doble::Mostrar(){
 
 }
 
-bool Lista_Doble::Buscar(string palabra){
+bool Lista_Simple::Buscar(int palabra){
 
-    NodoLD *actual=new NodoLD();
+    NodoLS *actual=new NodoLS();
     actual=first;
     bool encontrado=false;
     
@@ -102,7 +101,7 @@ bool Lista_Doble::Buscar(string palabra){
 
         while (actual!=NULL && encontrado!=true){
 
-            if(actual->ficha==palabra){
+            if(actual->puntos==palabra){
               // cout<<"se encontro el dato: "<<actual->palabra;
                return encontrado=true; 
                 
@@ -125,8 +124,8 @@ bool Lista_Doble::Buscar(string palabra){
 }
 
 
-void Lista_Doble::Modificar(string palabra,int extras){
-    NodoLD *actual=new NodoLD();
+void Lista_Simple::Modificar(int palabra,int extras){
+    NodoLS *actual=new NodoLS();
     actual=first;
     bool encontrado=false;
     
@@ -134,7 +133,7 @@ void Lista_Doble::Modificar(string palabra,int extras){
 
         while (actual!=NULL && encontrado!=true){
 
-            if(actual->ficha==palabra){
+            if(actual->puntos==palabra){
                 actual->puntos=(actual->puntos*extras);
                 encontrado=true;
             }
@@ -158,11 +157,11 @@ void Lista_Doble::Modificar(string palabra,int extras){
 }
 
 
-NodoLD *Lista_Doble::Eliminar(string letraficha){
+NodoLS *Lista_Simple::Eliminar(int letraficha){
 
-    NodoLD *actual=new NodoLD();
+    NodoLS *actual=new NodoLS();
     actual=first;
-    NodoLD* anterior = new NodoLD();
+    NodoLS* anterior = new NodoLS();
 	anterior = NULL;
     bool encontrado=false;
     
@@ -170,11 +169,11 @@ NodoLD *Lista_Doble::Eliminar(string letraficha){
 
         while (actual!=NULL && encontrado!=true){
 
-            if(actual->ficha==letraficha){
+            if(actual->puntos==letraficha){
               
               if(actual==first){
                   first=first->next;
-                  first->back=NULL;
+                  //first->back=NULL;
 
               }else if(actual==last){
                   anterior->next = NULL;
@@ -182,7 +181,7 @@ NodoLD *Lista_Doble::Eliminar(string letraficha){
 
               }else{
                   anterior->next = actual->next;
-				  actual->next->back = anterior;
+				  //actual->next->back = anterior;
 
               }
                 encontrado=true; 
@@ -212,12 +211,12 @@ NodoLD *Lista_Doble::Eliminar(string letraficha){
 }
 
 
-string Lista_Doble::ArchivoGrafica(){
+string Lista_Simple::ArchivoGrafica(){
 
     string cadena;
-    NodoLD *temporal=first;
-    NodoLD *actual=first;
-    NodoLD *uno=first;
+    NodoLS *temporal=first;
+    NodoLS *actual=first;
+    NodoLS *uno=first;
 
     cadena+="digraph Lista_Doble{\n\n";
     cadena+="graph[ranksep= \"0.5\",nodesep= \"0.5\"];\n";
@@ -240,7 +239,7 @@ string Lista_Doble::ArchivoGrafica(){
 
             cadena+=static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(temporal)))->str();
             cadena+="[label=\" ";
-            cadena+=static_cast<std::ostringstream*>(&(std::ostringstream()<<temporal->ficha))->str();
+            cadena+=static_cast<std::ostringstream*>(&(std::ostringstream()<<temporal->puntos))->str();
             cadena+="\"];\n";
 
         temporal=temporal->next;
@@ -270,21 +269,21 @@ string Lista_Doble::ArchivoGrafica(){
    // cadena+="->"+static_cast<std::ostringstream*>(&(std::ostringstream()<<reinterpret_cast<int64_t>(uno)))->str();
 
     cadena+="\n";
-    cadena+="[dir=both  color=black];\n";
+    cadena+="[dir=front color=black];\n";
     cadena+="\n }\n\n}";
 
     return cadena;
 }
 
-void Lista_Doble::Graficar(){
+void Lista_Simple::Graficar(){
 
-   NodoLD *aux=first;
+   NodoLS *aux=first;
 
    if(first!=NULL){
 
    FILE *fichero;
 
-   fichero = fopen("C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/LD_Fichas_Jugador.dot", "w");
+   fichero = fopen("C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Score_Board_Usuario.dot", "w");
 
 
 
@@ -303,8 +302,8 @@ void Lista_Doble::Graficar(){
    cout<<endl;
 
 
-   system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/LD_Fichas_Jugador.dot");
-   system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/LD_Fichas_Jugador.dot.png");
+   system("dot -Tpng  -O C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Score_Board_Usuario.dot");
+   system("cmd.exe /C start C:/Users/HP/Desktop/EDD/Proyecto1/Graficas/Score_Board_Usuario.dot.png");
  
 
    }
